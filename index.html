@@ -485,8 +485,8 @@ a{color:inherit;text-decoration:none}
   <div id="favs-list"></div>
   <div id="favs-empty" style="text-align:center;padding:50px 20px;color:var(--text3);font-size:13px;display:none">
     <div style="font-size:36px;margin-bottom:12px">☆</div>
-    <div>${L('favs_empty')}</div>
-    <div style="margin-top:6px;font-size:12px">${L('favs_empty_hint')}</div>
+    <div id="favs-empty-text">Поки що порожньо</div>
+    <div style="margin-top:6px;font-size:12px" id="favs-empty-hint">Натисніть ☆ біля формули, щоб додати її сюди</div>
   </div>
 </div>
 
@@ -646,6 +646,11 @@ function applyLang() {
   // Search placeholder
   const si = document.getElementById('global-search');
   if (si) si.placeholder = L('search_placeholder');
+  // Favs empty
+  const fe = document.getElementById('favs-empty-text');
+  if (fe) fe.textContent = L('favs_empty');
+  const fh = document.getElementById('favs-empty-hint');
+  if (fh) fh.textContent = L('favs_empty_hint');
   // Tab buttons
   const tabMap = {logic:'tab_logic',formula:'tab_formula',calculator:'tab_calc',reference:'tab_ref',viz:'tab_viz',examples:'tab_examples'};
   document.querySelectorAll('.topic-tab').forEach(t => {
@@ -845,6 +850,8 @@ function _onKatexLoad() {
     } catch(e) {}
   });
   _katexQueue = [];
+  // Render any deferred math
+  setTimeout(() => renderDeferredMath(), 50);
 }
 
 // Poll for katex availability (covers both defer and retry)
@@ -862,25 +869,35 @@ function _onKatexLoad() {
 })();
 
 function renderMath(text) {
-  if (_katexReady) {
-    try {
-      return katex.renderToString(toLatex(text), {throwOnError:false, displayMode:false, output:'html'});
-    } catch(e) {
-      return `<span class="mono">${text}</span>`;
-    }
-  }
-  return `<span class="katex-loading" data-math-src="${text.replace(/"/g,'&quot;')}" data-math-display="0">${text}</span>`;
+  return `<span class="katex-defer" data-math-src="${text.replace(/"/g,'&quot;')}" data-math-display="0">${esc(text)}</span>`;
 }
 
 function renderMathBlock(text) {
-  if (_katexReady) {
-    try {
-      return katex.renderToString(toLatex(text), {throwOnError:false, displayMode:true, output:'html'});
-    } catch(e) {
-      return `<div class="mono" style="text-align:center;font-size:15px;padding:8px 0">${text}</div>`;
+  return `<div class="katex-defer" data-math-src="${text.replace(/"/g,'&quot;')}" data-math-display="1" style="text-align:center;font-size:15px;padding:8px 0">${esc(text)}</div>`;
+}
+
+function renderDeferredMath(root) {
+  if (!_katexReady) return;
+  const els = Array.from((root || document).querySelectorAll('.katex-defer'));
+  let i = 0;
+  function chunk() {
+    const end = Math.min(i + 8, els.length);
+    for (; i < end; i++) {
+      const el = els[i];
+      const src = el.getAttribute('data-math-src');
+      const display = el.getAttribute('data-math-display') === '1';
+      try {
+        el.innerHTML = katex.renderToString(toLatex(src), {throwOnError:false, displayMode:display, output:'html'});
+        el.classList.remove('katex-defer');
+        el.classList.add('katex-done');
+      } catch(e) {
+        el.textContent = src;
+        el.classList.remove('katex-defer');
+      }
     }
+    if (i < els.length) requestAnimationFrame(chunk);
   }
-  return `<div class="katex-loading" data-math-src="${text.replace(/"/g,'&quot;')}" data-math-display="1" style="text-align:center;font-size:15px;padding:8px 0">${text}</div>`;
+  if (els.length) requestAnimationFrame(chunk);
 }
 
 // ══ ПРОГРЕС (localStorage) ════════════════════════════════
@@ -1079,6 +1096,7 @@ async function openTopic(topicId, blockName) {
     currentTopicData = data;
     markViewed(topicId);
     renderTopic(data);
+    setTimeout(() => renderDeferredMath(), 100);
     initViz(topicId);
   } else {
     document.getElementById('tp-logic').innerHTML = `
@@ -3432,6 +3450,7 @@ async function initFavs() {
   }).join('');
 
   cont.innerHTML = html;
+  setTimeout(() => renderDeferredMath(cont), 50);
 }
 
 // ══ ГЛОСАРІЙ ════════════════════════════════════════════════

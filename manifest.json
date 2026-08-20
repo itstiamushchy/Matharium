@@ -2,7 +2,7 @@
   "name": "Математарій",
   "short_name": "Matharium",
   "description": "Інтерактивний математичний довідник від арифметики до аналізу",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0a0b18",
   "theme_color": "#7c6ff7",

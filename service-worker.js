@@ -1,7 +1,7 @@
 const VERSION = 'matharium-v2.0.0';
 const ASSETS = [
-  '/', '/index.html', '/data-index.js',
-  '/icon-192.png', '/icon-512.png'
+  './', './index.html', './data-index.js',
+  './icon-192.png', './icon-512.png'
 ];
 const CDN_ASSETS = [
   'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css',

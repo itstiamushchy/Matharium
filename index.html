@@ -878,10 +878,12 @@ function renderMathBlock(text) {
 
 function renderDeferredMath(root) {
   if (!_katexReady) return;
-  const els = Array.from((root || document).querySelectorAll('.katex-defer'));
+  // Only render in the active panel to save memory
+  const target = root || document.querySelector('.topic-panel.active') || document;
+  const els = Array.from(target.querySelectorAll('.katex-defer'));
   let i = 0;
   function chunk() {
-    const end = Math.min(i + 8, els.length);
+    const end = Math.min(i + 5, els.length);
     for (; i < end; i++) {
       const el = els[i];
       const src = el.getAttribute('data-math-src');
@@ -895,9 +897,9 @@ function renderDeferredMath(root) {
         el.classList.remove('katex-defer');
       }
     }
-    if (i < els.length) requestAnimationFrame(chunk);
+    if (i < els.length) setTimeout(chunk, 50);
   }
-  if (els.length) requestAnimationFrame(chunk);
+  if (els.length) setTimeout(chunk, 50);
 }
 
 // ══ ПРОГРЕС (localStorage) ════════════════════════════════
@@ -1240,18 +1242,18 @@ function renderTopic(data) {
       <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px">
         <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px">
           <span style="background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;flex-shrink:0">${L('example_label')} ${i+1}</span>
-          <div style="font-size:14px;font-weight:500;color:var(--text);line-height:1.6">${renderMath(ex.task)}</div>
+          <div style="font-size:14px;font-weight:500;color:var(--text);line-height:1.6">${esc(ex.task)}</div>
         </div>
         <div style="padding-left:4px">
           ${ex.steps.map((s, j) => `
             <div style="display:flex;gap:10px;margin-bottom:10px">
               <span style="font-size:11px;color:var(--text3);font-family:ui-monospace,monospace;flex-shrink:0;padding-top:2px">${j+1}.</span>
-              <div style="font-size:13px;color:var(--text2);line-height:1.7">${renderMath(s)}</div>
+              <div style="font-size:13px;color:var(--text2);line-height:1.7">${esc(s)}</div>
             </div>
           `).join('')}
         </div>
         <div style="margin-top:12px;padding:10px 14px;background:rgba(124,111,247,.08);border-radius:8px;font-size:13px;font-weight:500;color:var(--accent)">
-          ${L('answer_label')}: ${renderMath(ex.answer)}
+          ${L('answer_label')}: ${esc(ex.answer)}
         </div>
       </div>
     `).join('');
@@ -1273,9 +1275,11 @@ function switchTopicTab(name, btn) {
   document.querySelectorAll('.topic-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.topic-panel').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('tp-' + name).classList.add('active');
+  const panel = document.getElementById('tp-' + name);
+  panel.classList.add('active');
   _currentTab = name;
   if (currentTopicData) updateHash('topic/' + currentTopicData.id + '/' + name);
+  setTimeout(() => renderDeferredMath(panel), 50);
 }
 
 function selectCalcMode(btn, modeId, hint) {

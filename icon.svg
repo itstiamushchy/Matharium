@@ -1,0 +1,20 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#0a0b18"/>
+  <rect x="16" y="16" width="480" height="480" rx="80" fill="none" stroke="#1e2240" stroke-width="1.5"/>
+  <!-- координатні осі -->
+  <line x1="96" y1="416" x2="416" y2="416" stroke="#4a5490" stroke-width="4" opacity=".6"/>
+  <line x1="96" y1="416" x2="96" y2="96" stroke="#4a5490" stroke-width="4" opacity=".6"/>
+  <!-- стрілки осей -->
+  <polygon points="416,410 426,416 416,422" fill="#4a5490" opacity=".6"/>
+  <polygon points="90,96 96,80 102,96" fill="#4a5490" opacity=".6"/>
+  <!-- крива -->
+  <path d="M96,416 Q160,300 200,340 Q240,380 280,256 Q320,132 360,180 Q400,228 416,96" fill="none" stroke="#7c6ff7" stroke-width="6" stroke-linecap="round" opacity=".85"/>
+  <!-- точки -->
+  <circle cx="280" cy="256" r="16" fill="#7c6ff7" opacity=".9"/>
+  <circle cx="416" cy="96" r="12" fill="#34d4a0" opacity=".9"/>
+  <circle cx="96" cy="416" r="12" fill="#f0c040" opacity=".9"/>
+  <!-- π -->
+  <text x="296" y="248" fill="#7c6ff7" font-size="44" font-family="ui-monospace,monospace" opacity=".8">π</text>
+  <!-- √2 -->
+  <text x="366" y="160" fill="#34d4a0" font-size="36" font-family="ui-monospace,monospace" opacity=".8">√2</text>
+</svg>

@@ -1,0 +1,3662 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Математарій — Інтерактивний довідник</title>
+<meta name="description" content="Математарій — інтерактивний математичний довідник. Арифметика, алгебра, геометрія, тригонометрія, аналіз. Від 5 класу до університету.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='512' height='512' rx='96' fill='%230a0b18'/%3E%3Cline x1='96' y1='416' x2='416' y2='416' stroke='%234a5490' stroke-width='4' opacity='.6'/%3E%3Cline x1='96' y1='416' x2='96' y2='96' stroke='%234a5490' stroke-width='4' opacity='.6'/%3E%3Cpath d='M96,416 Q160,300 200,340 Q240,380 280,256 Q320,132 360,180 Q400,228 416,96' fill='none' stroke='%237c6ff7' stroke-width='6' stroke-linecap='round' opacity='.85'/%3E%3Ccircle cx='280' cy='256' r='16' fill='%237c6ff7' opacity='.9'/%3E%3Ccircle cx='416' cy='96' r='12' fill='%2334d4a0' opacity='.9'/%3E%3Ccircle cx='96' cy='416' r='12' fill='%23f0c040' opacity='.9'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css"
+  onerror="this.href='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"
+  onerror="(function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';document.head.appendChild(s)})()"></script>
+<meta name="theme-color" content="#7c6ff7">
+<meta name="author" content="ITS_tiamushchy">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Математарій">
+<style>
+:root{
+  --bg:#0a0b18;
+  --bg2:#0d0f22;
+  --bg3:#111428;
+  --bg4:#151830;
+  --border:#1e2240;
+  --border2:#2a3060;
+  --accent:#7c6ff7;
+  --accent2:#5b52e0;
+  --gold:#f0c040;
+  --teal:#34d4a0;
+  --text:#e0e4f8;
+  --text2:#8892cc;
+  --text3:#4a5490;
+}
+[data-theme="light"]{
+  --bg:#f5f6fa;
+  --bg2:#ffffff;
+  --bg3:#edeef4;
+  --bg4:#e4e6f0;
+  --border:#d0d4e4;
+  --border2:#b8bdd4;
+  --accent:#5b52e0;
+  --accent2:#7c6ff7;
+  --gold:#c49a20;
+  --teal:#1a9e6e;
+  --text:#1a1c2e;
+  --text2:#4a5070;
+  --text3:#8890aa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh;line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* ── ШРИФТ ── */
+.mono{font-family:ui-monospace,monospace}
+.display{font-family:system-ui,-apple-system,sans-serif}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1400px;margin:0 auto;padding:0 20px}
+
+/* ── HERO ── */
+.hero{padding:28px 32px 22px;display:flex;align-items:center;gap:24px;border-bottom:.5px solid rgba(124,111,247,.15);background:linear-gradient(180deg,rgba(124,111,247,.04) 0%,transparent 100%)}
+.hero-icon{flex-shrink:0;width:90px;height:90px;position:relative}
+.hero-icon svg{width:100%;height:100%}
+.hero-text{}
+.hero-eyebrow{font-size:9px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:4px;font-family:system-ui,-apple-system,sans-serif;opacity:.9}
+.hero-title{font-family:system-ui,-apple-system,sans-serif;font-size:36px;font-weight:700;color:#fff;line-height:1;letter-spacing:-1px;margin-bottom:3px}
+.hero-title span{color:var(--accent)}
+.hero-sub{font-size:12px;color:var(--text2);font-weight:300}
+.hero-ver{position:absolute;top:12px;right:20px;font-family:ui-monospace,monospace;font-size:9px;color:var(--text3);letter-spacing:2px}
+@keyframes pulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+.hero-icon svg{animation:pulse 4s ease-in-out infinite}
+
+/* ── NAV ── */
+.nav{display:flex;align-items:center;gap:4px;padding:8px 32px;border-bottom:.5px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:100;flex-wrap:wrap}
+.nav-btn{background:none;border:none;padding:6px 12px;border-radius:6px;color:var(--text2);font-size:12px;cursor:pointer;transition:.15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-btn:hover,.nav-btn.active{color:var(--text);background:var(--bg3)}
+.nav-btn.active{color:var(--accent)}
+.nav-arrow{font-size:9px;opacity:.5;transition:transform .2s}
+.nav-sep{width:.5px;height:18px;background:var(--border);margin:0 4px;flex-shrink:0}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--text2);border-radius:2px;transition:.2s}
+
+/* ── ПАНЕЛІ ── */
+.panel{display:none;padding:28px 32px;min-height:calc(100vh - 160px)}
+.panel.active{display:block}
+
+/* ── TOPICS HUB ── */
+.hub-meta{font-family:ui-monospace,monospace;font-size:9px;color:var(--text3);letter-spacing:1px;margin-bottom:20px;text-transform:uppercase}
+.hub-meta span{color:var(--accent)}
+.block-section{margin-bottom:12px;border:.5px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg2)}
+.block-header{padding:14px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:.2s;user-select:none}
+.block-header:hover{background:var(--bg3)}
+.block-section.open .block-header{background:var(--bg3);border-bottom:.5px solid rgba(124,111,247,.12)}
+.block-num{font-family:ui-monospace,monospace;font-size:10px;color:var(--text3);min-width:28px}
+.block-icon{font-size:18px;flex-shrink:0}
+.block-info{flex:1}
+.block-title{font-family:system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:1px}
+.block-count{font-family:ui-monospace,monospace;font-size:9px;color:var(--text3);letter-spacing:.5px}
+.block-count span{color:var(--accent)}
+.block-arrow{font-size:12px;color:var(--accent);opacity:.5;transition:transform .25s}
+.block-section.open .block-arrow{transform:rotate(90deg)}
+.block-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.block-section.open .block-body{max-height:1000px}
+.block-grid{padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:7px}
+.topic-card{background:var(--bg);border:.5px solid var(--border);border-radius:10px;padding:12px 15px;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:12px}
+.topic-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-1px)}
+.topic-card-id{font-family:ui-monospace,monospace;font-size:9px;color:var(--text3);min-width:30px}
+.topic-card-name{font-size:13px;color:var(--text);flex:1;font-weight:500}
+.topic-card-icon{font-size:16px;flex-shrink:0}
+.topic-card-arrow{color:var(--accent);font-size:12px;opacity:.4}
+
+/* ── ТЕМА (TOPIC SCREEN) ── */
+.topic-screen{display:none}
+.topic-screen.active{display:block}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:22px;font-size:12px;color:var(--text3);flex-wrap:wrap}
+.breadcrumb a{color:var(--accent);cursor:pointer;transition:.15s}
+.breadcrumb a:hover{color:#fff}
+.breadcrumb-sep{opacity:.4}
+.topic-header{margin-bottom:24px;display:flex;align-items:flex-start;gap:16px}
+.topic-icon{font-size:36px;line-height:1}
+.topic-header-text{}
+.topic-title{font-family:system-ui,-apple-system,sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:3px}
+.topic-id{font-family:ui-monospace,monospace;font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase}
+
+/* ── ПАНЕЛІ ТЕМИ (ВКЛАДКИ) ── */
+.topic-tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.topic-tab{padding:8px 16px;font-size:12px;color:var(--text2);cursor:pointer;background:var(--bg3);border:.5px solid var(--border);border-radius:7px;font-family:inherit;transition:.15s;display:flex;align-items:center;gap:6px}
+.topic-tab:hover{color:var(--text)}
+.topic-tab.active{background:rgba(124,111,247,.12);border-color:var(--accent);color:var(--accent)}
+.topic-panel{display:none}
+.topic-panel.active{display:block}
+
+/* ── ТЕОРІЯ ── */
+.theory-section{margin-bottom:18px;background:var(--bg2);border:.5px solid var(--border);border-radius:12px;overflow:hidden}
+.theory-heading{padding:14px 18px;font-family:system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:.15s;user-select:none}
+.theory-heading:hover{background:var(--bg3)}
+.theory-section.open .theory-heading{background:var(--bg3);border-bottom:.5px solid rgba(124,111,247,.1)}
+.theory-toggle{font-size:10px;color:var(--accent);opacity:.6;transition:transform .2s;flex-shrink:0}
+.theory-section.open .theory-toggle{transform:rotate(90deg)}
+.theory-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.theory-section.open .theory-body{max-height:2000px}
+.theory-text{padding:16px 18px;font-size:13px;color:var(--text2);line-height:1.8}
+.theory-list{padding:12px 18px 16px;list-style:none}
+.theory-list li{font-size:13px;color:var(--text2);line-height:1.75;padding:4px 0 4px 18px;position:relative;border-bottom:.5px solid rgba(30,34,64,.6)}
+.theory-list li:last-child{border-bottom:none}
+.theory-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);opacity:.6;font-size:10px;top:6px}
+.theory-key{color:var(--text);font-weight:500}
+
+/* ── ФОРМУЛИ ── */
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.formula-card{background:var(--bg2);border:.5px solid var(--border);border-radius:12px;padding:18px;transition:.18s;cursor:default}
+.formula-card:hover{border-color:rgba(124,111,247,.4);background:var(--bg3)}
+.formula-expr{font-size:15px;color:var(--accent);margin-bottom:8px;line-height:1.5;letter-spacing:.3px;overflow-x:auto}
+.formula-expr .katex{color:var(--accent);font-size:1.15em}
+.formula-expr .katex .base{color:var(--accent)}
+.katex-loading{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);opacity:.7}
+.katex-loading::before{content:'⏳'}
+.viz-wrap{position:relative;width:100%;background:var(--bg2);border:.5px solid var(--border);border-radius:12px;overflow:hidden}
+.viz-canvas{display:block;width:100%;touch-action:none;cursor:crosshair}
+.viz-controls{display:flex;gap:8px;padding:10px 14px;border-top:.5px solid var(--border);flex-wrap:wrap;align-items:center}
+.viz-btn{padding:6px 14px;font-size:12px;font-family:ui-monospace,monospace;color:var(--text2);background:var(--bg3);border:.5px solid var(--border);border-radius:7px;cursor:pointer;transition:.15s}
+.viz-btn:hover{color:var(--text);border-color:var(--accent)}
+.viz-info{font-size:11px;color:var(--text3);padding:8px 14px;border-top:.5px solid var(--border);font-family:ui-monospace,monospace;line-height:1.7}
+.viz-info b{color:var(--text2);font-weight:500}
+.topic-tab.viz-tab{display:none}
+.topic-tab.viz-tab.supported{display:flex}
+.diff-btns{display:flex;gap:8px;justify-content:center;margin:14px 0}
+.diff-btn{padding:8px 18px;font-size:12px;font-family:inherit;color:var(--text2);background:var(--bg2);border:.5px solid var(--border);border-radius:8px;cursor:pointer;transition:.15s}
+.diff-btn:hover{border-color:var(--accent);color:var(--text)}
+.diff-btn.active{background:rgba(124,111,247,.12);border-color:var(--accent);color:var(--accent)}
+.formula-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px}
+.formula-desc{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:8px}
+.formula-example{font-family:ui-monospace,monospace;font-size:11px;color:var(--teal);background:rgba(52,212,160,.06);border:.5px solid rgba(52,212,160,.15);border-radius:6px;padding:5px 10px}
+.formula-example::before{content:'→ ';opacity:.5}
+
+/* ── КАЛЬКУЛЯТОР ── */
+.calc-desc{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.7}
+.calc-modes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.calc-mode-btn{padding:7px 14px;font-size:12px;border:.5px solid var(--border);border-radius:7px;background:var(--bg2);color:var(--text2);cursor:pointer;transition:.15s;font-family:inherit}
+.calc-mode-btn:hover{border-color:var(--accent);color:var(--text)}
+.calc-mode-btn.active{background:rgba(124,111,247,.12);border-color:var(--accent);color:var(--accent)}
+.calc-input-area{background:var(--bg2);border:.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
+.calc-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px}
+.calc-field{flex:1;min-width:140px}
+.calc-label{font-size:11px;color:var(--text2);margin-bottom:5px;display:block}
+.calc-input{width:100%;background:var(--bg);border:.5px solid var(--border2);border-radius:8px;padding:10px 14px;color:var(--text);font-size:15px;font-family:ui-monospace,monospace;outline:none;transition:.2s}
+.calc-input:focus{border-color:var(--accent)}
+.calc-input::placeholder{color:var(--text3);font-size:12px;font-family:'Inter',sans-serif}
+.calc-btn{background:var(--bg3);border:.5px solid var(--accent);border-radius:8px;padding:10px 22px;color:var(--accent);font-size:13px;cursor:pointer;transition:.15s;font-family:inherit;height:42px;white-space:nowrap}
+.calc-btn:hover{background:var(--accent);color:#fff}
+.calc-result{display:none;background:var(--bg);border:.5px solid rgba(124,111,247,.2);border-radius:10px;padding:18px}
+.calc-result.show{display:block}
+.calc-result-value{font-family:ui-monospace,monospace;font-size:32px;font-weight:500;color:var(--accent);margin-bottom:8px}
+.calc-result-steps{margin-top:12px}
+.calc-step{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:var(--text2);line-height:1.6}
+.calc-step-n{background:rgba(124,111,247,.1);border:.5px solid rgba(124,111,247,.2);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--accent);flex-shrink:0;margin-top:1px}
+.quick-vals{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.quick-val{background:var(--bg3);border:.5px solid var(--border);border-radius:6px;padding:5px 11px;font-size:11px;color:var(--text2);cursor:pointer;font-family:ui-monospace,monospace;transition:.15s}
+.quick-val:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── ДОВІДКА ── */
+.ref-table{width:100%;border-collapse:collapse}
+.ref-table th{text-align:left;font-size:10px;font-family:ui-monospace,monospace;letter-spacing:1px;color:var(--text3);text-transform:uppercase;padding:10px 14px;border-bottom:.5px solid var(--border);background:var(--bg2)}
+.ref-table td{padding:11px 14px;border-bottom:.5px solid rgba(30,34,64,.5);font-size:13px;vertical-align:top}
+.ref-table tr:hover td{background:rgba(124,111,247,.03)}
+.ref-sym{font-family:ui-monospace,monospace;color:var(--accent);font-size:13px;white-space:nowrap}
+.ref-val{color:var(--text);font-weight:500}
+.ref-desc{color:var(--text2);font-size:12px;line-height:1.6}
+.ref-facts{margin-top:20px}
+.ref-fact{display:flex;gap:12px;padding:11px 0;border-bottom:.5px solid rgba(30,34,64,.5);font-size:12px;color:var(--text2);line-height:1.7}
+.ref-fact::before{content:'💡';flex-shrink:0;opacity:.7}
+.ref-fact:last-child{border-bottom:none}
+
+/* ── POPUP INFO ── */
+.popup-info{margin-top:20px;background:rgba(124,111,247,.05);border:.5px solid rgba(124,111,247,.15);border-radius:12px;padding:18px}
+.popup-info-row{margin-bottom:10px;font-size:13px;line-height:1.7}
+.popup-info-row:last-child{margin-bottom:0}
+.popup-info-label{font-size:10px;font-family:ui-monospace,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.popup-info-text{color:var(--text2)}
+.popup-warning{color:#ff9050}
+
+/* ── ГЛОСАРІЙ / STATS ── */
+.stats-bar{display:flex;gap:20px;flex-wrap:wrap;padding:16px 0;margin-bottom:24px;border-bottom:.5px solid var(--border)}
+.stat{text-align:center}
+.stat-num{font-family:system-ui,-apple-system,sans-serif;font-size:28px;font-weight:700;color:var(--accent);line-height:1}
+.stat-label{font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+/* ── ДОМАШНЯ СТОРІНКА ── */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:28px}
+.home-card{background:var(--bg2);border:.5px solid var(--border);border-radius:14px;padding:22px;cursor:pointer;transition:.2s;position:relative;overflow:hidden}
+.home-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px)}
+.home-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-accent,var(--accent));opacity:.5}
+.home-card-icon{font-size:28px;margin-bottom:12px}
+.home-card-title{font-family:system-ui,-apple-system,sans-serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px}
+.home-card-sub{font-size:12px;color:var(--text2);line-height:1.6}
+.home-card-count{margin-top:12px;font-family:ui-monospace,monospace;font-size:10px;color:var(--text3);letter-spacing:.5px}
+.home-card-count span{color:var(--accent)}
+
+/* ── FOOTER ── */
+.footer{padding:16px 32px;border-top:.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px}
+.footer-brand{font-family:ui-monospace,monospace;font-size:9px;color:var(--text3);letter-spacing:2px}
+.footer-links{display:flex;gap:16px}
+.footer-link{font-size:11px;color:var(--text3);cursor:pointer;transition:.15s}
+.footer-link:hover{color:var(--accent)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero{padding:16px;gap:14px}.hero-title{font-size:26px}
+  .hero-icon{width:64px;height:64px}
+  .nav{padding:6px 12px}
+  .panel{padding:16px}
+  .block-grid{grid-template-columns:1fr}
+  .formula-grid{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .nav-btn:not(.always-show){display:none}
+  .nav.open .nav-btn{display:flex}
+}
+@media(max-width:480px){.hero-title{font-size:22px}}
+@media print{
+  body{background:#fff;color:#000}
+  .wrap,.panel{max-width:100%;padding:0;margin:0}
+  .nav,.hamburger,.footer,.breadcrumb,.topic-header,.topic-tabs,.hero,.home-grid,
+  .panel:not(#panel-topic),#panel-topic .topic-panel:not(.print-target),
+  .formula-card button,.no-print,#offline-badge{display:none!important}
+  #panel-topic,#panel-topic .topic-panel.print-target{display:block!important}
+  .formula-grid{grid-template-columns:1fr;gap:12px}
+  .formula-card{border:1px solid #ccc;break-inside:avoid;page-break-inside:avoid;padding:12px}
+  .formula-expr{color:#000}.formula-name{color:#333}.formula-desc,.formula-example{color:#555}
+  .print-header{display:block!important;text-align:center;margin-bottom:16px;font-size:16px;font-weight:600;color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero" style="position:relative">
+  <div class="hero-ver mono">v2.0.0</div>
+  <div class="hero-icon">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="g"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <!-- координатні осі -->
+      <line x1="18" y1="82" x2="82" y2="82" stroke="#4a5490" stroke-width="1" opacity=".6"/>
+      <line x1="18" y1="82" x2="18" y2="18" stroke="#4a5490" stroke-width="1" opacity=".6"/>
+      <!-- стрілки осей -->
+      <polygon points="82,80 86,82 82,84" fill="#4a5490" opacity=".6"/>
+      <polygon points="16,18 18,14 20,18" fill="#4a5490" opacity=".6"/>
+      <!-- синус-хвиля -->
+      <path d="M18,82 Q26,58 34,66 Q42,74 50,50 Q58,26 66,34 Q74,42 82,18" fill="none" stroke="#7c6ff7" stroke-width="1.5" opacity=".8"/>
+      <!-- точки на кривій -->
+      <circle cx="50" cy="50" r="4" fill="#7c6ff7" filter="url(#g)" opacity=".9"/>
+      <circle cx="82" cy="18" r="3" fill="#34d4a0" filter="url(#g)" opacity=".9"/>
+      <circle cx="18" cy="82" r="3" fill="#f0c040" filter="url(#g)" opacity=".9"/>
+      <!-- число π -->
+      <text x="54" y="47" fill="#7c6ff7" font-size="9" font-family="ui-monospace,monospace" opacity=".7">π</text>
+      <!-- корінь 2 -->
+      <text x="70" y="30" fill="#34d4a0" font-size="8" font-family="ui-monospace,monospace" opacity=".7">√2</text>
+    </svg>
+  </div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Інтерактивний довідник</div>
+    <div class="hero-title display">Матем<span>арій</span></div>
+    <div class="hero-sub">Математика стає зрозумілою — від чисел до інтегралів</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <button class="hamburger always-show" onclick="document.getElementById('main-nav').classList.toggle('open')" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+  <button class="nav-btn always-show" onclick="showPanel('home')" id="nav-home">🏠 Головна</button>
+  <span id="offline-badge" style="display:none;font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(255,144,80,.15);color:#ff9050;font-family:ui-monospace,monospace;letter-spacing:.5px;white-space:nowrap">⚡ offline</span>
+  <button class="nav-btn always-show" onclick="showPanel('search');focusSearch()" style="margin-left:auto">🔍</button>
+  <div class="nav-sep"></div>
+  <button class="nav-btn" onclick="showPanel('topics-hub')" id="nav-topics">📗 Теми</button>
+  <button class="nav-btn" onclick="showPanel('formulas')" id="nav-formulas">📐 Формули</button>
+  <button class="nav-btn" onclick="showPanel('tables')" id="nav-tables">📊 Таблиці</button>
+  <div class="nav-sep"></div>
+  <button class="nav-btn" onclick="showPanel('calcs')" id="nav-calcs">⚙️ Калькулятори</button>
+  <button class="nav-btn" onclick="showPanel('trainer')" id="nav-trainer">🎯 Тренажер</button>
+  <button class="nav-btn" onclick="showPanel('glossary')" id="nav-glossary">📚 Глосарій</button>
+  <button class="nav-btn" onclick="showPanel('favs')" id="nav-favs">★ Улюблені</button>
+  <div class="nav-sep"></div>
+  <button class="nav-btn" onclick="setLang(_lang==='uk'?'en':'uk')" id="nav-lang">🌐 Мова</button>
+  <button class="nav-btn" onclick="toggleTheme()" id="nav-theme">🌙</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ГОЛОВНА -->
+<div id="panel-home" class="panel active">
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Блоків</div></div>
+    <div class="stat"><div class="stat-num">30</div><div class="stat-label">Тем</div></div>
+    <div class="stat"><div class="stat-num">180+</div><div class="stat-label">Формул</div></div>
+    <div class="stat"><div class="stat-num" id="stat-progress">0</div><div class="stat-label">Пройдено</div></div>
+  </div>
+
+  <div id="progress-bar-wrap" style="margin-bottom:18px;display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:11px;color:var(--text3);font-family:ui-monospace,monospace;letter-spacing:1px;text-transform:uppercase">Прогрес</span>
+      <span style="font-size:12px;color:var(--accent);font-weight:600" id="progress-pct">0%</span>
+    </div>
+    <div style="height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
+      <div id="progress-fill" style="height:100%;background:linear-gradient(90deg,var(--accent),var(--teal));border-radius:3px;transition:width .4s;width:0%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px">
+      <span style="font-size:10px;color:var(--text3)">🎯 Тренажер: <b id="progress-quiz-total" style="color:var(--text2)">0</b> питань, <b id="progress-quiz-correct" style="color:var(--teal)">0</b> правильних</span>
+      <span style="font-size:10px;color:var(--text3)">⭐ <b id="progress-favs-count" style="color:var(--gold)">0</b> улюблених</span>
+    </div>
+  </div>
+
+  <div style="font-family:system-ui,-apple-system,sans-serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:4px">Вибери розділ</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:0">Від арифметики до математичного аналізу</div>
+
+  <div class="home-grid" id="home-grid"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ТЕМИ (ХАБ) -->
+<div id="panel-topics-hub" class="panel">
+  <div class="hub-meta">Matharium · <span>30 тем</span> · 6 блоків</div>
+  <div id="topics-hub-list"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ТЕМА -->
+<div id="panel-topic" class="panel">
+  <div class="topic-screen active" id="topic-view">
+    <div class="breadcrumb">
+      <a onclick="showPanel('topics-hub')">📗 Теми</a>
+      <span class="breadcrumb-sep">›</span>
+      <span id="topic-breadcrumb-block">Блок</span>
+      <span class="breadcrumb-sep">›</span>
+      <span id="topic-breadcrumb-name">Тема</span>
+    </div>
+    <div class="topic-header">
+      <div class="topic-icon" id="topic-icon">📖</div>
+      <div class="topic-header-text">
+        <div class="topic-title" id="topic-title">Назва теми</div>
+        <div class="topic-id mono" id="topic-id">id</div>
+      </div>
+    </div>
+    <div class="topic-tabs">
+      <button class="topic-tab active" onclick="switchTopicTab('logic',this)">📖 Теорія</button>
+      <button class="topic-tab" onclick="switchTopicTab('formula',this)">📐 Формули</button>
+      <button class="topic-tab" onclick="switchTopicTab('calculator',this)">⚙️ Калькулятор</button>
+      <button class="topic-tab" onclick="switchTopicTab('reference',this)">📚 Довідка</button>
+      <button class="topic-tab viz-tab" id="viz-tab-btn" onclick="switchTopicTab('viz',this)">📊 Графік</button>
+      <button class="topic-tab examples-tab" id="examples-tab-btn" onclick="switchTopicTab('examples',this)" style="display:none">📝 Приклади</button>
+    </div>
+    <div class="topic-panel active" id="tp-logic"></div>
+    <div class="topic-panel" id="tp-formula"></div>
+    <div class="topic-panel" id="tp-calculator"></div>
+    <div class="topic-panel" id="tp-reference"></div>
+    <div class="topic-panel" id="tp-viz"></div>
+    <div class="topic-panel" id="tp-examples"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ФОРМУЛИ (зведена) -->
+<div id="panel-formulas" class="panel">
+  <div class="hub-meta">Усі формули · <span>180+</span> виразів</div>
+  <div id="formulas-all"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ТАБЛИЦІ -->
+<div id="panel-tables" class="panel">
+  <div class="hub-meta">Довідкові таблиці · 10 таблиць</div>
+  <div id="tables-all"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: КАЛЬКУЛЯТОРИ -->
+<div id="panel-calcs" class="panel">
+  <div class="hub-meta">Всі калькулятори · <span id="calcs-count">…</span> режимів</div>
+  <div id="calcs-all"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ТРЕНАЖЕР -->
+<div id="panel-trainer" class="panel">
+  <div class="hub-meta">Тренажер — перевір знання</div>
+  <div id="trainer-area">
+    <div id="trainer-start" style="text-align:center;padding:40px 20px">
+      <div style="font-size:48px;margin-bottom:16px">🎯</div>
+      <div style="font-family:system-ui,-apple-system,sans-serif;font-size:20px;font-weight:600;margin-bottom:8px">Тренажер</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:16px">Обери блок або тренуйся по всіх темах</div>
+      <div class="diff-btns" id="diff-btns">
+        <button class="diff-btn" onclick="setDifficulty(1,this)">🟢 Легкий</button>
+        <button class="diff-btn active" onclick="setDifficulty(2,this)">🟡 Середній</button>
+        <button class="diff-btn" onclick="setDifficulty(3,this)">🔴 Складний</button>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px" id="trainer-block-btns"></div>
+      <button onclick="startTrainer(0)" style="margin-top:8px;background:rgba(124,111,247,.12);border:.5px solid var(--accent);border-radius:10px;padding:12px 28px;color:var(--accent);cursor:pointer;font-family:inherit;font-size:14px;font-weight:500">🔀 Усі блоки</button>
+      <div style="margin-top:16px;padding-top:16px;border-top:.5px solid var(--border)">
+        <button onclick="startMarathon()" style="background:rgba(240,192,64,.1);border:.5px solid var(--gold);border-radius:10px;padding:12px 28px;color:var(--gold);cursor:pointer;font-family:inherit;font-size:14px;font-weight:500">🏆 НМТ-марафон <span style="font-size:11px;opacity:.7">(30 питань / 45 хв)</span></button>
+      </div>
+      <div id="trainer-history" style="margin-top:20px;max-width:520px;margin-left:auto;margin-right:auto"></div>
+    </div>
+    <div id="trainer-session" style="display:none;max-width:640px;margin:0 auto">
+      <div id="trainer-stats" style="display:flex;gap:16px;align-items:center;margin-bottom:20px;padding:14px 18px;background:var(--bg2);border:.5px solid var(--border);border-radius:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:100px">
+          <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-family:ui-monospace,monospace">Рахунок</div>
+          <div style="font-size:22px;font-weight:700;color:var(--accent)" id="ts-score">0 / 0</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-family:ui-monospace,monospace">Серія</div>
+          <div style="font-size:22px;font-weight:700;color:var(--teal)" id="ts-streak">0 🔥</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-family:ui-monospace,monospace">Точність</div>
+          <div style="font-size:22px;font-weight:700;color:var(--gold)" id="ts-pct">—</div>
+        </div>
+        <div id="marathon-timer-wrap" style="display:none;text-align:center">
+          <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-family:ui-monospace,monospace">Час</div>
+          <div style="font-size:22px;font-weight:700;font-family:ui-monospace,monospace;color:var(--text)" id="marathon-timer">45:00</div>
+        </div>
+        <button onclick="resetTrainer()" style="background:none;border:.5px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--text3);cursor:pointer;font-size:11px;font-family:inherit" title="Скинути">↺ Скинути</button>
+      </div>
+      <div id="trainer-quiz"></div>
+      <div id="marathon-progress" style="display:none;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;font-family:ui-monospace,monospace;color:var(--text3);margin-bottom:4px">
+          <span id="mp-label">0 / 30</span>
+          <span id="mp-pct">0%</span>
+        </div>
+        <div style="height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
+          <div id="mp-fill" style="height:100%;width:0%;background:var(--gold);border-radius:3px;transition:width .3s"></div>
+        </div>
+      </div>
+      <div id="marathon-result" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: УЛЮБЛЕНІ ФОРМУЛИ -->
+<div id="panel-favs" class="panel">
+  <div class="hub-meta">★ Улюблені формули — <span id="favs-count">0</span></div>
+  <div id="favs-list"></div>
+  <div id="favs-empty" style="text-align:center;padding:50px 20px;color:var(--text3);font-size:13px;display:none">
+    <div style="font-size:36px;margin-bottom:12px">☆</div>
+    <div>${L('favs_empty')}</div>
+    <div style="margin-top:6px;font-size:12px">${L('favs_empty_hint')}</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ГЛОСАРІЙ -->
+<div id="panel-glossary" class="panel">
+  <div class="hub-meta">Глосарій — <span id="glossary-count">…</span> термінів</div>
+  <div id="glossary-content">
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center">
+      <input type="text" id="glossary-search" oninput="filterGlossary()" placeholder="Пошук терміна…" style="flex:1;min-width:180px;background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:13px;outline:none">
+      <select id="glossary-filter" onchange="filterGlossary()" style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:inherit;font-size:12px;outline:none;cursor:pointer">
+        <option value="all">Усі блоки</option>
+      </select>
+    </div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:14px">Збираються автоматично з усіх 30 тем: означення, символи, константи</div>
+    <div id="glossary-list"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ПАНЕЛЬ: ПОШУК -->
+<div id="panel-search" class="panel">
+  <div style="position:relative;margin-bottom:20px">
+    <input type="text" id="global-search" oninput="globalSearch(this.value)" placeholder="Пошук по темах, формулах, термінах…" style="width:100%;box-sizing:border-box;background:var(--bg2);border:.5px solid var(--border);border-radius:12px;padding:14px 18px 14px 42px;color:var(--text);font-family:inherit;font-size:14px;outline:none">
+    <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;opacity:.4">🔍</span>
+  </div>
+  <div id="search-results" style="font-size:13px;color:var(--text2)">
+    <div style="text-align:center;padding:40px 0;color:var(--text3)">Введіть запит для пошуку</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand mono">МАТЕМАТАРІЙ v2.0.0 · © 2025 ITS_tiamushchy</div>
+  <div class="footer-links">
+    <span class="footer-link" onclick="showPanel('home')">Головна</span>
+    <span class="footer-link" onclick="showPanel('topics-hub')">Теми</span>
+    <span class="footer-link" onclick="showPanel('formulas')">Формули</span>
+    <span class="footer-link" onclick="resetAllProgress()" style="opacity:.4;font-size:10px">Скинути прогрес</span>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script src="data-index.js"></script>
+<script>
+// ══ LAZY LOADING ═════════════════════════════════════════
+const TOPIC_CACHE = {};
+let _allTopicsLoaded = false;
+
+async function loadTopic(topicId) {
+  if (TOPIC_CACHE[topicId]) return TOPIC_CACHE[topicId];
+  if (typeof MATHARIUM_DATA !== 'undefined' && MATHARIUM_DATA[topicId]) {
+    TOPIC_CACHE[topicId] = MATHARIUM_DATA[topicId];
+    return TOPIC_CACHE[topicId];
+  }
+  try {
+    const resp = await fetch('data/' + topicId + '.json');
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    TOPIC_CACHE[topicId] = data;
+    return data;
+  } catch(e) { return null; }
+}
+
+async function loadAllTopics() {
+  if (_allTopicsLoaded) return;
+  const ids = BLOCKS.flatMap(b => b.topics.map(t => t.id));
+  await Promise.all(ids.map(id => loadTopic(id)));
+  _allTopicsLoaded = true;
+}
+// ══ i18n ══════════════════════════════════════════════════
+const LANGS = {
+  uk: {
+    _name: 'Українська',
+    nav_home: '🏠 Головна', nav_formulas: '📐 Формули', nav_tables: '📊 Таблиці',
+    nav_calcs: '⚙️ Калькулятори', nav_trainer: '🎯 Тренажер', nav_glossary: '📚 Глосарій',
+    nav_favs: '★ Улюблені', nav_search: '🔍',
+    hub_trainer: 'Тренажер — перевір знання', hub_favs_title: '★ Улюблені формули',
+    hub_glossary: 'Глосарій', hub_glossary_terms: 'термінів',
+    hub_topics: 'Обрати тему', hub_formulas: 'Зведена панель формул',
+    hub_tables: 'Таблиці', hub_calcs: 'Калькулятори',
+    search_placeholder: 'Пошук формул, теорем, термінів…', search_min: 'Введіть запит (мін. 2 символи)',
+    search_nothing: 'Нічого не знайдено за', search_indexing: '⏳ Індексація…',
+    loading: '⏳ Завантаження…', loading_glossary: '⏳ Завантаження глосарію…',
+    topic_not_found: 'не знайдено', topic_check_data: 'Переконайтесь, що папка data/ доступна.',
+    tab_logic: '📖 Теорія', tab_formula: '📐 Формули', tab_calc: '⚙️ Калькулятор',
+    tab_ref: '📚 Довідка', tab_viz: '📊 Графік', tab_examples: '📝 Приклади',
+    btn_print: '🖨 Друк', btn_start: 'Почати', btn_check: 'Перевірити', btn_next: 'Далі',
+    btn_finish: 'Завершити',
+    trainer_easy: '🟢 Легкий', trainer_medium: '🟡 Середній', trainer_hard: '🔴 Складний',
+    trainer_all_blocks: 'Усі блоки', trainer_marathon: '🏆 НМТ-марафон',
+    trainer_result: 'Результат', trainer_score: 'Оцінка', trainer_time: 'Час',
+    trainer_correct: 'Правильно', trainer_wrong: 'Неправильно',
+    favs_empty: 'Поки що порожньо', favs_empty_hint: 'Натисніть ☆ біля формули, щоб додати її сюди',
+    example_label: 'Приклад', answer_label: 'Відповідь',
+    print_title_suffix: '— Формули',
+    lang_label: '🌐 Мова',
+    hero_title: 'Математарій', hero_subtitle: 'Інтерактивний математичний довідник',
+    progress_viewed: 'переглянуто', progress_of: 'з',
+    offline_hint: 'Ви офлайн. Відкрийте цю тему хоча б раз з інтернетом, щоб вона закешувалась.',
+  },
+  en: {
+    _name: 'English',
+    nav_home: '🏠 Home', nav_formulas: '📐 Formulas', nav_tables: '📊 Tables',
+    nav_calcs: '⚙️ Calculators', nav_trainer: '🎯 Trainer', nav_glossary: '📚 Glossary',
+    nav_favs: '★ Favorites', nav_search: '🔍',
+    hub_trainer: 'Trainer — test your knowledge', hub_favs_title: '★ Favorite formulas',
+    hub_glossary: 'Glossary', hub_glossary_terms: 'terms',
+    hub_topics: 'Choose a topic', hub_formulas: 'Formula overview',
+    hub_tables: 'Tables', hub_calcs: 'Calculators',
+    search_placeholder: 'Search formulas, theorems, terms…', search_min: 'Enter a query (min 2 chars)',
+    search_nothing: 'Nothing found for', search_indexing: '⏳ Indexing…',
+    loading: '⏳ Loading…', loading_glossary: '⏳ Loading glossary…',
+    topic_not_found: 'not found', topic_check_data: 'Make sure the data/ folder is accessible.',
+    tab_logic: '📖 Theory', tab_formula: '📐 Formulas', tab_calc: '⚙️ Calculator',
+    tab_ref: '📚 Reference', tab_viz: '📊 Graph', tab_examples: '📝 Examples',
+    btn_print: '🖨 Print', btn_start: 'Start', btn_check: 'Check', btn_next: 'Next',
+    btn_finish: 'Finish',
+    trainer_easy: '🟢 Easy', trainer_medium: '🟡 Medium', trainer_hard: '🔴 Hard',
+    trainer_all_blocks: 'All blocks', trainer_marathon: '🏆 NMT Marathon',
+    trainer_result: 'Result', trainer_score: 'Score', trainer_time: 'Time',
+    trainer_correct: 'Correct', trainer_wrong: 'Wrong',
+    favs_empty: 'Nothing here yet', favs_empty_hint: 'Tap ☆ next to a formula to save it here',
+    example_label: 'Example', answer_label: 'Answer',
+    print_title_suffix: '— Formulas',
+    lang_label: '🌐 Language',
+    hero_title: 'Matharium', hero_subtitle: 'Interactive math reference',
+    progress_viewed: 'viewed', progress_of: 'of',
+    offline_hint: 'You are offline. Open this topic at least once with internet to cache it.',
+  }
+};
+
+let _lang = localStorage.getItem('matharium_lang') || 'uk';
+function L(key) { return (LANGS[_lang] && LANGS[_lang][key]) || LANGS.uk[key] || key; }
+function setLang(code) {
+  _lang = code;
+  localStorage.setItem('matharium_lang', code);
+  location.reload();
+}
+
+function applyLang() {
+  const el = (id) => document.getElementById(id);
+  if (el('nav-home')) el('nav-home').textContent = L('nav_home');
+  if (el('nav-formulas')) el('nav-formulas').textContent = L('nav_formulas');
+  if (el('nav-tables')) el('nav-tables').textContent = L('nav_tables');
+  if (el('nav-calcs')) el('nav-calcs').textContent = L('nav_calcs');
+  if (el('nav-trainer')) el('nav-trainer').textContent = L('nav_trainer');
+  if (el('nav-glossary')) el('nav-glossary').textContent = L('nav_glossary');
+  if (el('nav-favs')) el('nav-favs').textContent = L('nav_favs');
+  if (el('nav-lang')) el('nav-lang').textContent = L('lang_label') + ' (' + LANGS[_lang]._name + ')';
+  // Hero
+  const heroEye = document.querySelector('.hero-eyebrow');
+  if (heroEye) heroEye.textContent = L('hero_subtitle');
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) heroTitle.innerHTML = _lang === 'uk' ? 'Матем<span>арій</span>' : L('hero_title');
+  // Search placeholder
+  const si = document.getElementById('global-search');
+  if (si) si.placeholder = L('search_placeholder');
+  // Tab buttons
+  const tabMap = {logic:'tab_logic',formula:'tab_formula',calculator:'tab_calc',reference:'tab_ref',viz:'tab_viz',examples:'tab_examples'};
+  document.querySelectorAll('.topic-tab').forEach(t => {
+    const name = t.getAttribute('onclick')?.match(/switchTopicTab\('(\w+)'/)?.[1];
+    if (name && tabMap[name]) t.textContent = L(tabMap[name]);
+  });
+}
+
+// ══ ТЕМА (СВІТЛА/ТЕМНА) ═════════════════════════════════
+function getTheme() {
+  const saved = localStorage.getItem('matharium_theme');
+  if (saved) return saved;
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '');
+  const btn = document.getElementById('nav-theme');
+  if (btn) btn.textContent = theme === 'light' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const current = getTheme();
+  const next = current === 'light' ? 'dark' : 'light';
+  localStorage.setItem('matharium_theme', next);
+  applyTheme(next);
+}
+// Apply on load (before paint)
+applyTheme(getTheme());
+
+// ══ ДАНІ ══════════════════════════════════════════════════
+const BLOCKS = [
+  { id:1, icon:'🔢', name:'Арифметика', color:'#34d4a0', topics:[
+    {id:'1-1-numbers',name:'Числа та дії',icon:'🔢'},
+    {id:'1-2-fractions',name:'Дроби звичайні та десяткові',icon:'½'},
+    {id:'1-3-divisibility',name:'Подільність. НСД і НСК',icon:'÷'},
+    {id:'1-4-powers',name:'Степені та корені',icon:'√'},
+    {id:'1-5-percent',name:'Відсотки та пропорції',icon:'%'},
+  ]},
+  { id:2, icon:'🔣', name:'Алгебра', color:'#7c6ff7', topics:[
+    {id:'2-1-expressions',name:'Вирази та тотожності',icon:'🔣'},
+    {id:'2-2-equations',name:'Рівняння та системи',icon:'⚖️'},
+    {id:'2-3-inequalities',name:'Нерівності',icon:'≤'},
+    {id:'2-4-functions',name:'Функції та їх властивості',icon:'📈'},
+    {id:'2-5-progressions',name:'Прогресії',icon:'∑'},
+    {id:'2-6-logarithms',name:'Логарифми',icon:'㏒'},
+  ]},
+  { id:3, icon:'📐', name:'Геометрія', color:'#f0c040', topics:[
+    {id:'3-1-geometry-basics',name:'Основи геометрії. Кути та прямі',icon:'📐'},
+    {id:'3-2-triangles',name:'Трикутники',icon:'△'},
+    {id:'3-3-quadrilaterals',name:'Чотирикутники та многокутники',icon:'▭'},
+    {id:'3-4-circle',name:'Коло та круг',icon:'○'},
+    {id:'3-5-areas',name:'Площі фігур',icon:'⊡'},
+    {id:'3-6-stereometry',name:'Стереометрія',icon:'🧊'},
+  ]},
+  { id:4, icon:'〜', name:'Тригонометрія', color:'#ff7050', topics:[
+    {id:'4-1-trig-basics',name:'Одиничне коло',icon:'⊙'},
+    {id:'4-2-trig-formulas',name:'Формули тригонометрії',icon:'≈'},
+    {id:'4-3-trig-equations',name:'Тригонометричні рівняння',icon:'∿'},
+    {id:'4-4-inverse-trig',name:'Обернені функції',icon:'∡'},
+  ]},
+  { id:5, icon:'→', name:'Аналітична геометрія', color:'#4ab8f0', topics:[
+    {id:'5-1-vectors',name:'Вектори',icon:'→'},
+    {id:'5-2-coordinates',name:'Координатна геометрія',icon:'⊕'},
+    {id:'5-3-conics',name:'Конічні перерізи',icon:'◯'},
+    {id:'5-4-space-coords',name:'Координати у просторі',icon:'xyz'},
+  ]},
+  { id:6, icon:'∑∞', name:'Комбінаторика та аналіз', color:'#e060b0', topics:[
+    {id:'6-1-combinatorics',name:'Комбінаторика',icon:'∁'},
+    {id:'6-2-probability',name:'Теорія ймовірностей',icon:'🎲'},
+    {id:'6-3-calculus',name:'Границі та похідна',icon:'d/dx'},
+    {id:'6-4-integral',name:'Інтеграл',icon:'∫'},
+    {id:'6-5-series',name:'Ряди та послідовності',icon:'∑∞'},
+  ]},
+];
+
+const TOPIC_FILES = {};  // cache for loaded JSON
+let currentTopicData = null;
+let currentBlock = null;
+let _currentTab = 'logic';
+let _skipHashUpdate = false;
+
+// ══ DEEP LINKING ═════════════════════════════════════════
+const PANEL_HASH_MAP = {home:'home','topics-hub':'topics',formulas:'formulas',tables:'tables',calcs:'calcs',trainer:'trainer',glossary:'glossary',favs:'favs',search:'search'};
+const HASH_PANEL_MAP = Object.fromEntries(Object.entries(PANEL_HASH_MAP).map(([k,v])=>[v,k]));
+
+function updateHash(hash) {
+  if (_skipHashUpdate) return;
+  _skipHashUpdate = true;
+  history.replaceState(null, '', '#' + hash);
+  _skipHashUpdate = false;
+}
+
+async function navigateToHash() {
+  if (_skipHashUpdate) return;
+  const raw = decodeURIComponent(location.hash.replace(/^#/,''));
+  if (!raw) return;
+
+  if (raw.startsWith('topic/')) {
+    const parts = raw.split('/');
+    const topicId = parts[1] || '';
+    const tab = parts[2] || 'logic';
+    if (!topicId) return;
+    const block = BLOCKS.find(b => b.topics.find(t => t.id === topicId));
+    if (!block) return;
+    _skipHashUpdate = true;
+    await openTopic(topicId, block.name);
+    if (tab !== 'logic') switchTopicTabById(tab);
+    _skipHashUpdate = false;
+  } else if (HASH_PANEL_MAP[raw]) {
+    _skipHashUpdate = true;
+    showPanel(HASH_PANEL_MAP[raw]);
+    _skipHashUpdate = false;
+  }
+}
+
+window.addEventListener('hashchange', navigateToHash);
+
+// ══ HTML ESCAPE ══════════════════════════════════════════
+function esc(s) { return s ? s.replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
+
+// ══ KaTeX РЕНДЕР ═════════════════════════════════════════
+function toLatex(s) {
+  if (!s) return '';
+  let t = s;
+  // Superscripts
+  const sup = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9',
+    'ⁿ':'n','ᵐ':'m','ᵏ':'k','ˣ':'x','ʳ':'r','ᵖ':'p','ⁱ':'i'};
+  t = t.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹ⁿᵐᵏˣʳᵖⁱ]+/g, m => '^{' + [...m].map(c=>sup[c]||c).join('') + '}');
+  // Handle ⁻ in superscripts
+  t = t.replace(/⁻/g, '-'); // fix negative superscripts
+  t = t.replace(/\^{([^}]*)}-([^{])/g, '^{$1-}$2'); // merge
+
+  // Subscripts
+  const sub = {'₀':'0','₁':'1','₂':'2','₃':'3','₄':'4','₅':'5','₆':'6','₇':'7','₈':'8','₉':'9',
+    'ₙ':'n','ₘ':'m','ₖ':'k','ₓ':'x','ᵢ':'i','ⱼ':'j'};
+  t = t.replace(/[₀₁₂₃₄₅₆₇₈₉ₙₘₖₓᵢⱼ]+/g, m => '_{' + [...m].map(c=>sub[c]||c).join('') + '}');
+
+  // Greek letters
+  t = t.replace(/α/g,'\\alpha ').replace(/β/g,'\\beta ').replace(/γ/g,'\\gamma ');
+  t = t.replace(/δ/g,'\\delta ').replace(/ε/g,'\\varepsilon ').replace(/φ/g,'\\varphi ');
+  t = t.replace(/θ/g,'\\theta ').replace(/λ/g,'\\lambda ').replace(/μ/g,'\\mu ');
+  t = t.replace(/σ/g,'\\sigma ').replace(/τ/g,'\\tau ').replace(/ω/g,'\\omega ');
+  t = t.replace(/Δ/g,'\\Delta ').replace(/Σ/g,'\\Sigma ').replace(/Ω/g,'\\Omega ');
+  t = t.replace(/π/g,'\\pi ');
+
+  // Math symbols
+  t = t.replace(/√\(([^)]+)\)/g, '\\sqrt{$1}');
+  t = t.replace(/√/g, '\\sqrt ');
+  t = t.replace(/∑/g, '\\sum ');
+  t = t.replace(/∫/g, '\\int ');
+  t = t.replace(/∞/g, '\\infty ');
+  t = t.replace(/±/g, '\\pm ');
+  t = t.replace(/∓/g, '\\mp ');
+  t = t.replace(/≠/g, '\\neq ');
+  t = t.replace(/≤/g, '\\leq ');
+  t = t.replace(/≥/g, '\\geq ');
+  t = t.replace(/≈/g, '\\approx ');
+  t = t.replace(/⟺/g, '\\iff ');
+  t = t.replace(/⟹/g, '\\Rightarrow ');
+  t = t.replace(/→/g, '\\to ');
+  t = t.replace(/×/g, '\\times ');
+  t = t.replace(/·/g, '\\cdot ');
+  t = t.replace(/⊂/g, '\\subset ');
+  t = t.replace(/∈/g, '\\in ');
+  t = t.replace(/∅/g, '\\varnothing ');
+  t = t.replace(/½/g, '\\frac{1}{2}');
+  t = t.replace(/⅓/g, '\\frac{1}{3}');
+
+  // Sets
+  t = t.replace(/ℕ/g, '\\mathbb{N}').replace(/ℤ/g, '\\mathbb{Z}');
+  t = t.replace(/ℚ/g, '\\mathbb{Q}').replace(/ℝ/g, '\\mathbb{R}');
+  t = t.replace(/ℂ/g, '\\mathbb{C}');
+
+  // Functions
+  t = t.replace(/\bsin\b/g, '\\sin ').replace(/\bcos\b/g, '\\cos ');
+  t = t.replace(/\btg\b/g, '\\tan ').replace(/\bctg\b/g, '\\cot ');
+  t = t.replace(/\barcsin\b/g, '\\arcsin ').replace(/\barccos\b/g, '\\arccos ');
+  t = t.replace(/\barctan\b/g, '\\arctan ');
+  t = t.replace(/\bln\b/g, '\\ln ').replace(/\blg\b/g, '\\lg ');
+  t = t.replace(/\blog\b/g, '\\log ').replace(/\blim\b/g, '\\lim ');
+  t = t.replace(/\bmod\b/g, '\\bmod ');
+
+  return t;
+}
+
+let _katexReady = typeof katex !== 'undefined';
+let _katexQueue = [];
+
+function _onKatexLoad() {
+  _katexReady = true;
+  // Re-render all queued fallback elements
+  _katexQueue.forEach(el => {
+    const text = el.dataset.mathSrc;
+    const display = el.dataset.mathDisplay === '1';
+    try {
+      const html = katex.renderToString(toLatex(text), {throwOnError:false, displayMode:display, output:'html'});
+      el.outerHTML = html;
+    } catch(e) {}
+  });
+  _katexQueue = [];
+}
+
+// Poll for katex availability (covers both defer and retry)
+(function waitKatex() {
+  if (typeof katex !== 'undefined') { _onKatexLoad(); return; }
+  if (document.readyState === 'complete') {
+    // Page fully loaded but no katex — show final fallback
+    document.querySelectorAll('.katex-loading').forEach(el => {
+      el.classList.remove('katex-loading');
+      el.classList.add('mono');
+    });
+    return;
+  }
+  setTimeout(waitKatex, 200);
+})();
+
+function renderMath(text) {
+  if (_katexReady) {
+    try {
+      return katex.renderToString(toLatex(text), {throwOnError:false, displayMode:false, output:'html'});
+    } catch(e) {
+      return `<span class="mono">${text}</span>`;
+    }
+  }
+  return `<span class="katex-loading" data-math-src="${text.replace(/"/g,'&quot;')}" data-math-display="0">${text}</span>`;
+}
+
+function renderMathBlock(text) {
+  if (_katexReady) {
+    try {
+      return katex.renderToString(toLatex(text), {throwOnError:false, displayMode:true, output:'html'});
+    } catch(e) {
+      return `<div class="mono" style="text-align:center;font-size:15px;padding:8px 0">${text}</div>`;
+    }
+  }
+  return `<div class="katex-loading" data-math-src="${text.replace(/"/g,'&quot;')}" data-math-display="1" style="text-align:center;font-size:15px;padding:8px 0">${text}</div>`;
+}
+
+// ══ ПРОГРЕС (localStorage) ════════════════════════════════
+const STORE_KEY = 'matharium_progress';
+
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveProgress(data) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+function getProgress() {
+  const d = loadProgress();
+  if (!d.viewed) d.viewed = {};    // {topicId: timestamp}
+  if (!d.favs) d.favs = {};       // {topicId__exprIdx: true}
+  if (!d.quiz) d.quiz = {total:0, correct:0, best:0};
+  if (!d.quiz.blockStats) d.quiz.blockStats = {}; // {blockId: {ok:N, fail:N}}
+  return d;
+}
+
+function markViewed(topicId) {
+  const p = getProgress();
+  if (!p.viewed[topicId]) {
+    p.viewed[topicId] = Date.now();
+    saveProgress(p);
+    updateProgressUI();
+  }
+}
+
+function toggleFav(topicId, exprIdx, btn) {
+  const p = getProgress();
+  const key = topicId + '__' + exprIdx;
+  if (p.favs[key]) { delete p.favs[key]; } else { p.favs[key] = true; }
+  saveProgress(p);
+  if (btn) {
+    btn.textContent = p.favs[key] ? '★' : '☆';
+    btn.style.color = p.favs[key] ? 'var(--gold)' : 'var(--text3)';
+  }
+  updateProgressUI();
+}
+
+function isFav(topicId, exprIdx) {
+  return !!getProgress().favs[topicId + '__' + exprIdx];
+}
+
+function saveQuizResult(correct) {
+  const p = getProgress();
+  p.quiz.total++;
+  if (correct) p.quiz.correct++;
+  if (quizState.streak > p.quiz.best) p.quiz.best = quizState.streak;
+  // Per-block stats for adaptive selection
+  const bk = quizState.q && quizState.q.block ? quizState.q.block : quizState.block;
+  if (bk && bk > 0) {
+    if (!p.quiz.blockStats[bk]) p.quiz.blockStats[bk] = {ok:0,fail:0};
+    correct ? p.quiz.blockStats[bk].ok++ : p.quiz.blockStats[bk].fail++;
+  }
+  saveProgress(p);
+  updateProgressUI();
+}
+
+function updateProgressUI() {
+  const p = getProgress();
+  const viewedCount = Object.keys(p.viewed).length;
+  const pct = Math.round(viewedCount / 30 * 100);
+  const favsCount = Object.keys(p.favs).length;
+
+  const el = document.getElementById('stat-progress');
+  if (el) el.textContent = viewedCount + '/30';
+
+  const wrap = document.getElementById('progress-bar-wrap');
+  if (wrap) {
+    wrap.style.display = (viewedCount > 0 || p.quiz.total > 0 || favsCount > 0) ? 'block' : 'none';
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-quiz-total').textContent = p.quiz.total;
+    document.getElementById('progress-quiz-correct').textContent = p.quiz.correct;
+    document.getElementById('progress-favs-count').textContent = favsCount;
+  }
+
+  // Mark viewed topics in hub
+  document.querySelectorAll('.topic-card[data-tid]').forEach(card => {
+    if (p.viewed[card.dataset.tid]) {
+      card.style.borderLeft = '3px solid var(--teal)';
+    }
+  });
+}
+
+function resetAllProgress() {
+  if (confirm('Скинути весь прогрес? Це незворотно.')) {
+    localStorage.removeItem(STORE_KEY);
+    updateProgressUI();
+  }
+}
+
+// ══ НАВІГАЦІЯ ══════════════════════════════════════════════
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('panel-' + name);
+  if (panel) {
+    panel.classList.add('active');
+    // lazy init
+    if (name === 'topics-hub') initTopicsHub();
+    if (name === 'formulas') initFormulas();
+    if (name === 'tables') initTables();
+    if (name === 'calcs') initCalcs();
+    if (name === 'trainer') initTrainer();
+    if (name === 'glossary') initGlossary();
+    if (name === 'favs') initFavs();
+    if (name === 'home' || name === 'topics-hub') setTimeout(updateProgressUI, 50);
+  }
+  document.getElementById('main-nav').classList.remove('open');
+  window.scrollTo(0,0);
+  if (PANEL_HASH_MAP[name]) updateHash(PANEL_HASH_MAP[name]);
+}
+
+// ══ ГОЛОВНА ════════════════════════════════════════════════
+function initHome() {
+  const grid = document.getElementById('home-grid');
+  grid.innerHTML = BLOCKS.map(b => `
+    <div class="home-card" style="--card-accent:${b.color}" onclick="showPanel('topics-hub');setTimeout(()=>openBlock(${b.id}),50)">
+      <div class="home-card-icon">${b.icon}</div>
+      <div class="home-card-title display">${b.name}</div>
+      <div class="home-card-sub">${b.topics.map(t=>t.name).join(' · ')}</div>
+      <div class="home-card-count"><span>${b.topics.length}</span> теми</div>
+    </div>
+  `).join('');
+}
+
+// ══ ХАБ ТЕМ ════════════════════════════════════════════════
+function initTopicsHub() {
+  const list = document.getElementById('topics-hub-list');
+  if (list.innerHTML) return;
+  list.innerHTML = BLOCKS.map(b => `
+    <div class="block-section" id="block-sec-${b.id}">
+      <div class="block-header" onclick="toggleBlock(${b.id})">
+        <span class="block-num mono">${String(b.id).padStart(2,'0')}</span>
+        <span class="block-icon">${b.icon}</span>
+        <div class="block-info">
+          <div class="block-title display">${b.name}</div>
+          <div class="block-count"><span>${b.topics.length}</span> теми</div>
+        </div>
+        <span class="block-arrow">▶</span>
+      </div>
+      <div class="block-body">
+        <div class="block-grid">
+          ${b.topics.map(t => `
+            <div class="topic-card" data-tid="${t.id}" onclick="openTopic('${t.id}','${b.name}')">
+              <span class="topic-card-id mono">${t.id}</span>
+              <span class="topic-card-icon">${t.icon}</span>
+              <span class="topic-card-name">${t.name}</span>
+              <span class="topic-card-arrow">›</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlock(id) {
+  const sec = document.getElementById('block-sec-' + id);
+  sec.classList.toggle('open');
+}
+
+function openBlock(id) {
+  initTopicsHub();
+  const sec = document.getElementById('block-sec-' + id);
+  if (sec && !sec.classList.contains('open')) sec.classList.add('open');
+  sec && sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ══ ТЕМА ════════════════════════════════════════════════════
+async function openTopic(topicId, blockName) {
+  showPanel('topic');
+  document.getElementById('topic-breadcrumb-block').textContent = blockName;
+
+  const block = BLOCKS.find(b => b.topics.find(t => t.id === topicId));
+  const topicMeta = block ? block.topics.find(t => t.id === topicId) : null;
+  document.getElementById('topic-breadcrumb-name').textContent = topicMeta ? topicMeta.name : topicId;
+  document.getElementById('topic-icon').textContent = topicMeta ? topicMeta.icon : '📖';
+
+  // reset tabs
+  _currentTab = 'logic';
+  document.querySelectorAll('.topic-tab').forEach((t,i) => t.classList.toggle('active', i===0));
+  document.querySelectorAll('.topic-panel').forEach((p,i) => p.classList.toggle('active', i===0));
+
+  updateHash('topic/' + topicId + '/logic');
+
+  // Show loading state
+  document.getElementById('tp-logic').innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3)"><div style="font-size:24px;margin-bottom:8px">⏳</div>'+L('loading')+'</div>';
+
+  // Lazy load topic data
+  const data = await loadTopic(topicId);
+  if (data) {
+    currentTopicData = data;
+    markViewed(topicId);
+    renderTopic(data);
+    initViz(topicId);
+  } else {
+    document.getElementById('tp-logic').innerHTML = `
+      <div style="padding:32px;text-align:center;color:var(--text3)">
+        <div style="font-size:32px;margin-bottom:12px">⚠️</div>
+        <div style="font-size:14px">Тему <b style="color:var(--accent)">${topicId}</b> ${L('topic_not_found')}.</div>
+        <div style="font-size:12px;margin-top:8px">${navigator.onLine ? L('topic_check_data') : '⚡ ' + L('offline_hint')}</div>
+      </div>`;
+  }
+}
+
+function renderTopic(data) {
+  document.getElementById('topic-title').textContent = data.title;
+  document.getElementById('topic-id').textContent = data.id;
+
+  // ТЕОРІЯ
+  const logic = data.logic;
+  document.getElementById('tp-logic').innerHTML = logic.sections.map(s => `
+    <div class="theory-section open">
+      <div class="theory-heading" onclick="this.parentElement.classList.toggle('open')">
+        <span>${s.heading}</span>
+        <span class="theory-toggle">▶</span>
+      </div>
+      <div class="theory-body">
+        ${s.text ? `<div class="theory-text">${esc(s.text)}</div>` : ''}
+        ${s.items ? `<ul class="theory-list">${s.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>` : ''}
+        ${s.svg ? `<div class="theory-svg" style="text-align:center;margin:16px 0 8px;overflow-x:auto">${s.svg}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+
+  // ФОРМУЛИ
+  document.getElementById('tp-formula').innerHTML = `
+    <div style="display:flex;justify-content:flex-end;margin-bottom:12px" class="no-print">
+      <button onclick="printFormulas()" style="background:var(--bg2);border:.5px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--text2);cursor:pointer;font-family:inherit;font-size:12px;transition:.15s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">${L('btn_print')}</button>
+    </div>
+    <div class="print-header" style="display:none">${data.title} — Формули</div>
+    <div class="formula-grid">
+      ${data.formula.expressions.map((f,i) => `
+        <div class="formula-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div class="formula-expr" style="flex:1">${renderMathBlock(f.expr)}</div>
+            <button onclick="event.stopPropagation();toggleFav('${data.id}',${i},this)" style="background:none;border:none;cursor:pointer;font-size:18px;padding:2px 4px;color:${isFav(data.id,i)?'var(--gold)':'var(--text3)'}" title="Улюблена">${isFav(data.id,i)?'★':'☆'}</button>
+          </div>
+          <div class="formula-name">${f.name}</div>
+          <div class="formula-desc">${esc(f.desc)}</div>
+          <div class="formula-example">${esc(f.example)}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  // КАЛЬКУЛЯТОР
+  const calc = data.calculator;
+  document.getElementById('tp-calculator').innerHTML = `
+    <p class="calc-desc">${calc.description}</p>
+    <div class="calc-modes" id="calc-modes">
+      ${calc.modes.map((m,i) => `
+        <button class="calc-mode-btn ${i===0?'active':''}" data-mode="${m.id}" onclick="selectCalcMode(this,'${m.id}','${m.hint}')">
+          ${m.label}
+        </button>
+      `).join('')}
+    </div>
+    <div class="calc-input-area">
+      <div class="calc-row">
+        <div class="calc-field">
+          <label class="calc-label" id="calc-hint">${calc.modes[0].hint}</label>
+          <input class="calc-input" id="calc-main-input" placeholder="Введіть значення…" onkeydown="if(event.key==='Enter')runCalc()">
+        </div>
+        <button class="calc-btn" onclick="runCalc()">Обчислити →</button>
+      </div>
+      ${calc.quickValues.length ? `
+        <div style="margin-top:6px;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;font-family:ui-monospace,monospace">Швидкий вибір</div>
+        <div class="quick-vals">
+          ${calc.quickValues.map(q => `
+            <div class="quick-val" onclick="fillQuick('${q.label}','${q.comment}')" title="${q.comment}">${q.label}</div>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+    <div class="calc-result" id="calc-result">
+      <div class="calc-result-value mono" id="calc-result-val">—</div>
+      <div id="calc-result-steps"></div>
+    </div>
+  `;
+
+  // ДОВІДКА
+  const ref = data.reference;
+  const popup = ref.popup || {};
+  document.getElementById('tp-reference').innerHTML = `
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="ref-table">
+        <thead><tr>
+          <th>Символ</th><th>Значення</th><th>Пояснення</th>
+        </tr></thead>
+        <tbody>
+          ${ref.constants.map(c => `
+            <tr>
+              <td><span class="ref-sym">${esc(c.symbol)}</span></td>
+              <td><span class="ref-val">${esc(c.value)}</span></td>
+              <td><span class="ref-desc">${esc(c.desc)}</span></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+    ${ref.facts ? `
+      <div class="ref-facts">
+        <div style="font-size:10px;font-family:ui-monospace,monospace;letter-spacing:1px;color:var(--text3);text-transform:uppercase;margin-bottom:12px">Цікаві факти</div>
+        ${ref.facts.filter(f => !f.startsWith('popup:')).map(f => `
+          <div class="ref-fact">${esc(f)}</div>
+        `).join('')}
+      </div>
+    ` : ''}
+    ${popup.what ? `
+      <div class="popup-info">
+        <div style="font-size:10px;font-family:ui-monospace,monospace;letter-spacing:1px;color:var(--accent);text-transform:uppercase;margin-bottom:12px">Ключове розуміння</div>
+        <div class="popup-info-row">
+          <div class="popup-info-label">Що це</div>
+          <div class="popup-info-text">${esc(popup.what)}</div>
+        </div>
+        <div class="popup-info-row">
+          <div class="popup-info-label">Як застосовувати</div>
+          <div class="popup-info-text">${esc(popup.how)}</div>
+        </div>
+        ${popup.warning ? `
+          <div class="popup-info-row">
+            <div class="popup-info-label" style="color:#ff9050">⚠ Увага</div>
+            <div class="popup-info-text popup-warning">${esc(popup.warning)}</div>
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
+  `;
+
+  // ПРИКЛАДИ
+  const exBtn = document.getElementById('examples-tab-btn');
+  if (data.examples && data.examples.length) {
+    exBtn.style.display = 'flex';
+    document.getElementById('tp-examples').innerHTML = data.examples.map((ex, i) => `
+      <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px">
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px">
+          <span style="background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;flex-shrink:0">${L('example_label')} ${i+1}</span>
+          <div style="font-size:14px;font-weight:500;color:var(--text);line-height:1.6">${renderMath(ex.task)}</div>
+        </div>
+        <div style="padding-left:4px">
+          ${ex.steps.map((s, j) => `
+            <div style="display:flex;gap:10px;margin-bottom:10px">
+              <span style="font-size:11px;color:var(--text3);font-family:ui-monospace,monospace;flex-shrink:0;padding-top:2px">${j+1}.</span>
+              <div style="font-size:13px;color:var(--text2);line-height:1.7">${renderMath(s)}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(124,111,247,.08);border-radius:8px;font-size:13px;font-weight:500;color:var(--accent)">
+          ${L('answer_label')}: ${renderMath(ex.answer)}
+        </div>
+      </div>
+    `).join('');
+  } else {
+    exBtn.style.display = 'none';
+    document.getElementById('tp-examples').innerHTML = '';
+  }
+}
+
+function printFormulas() {
+  const tp = document.getElementById('tp-formula');
+  document.querySelectorAll('.topic-panel').forEach(p => p.classList.remove('print-target'));
+  tp.classList.add('print-target');
+  window.print();
+  setTimeout(() => tp.classList.remove('print-target'), 500);
+}
+
+function switchTopicTab(name, btn) {
+  document.querySelectorAll('.topic-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.topic-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tp-' + name).classList.add('active');
+  _currentTab = name;
+  if (currentTopicData) updateHash('topic/' + currentTopicData.id + '/' + name);
+}
+
+function selectCalcMode(btn, modeId, hint) {
+  document.querySelectorAll('.calc-mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-hint').textContent = hint;
+  document.getElementById('calc-main-input').value = '';
+  document.getElementById('calc-result').classList.remove('show');
+}
+
+function fillQuick(label, comment) {
+  document.getElementById('calc-main-input').value = label;
+  const res = document.getElementById('calc-result');
+  res.classList.add('show');
+  document.getElementById('calc-result-val').textContent = comment;
+  document.getElementById('calc-result-steps').innerHTML = `
+    <div class="calc-step">
+      <div class="calc-step-n">→</div>
+      <div>${label}</div>
+    </div>
+  `;
+}
+
+function runCalc() {
+  if (!currentTopicData) return;
+  const inp = document.getElementById('calc-main-input').value.trim();
+  const res = document.getElementById('calc-result');
+  if (!inp) {
+    res.classList.add('show');
+    document.getElementById('calc-result-val').textContent = '⚠ Порожній ввід';
+    document.getElementById('calc-result-steps').innerHTML = '<div class="calc-step"><div class="calc-step-n" style="background:rgba(255,144,80,.12);border-color:rgba(255,144,80,.25);color:#ff9050">!</div><div style="flex:1;font-size:12px;color:var(--text2)">Введіть одне або кілька чисел через кому. Наприклад: <b style="color:var(--text)">3, 4, 5</b></div></div>';
+    return;
+  }
+  const activeMode = document.querySelector('.calc-mode-btn.active');
+  const modeId = activeMode ? activeMode.dataset.mode : '';
+  res.classList.add('show');
+
+  const result = mathEngine(modeId, inp, currentTopicData.id);
+  if (!result || !result.value) {
+    document.getElementById('calc-result-val').textContent = '⚠ Не вдалося обчислити';
+    document.getElementById('calc-result-steps').innerHTML = '<div class="calc-step"><div class="calc-step-n" style="background:rgba(255,144,80,.12);border-color:rgba(255,144,80,.25);color:#ff9050">!</div><div style="flex:1;font-size:12px;color:var(--text2)">Перевірте формат вводу для обраного режиму</div></div>';
+    return;
+  }
+  document.getElementById('calc-result-val').textContent = result.value;
+  document.getElementById('calc-result-steps').innerHTML = result.steps.map((s,i) => `
+    <div class="calc-step">
+      <div class="calc-step-n">${i+1}</div>
+      <div style="flex:1;font-size:12px;color:var(--text2);line-height:1.6">${s}</div>
+    </div>
+  `).join('');
+}
+
+
+// ══ МАТЕМАТИЧНИЙ РУШІЙ (модульний) ═══════════════════════════
+
+// ── Хелпери (спільні для всіх блоків) ──
+const _p = s => parseFloat(String(s).replace(',','.'));
+const _gcd = (a,b) => b===0 ? Math.abs(a) : _gcd(b, a%b);
+const _lcm = (a,b) => Math.abs(a*b)/_gcd(a,b);
+const _fact = n => {if(n>170)return Infinity;let r=1;for(let i=2;i<=n;i++)r*=i;return r;};
+const _C = (n,k) => {if(k<0||k>n)return 0;if(k===0||k===n)return 1;k=Math.min(k,n-k);let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return Math.round(r);};
+const _A = (n,k) => {let r=1;for(let i=0;i<k;i++)r*=(n-i);return r;};
+const _fmt = x => {if(!isFinite(x))return String(x);if(Number.isInteger(x))return x;const s=parseFloat(x.toFixed(8));return Number.isInteger(s)?s:parseFloat(x.toFixed(6));};
+const _deg = a => a*180/Math.PI;
+const _rad = a => a*Math.PI/180;
+const _ok = (...xs) => xs.every(x => !isNaN(x) && isFinite(x));
+
+// ── БЛОК 1: Арифметика ──
+function calcArithmetic(mode, parts, input) {
+  const fmt=_fmt, ok=_ok, p=_p, gcd=_gcd, lcm=_lcm, fact=_fact;
+
+  if (mode==='gcd_lcm'||mode==='gcd'||mode==='lcm') {
+    const nums = parts.filter(x=>x>0&&Number.isInteger(x));
+    if (nums.length>=2) {
+      let g=nums[0],l=nums[0]; const steps=[`Числа: ${nums.join(', ')}`];
+      for(let i=1;i<nums.length;i++){
+        let a=g,b=nums[i],trace=[];
+        while(b){trace.push(`НСД(${a},${b})`);[a,b]=[b,a%b];}
+        g=a;l=lcm(l,nums[i]);
+        steps.push(`${trace.join(' → ')} = ${g}`);
+      }
+      steps.push(`НСК = ${fmt(l)}`);
+      return {value:`НСД = ${g} | НСК = ${fmt(l)}`,steps};
+    }
+  }
+
+  if (mode==='factorize') {
+    let num=Math.abs(Math.round(parts[0]));
+    if(ok(num)&&num>=2&&num<=1e9){
+      let n2=num,factors=[],steps=[`n = ${num}`];
+      for(let d=2;d*d<=n2;d++){while(n2%d===0){factors.push(d);n2/=d;}}
+      if(n2>1)factors.push(n2);
+      const grouped={};factors.forEach(f=>{grouped[f]=(grouped[f]||0)+1;});
+      const expr=Object.entries(grouped).map(([b,e])=>e>1?`${b}^${e}`:b).join(' · ');
+      steps.push(`Множники: ${factors.join(' × ')}`);
+      steps.push(`Канонічний розклад: ${expr}`);
+      const dc=Object.entries(grouped).map(([,e])=>e+1).reduce((a,b)=>a*b,1);
+      steps.push(`Кількість дільників: ${dc}`);
+      return {value:expr,steps};
+    }
+  }
+
+  if (mode==='divisors') {
+    let num=Math.abs(Math.round(parts[0]));
+    if(ok(num)&&num>=1&&num<=1e6){
+      const divs=[];for(let i=1;i*i<=num;i++){if(num%i===0){divs.push(i);if(i!==num/i)divs.push(num/i);}}
+      divs.sort((a,b)=>a-b);
+      return {value:`${divs.length} дільників`,steps:[`Число: ${num}`,`Дільники: ${divs.join(', ')}`,`Кількість: ${divs.length}`]};
+    }
+  }
+
+  if (mode==='div_check') {
+    if(parts.length>=2&&ok(...parts)){
+      const [a,b]=parts.map(Math.round);
+      const r=a%b;
+      return {value:r===0?`${a} ÷ ${b} = ${a/b} (так)`:`Ні, остача ${r}`,steps:[`${a} div ${b} = ${Math.floor(a/b)}`,`${a} mod ${b} = ${r}`,r===0?`${a} ділиться на ${b} без остачі`:`${a} не ділиться на ${b}`]};
+    }
+  }
+
+  if (mode==='abs') {
+    const v=p(input); if(ok(v)) return {value:`|${input}| = ${Math.abs(v)}`,steps:[`|${v}| = ${Math.abs(v)}`]};
+  }
+
+  if (mode==='factorial'||mode==='permutation') {
+    const num=Math.round(parts[0]);
+    if(ok(num)&&num>=0&&num<=170){
+      const r=fact(num);
+      return {value:`${num}! = ${r}`,steps:[num<=10?`${num}! = ${Array.from({length:num},(_,i)=>i+1).join(' × ')}`:`${num}! (великий факторіал)`,`= ${r}`]};
+    }
+  }
+
+  if (mode==='power') {
+    if(parts.length>=2&&ok(...parts)){
+      const [base,exp]=parts;const r=fmt(Math.pow(base,exp));
+      return {value:`${base}^${exp} = ${r}`,steps:[`Основа: ${base}, показник: ${exp}`,`${base}^${exp} = ${r}`]};
+    }
+  }
+
+  if (mode==='root'||mode==='simplify_root') {
+    const num=parts[0],deg2=parts[1]||2;
+    if(ok(num)&&num>=0){
+      const r=fmt(Math.pow(num,1/deg2));
+      if(deg2===2){
+        let a2=1,b2=Math.round(num);
+        for(let i=Math.floor(Math.sqrt(b2));i>=2;i--){if(b2%(i*i)===0){a2=i;b2=b2/(i*i);break;}}
+        const simplified=b2===1?`${a2}`:(a2===1?`√${Math.round(num)}`:`${a2}√${b2}`);
+        return {value:simplified,steps:[`√${Math.round(num)}`,a2>1?`= √(${a2}² · ${b2}) = ${a2}√${b2}`:`Не спрощується`,`≈ ${r}`]};
+      }
+      return {value:`${deg2}√${num} ≈ ${r}`,steps:[`${deg2}√${num} = ${num}^(1/${deg2})`,`≈ ${r}`]};
+    }
+  }
+
+  if (mode==='std_form') {
+    const v=p(input);
+    if(ok(v)&&v!==0){
+      const exp=Math.floor(Math.log10(Math.abs(v)));
+      const mantissa=fmt(v/Math.pow(10,exp));
+      return {value:`${mantissa} × 10^${exp}`,steps:[`${v}`,`= ${mantissa} × 10^${exp}`]};
+    }
+  }
+
+  if (mode==='percent_of') {
+    if(parts.length>=2){const [P,pc]=parts;const r=fmt(P*pc/100);return {value:`${r}`,steps:[`${pc}% від ${P}`,`= ${P} × ${pc}/100 = ${r}`]};}
+  }
+  if (mode==='what_percent') {
+    if(parts.length>=2){const [A,P]=parts;const r=fmt(A/P*100);return {value:`${r}%`,steps:[`${A} від ${P}`,`= ${A}/${P} × 100 = ${r}%`]};}
+  }
+  if (mode==='change') {
+    if(parts.length>=2){const [P,pc]=parts;const r=fmt(P*(1+pc/100));return {value:`${r}`,steps:[`${P} ${pc>=0?'+':''}${pc}%`,`= ${P} × ${fmt(1+pc/100)} = ${r}`]};}
+  }
+  if (mode==='proportion') {
+    if(parts.length>=3){const [a,b,c]=parts;const d=fmt(b*c/a);return {value:`x = ${d}`,steps:[`${a}:${b} = ${c}:x`,`x = ${b}·${c}/${a} = ${d}`]};}
+  }
+  if (mode==='compound') {
+    if(parts.length>=3){const [P,r,n]=parts;const S=fmt(P*Math.pow(1+r/100,n));return {value:`${S}`,steps:[`P=${P}, r=${r}%, n=${n}`,`S = P·(1+r/100)^n`,`= ${P}·${fmt(Math.pow(1+r/100,n))} = ${S}`]};}
+  }
+
+  return null;
+}
+
+// ── БЛОК 2: Алгебра ──
+function calcAlgebra(mode, parts, input) {
+  const fmt=_fmt, ok=_ok, rad=_rad;
+
+  if (mode==='linear') {
+    if(parts.length>=2){const [a,b]=parts;if(a===0)return {value:b===0?'Нескінченно розв\'язків':'Немає розв\'язків',steps:[`${a}x + ${b} = 0`,a===0&&b===0?'0=0 — тотожність':'0≠0 — суперечність']};const x=fmt(-b/a);return {value:`x = ${x}`,steps:[`${a}x + ${b} = 0`,`x = −(${b})/${a} = ${x}`]};}
+  }
+
+  if (mode==='quadratic') {
+    if(parts.length>=3){
+      const [a,b,c]=parts;const D=b*b-4*a*c;
+      const steps=[`${a}x² + ${b}x + ${c} = 0`,`D = ${b}² − 4·${a}·${c} = ${fmt(D)}`];
+      if(D>0){const x1=fmt((-b+Math.sqrt(D))/(2*a)),x2=fmt((-b-Math.sqrt(D))/(2*a));steps.push(`x₁ = (${-b}+√${fmt(D)})/${2*a} = ${x1}`,`x₂ = (${-b}−√${fmt(D)})/${2*a} = ${x2}`);return {value:`x₁=${x1}, x₂=${x2}`,steps};}
+      if(D===0){const x0=fmt(-b/(2*a));steps.push(`x = −b/(2a) = ${x0}`);return {value:`x = ${x0}`,steps};}
+      steps.push('D < 0 → дійсних коренів немає');return {value:'Немає дійсних коренів',steps};
+    }
+  }
+
+  if (mode==='vieta') {
+    if(parts.length>=2){const [s,pr]=parts;const D=s*s-4*pr;const steps=[`x₁+x₂ = ${s}, x₁·x₂ = ${pr}`,`Рівняння: x² − ${s}x + ${pr} = 0`,`D = ${fmt(D)}`];
+    if(D>=0){const x1=fmt((s+Math.sqrt(D))/2),x2=fmt((s-Math.sqrt(D))/2);steps.push(`x₁=${x1}, x₂=${x2}`);return {value:`x²−${s}x+${pr}=0 → x₁=${x1}, x₂=${x2}`,steps};}
+    steps.push('D<0 — дійсних коренів немає');return {value:'Немає дійсних коренів',steps};}
+  }
+
+  if (mode==='system2') {
+    if(parts.length>=6){
+      const [a1,b1,c1,a2,b2,c2]=parts;const D=a1*b2-a2*b1;
+      if(D===0)return {value:'Δ=0, система несумісна або невизначена',steps:[`Δ = ${a1}·${b2}−${a2}·${b1} = 0`]};
+      const x=fmt((c1*b2-c2*b1)/D),y=fmt((a1*c2-a2*c1)/D);
+      return {value:`x=${x}, y=${y}`,steps:[`{${a1}x+${b1}y=${c1}`,` ${a2}x+${b2}y=${c2}`,`Δ=${D}, Δx=${c1*b2-c2*b1}, Δy=${a1*c2-a2*c1}`,`x=${x}, y=${y}`]};
+    }
+  }
+
+  if (mode==='linear_ineq') {
+    if(parts.length>=2){const [a,b]=parts;if(a===0)return {value:b>0?'x ∈ ℝ':'∅',steps:[`${a}x+${b}>0`]};const x=fmt(-b/a);return {value:a>0?`x > ${x}`:`x < ${x}`,steps:[`${a}x + ${b} > 0`,`x ${a>0?'>':'<'} ${x}`]};}
+  }
+
+  if (mode==='quadratic_ineq') {
+    if(parts.length>=3){
+      const [a,b,c]=parts;const D=b*b-4*a*c;const steps=[`${a}x²+${b}x+${c} > 0`,`D = ${fmt(D)}`];
+      if(D<0){steps.push(a>0?'D<0, a>0 → завжди >0, x∈ℝ':'D<0, a<0 → завжди <0, ∅');return {value:a>0?'x ∈ ℝ':'∅',steps};}
+      const x1=fmt((-b-Math.sqrt(D))/(2*a)),x2=fmt((-b+Math.sqrt(D))/(2*a));
+      steps.push(`Корені: x₁=${x1}, x₂=${x2}`);
+      if(a>0){steps.push(`a>0: f(x)>0 при x<${x1} або x>${x2}`);return {value:`x ∈ (−∞;${x1}) ∪ (${x2};+∞)`,steps};}
+      steps.push(`a<0: f(x)>0 при ${x1}<x<${x2}`);return {value:`x ∈ (${x1};${x2})`,steps};
+    }
+  }
+
+  if (mode==='abs_ineq'||mode==='abs_eq') {
+    if(parts.length>=1){const a=parts[0];if(mode==='abs_ineq'){return {value:`x ∈ (${-a}; ${a})`,steps:[`|x| < ${a}`,`−${a} < x < ${a}`]};}
+    return {value:`x = ${a} або x = ${-a}`,steps:[`|x| = ${a}`,`x = ${a} або x = −${a}`]};}
+  }
+
+  if (mode==='parabola') {
+    if(parts.length>=3){const [a,b,c]=parts;const x0=fmt(-b/(2*a)),y0=fmt(c-b*b/(4*a)),D=b*b-4*a*c;
+    const steps=[`y = ${a}x² + ${b}x + ${c}`,`Вершина: x₀ = −b/(2a) = ${x0}`,`y₀ = c − D/(4a) = ${y0}`,`D = ${fmt(D)}`,a>0?'Гілки вгору (мінімум)':'Гілки вниз (максимум)'];
+    if(D>0){const x1=fmt((-b-Math.sqrt(D))/(2*a)),x2=fmt((-b+Math.sqrt(D))/(2*a));steps.push(`Нулі: x₁=${x1}, x₂=${x2}`);}
+    else if(D===0)steps.push(`Один нуль: x = ${x0}`);else steps.push('Нулів немає (D<0)');
+    return {value:`Вершина (${x0}; ${y0})`,steps};}
+  }
+
+  if (mode==='ap_term'||mode==='ap_sum') {
+    if(parts.length>=3){const [a1,d,n]=parts;const an=fmt(a1+(n-1)*d),Sn=fmt(n*(a1+a1+(n-1)*d)/2);
+    return {value:mode==='ap_term'?`a${n} = ${an}`:`S${n} = ${Sn}`,steps:[`a₁=${a1}, d=${d}, n=${n}`,`aₙ = ${a1}+(${n}−1)·${d} = ${an}`,`Sₙ = ${n}·(${a1}+${an})/2 = ${Sn}`]};}
+  }
+  if (mode==='gp_term'||mode==='gp_sum') {
+    if(parts.length>=3){const [b1,q,n]=parts;const bn=fmt(b1*Math.pow(q,n-1));
+    let Sn;if(Math.abs(q)===1)Sn=fmt(n*b1);else Sn=fmt(b1*(Math.pow(q,n)-1)/(q-1));
+    const steps=[`b₁=${b1}, q=${q}, n=${n}`,`bₙ = ${b1}·${q}^${n-1} = ${bn}`,`Sₙ = ${b1}·(${q}^${n}−1)/(${q}−1) = ${Sn}`];
+    if(Math.abs(q)<1){const Sinf=fmt(b1/(1-q));steps.push(`S∞ = ${b1}/(1−${q}) = ${Sinf}`);}
+    return {value:mode==='gp_term'?`b${n} = ${bn}`:`S${n} = ${Sn}`,steps};}
+  }
+  if (mode==='find_params') {
+    if(parts.length>=3){const [a1,an,n]=parts;const d=fmt((an-a1)/(n-1));return {value:`d = ${d}`,steps:[`a₁=${a1}, a${n}=${an}`,`d = (aₙ−a₁)/(n−1) = ${d}`]};}
+  }
+
+  if (mode==='log_calc'||mode==='log_base') {
+    if(parts.length>=2){const [base,arg]=parts;if(base>0&&base!==1&&arg>0){const r=fmt(Math.log(arg)/Math.log(base));return {value:`log${base}(${arg}) = ${r}`,steps:[`log₍${base}₎(${arg})`,`= ln(${arg})/ln(${base})`,`= ${fmt(Math.log(arg))}/${fmt(Math.log(base))}`,`= ${r}`]};}}
+  }
+  if (mode==='exp_eq') {
+    if(parts.length>=2){const [base,val]=parts;if(base>0&&val>0){const x=fmt(Math.log(val)/Math.log(base));return {value:`x = ${x}`,steps:[`${base}^x = ${val}`,`x = log₍${base}₎(${val}) = ${x}`]};}}
+  }
+
+  return null;
+}
+
+// ── БЛОК 3: Геометрія ──
+function calcGeometry(mode, parts, input) {
+  const fmt=_fmt, ok=_ok, rad=_rad, deg=_deg;
+
+  if (mode==='triangle_angles') {
+    if(parts.length>=2){const [a,b]=parts;const c=fmt(180-a-b);return {value:`γ = ${c}°`,steps:[`α=${a}°, β=${b}°`,`γ = 180°−${a}°−${b}° = ${c}°`]};}
+  }
+
+  if (mode==='pythagoras') {
+    if(parts.length>=2){const [a,b]=parts;const c=fmt(Math.sqrt(a*a+b*b));return {value:`c = ${c}`,steps:[`c² = ${a}²+${b}² = ${a*a+b*b}`,`c = √${a*a+b*b} = ${c}`]};}
+  }
+
+  if (mode==='area_triangle') {
+    if(parts.length>=2){const [b,h]=parts;const s=fmt(b*h/2);return {value:`S = ${s}`,steps:[`S = ½·${b}·${h} = ${s}`]};}
+  }
+
+  if (mode==='heron'||mode==='heron_calc') {
+    if(parts.length>=3){const [a,b,c]=parts;const pr=(a+b+c)/2,s2=pr*(pr-a)*(pr-b)*(pr-c);
+    if(s2<0)return {value:'Трикутник не існує',steps:['Нерівність трикутника порушена']};
+    const s=fmt(Math.sqrt(s2));return {value:`S = ${s}`,steps:[`a=${a}, b=${b}, c=${c}`,`p = ${fmt(pr)}`,`S = √(${fmt(pr)}·${fmt(pr-a)}·${fmt(pr-b)}·${fmt(pr-c)}) = ${s}`]};}
+  }
+
+  if (mode==='cosine_rule') {
+    if(parts.length>=3){const [a,b,C]=parts;const Cr=rad(C),c=fmt(Math.sqrt(a*a+b*b-2*a*b*Math.cos(Cr)));
+    return {value:`c = ${c}`,steps:[`c² = ${a}²+${b}²−2·${a}·${b}·cos${C}°`,`c² = ${fmt(a*a+b*b-2*a*b*Math.cos(Cr))}`,`c = ${c}`]};}
+  }
+
+  if (mode==='sine_rule') {
+    if(parts.length>=3){const [a,A,B]=parts;const b=fmt(a*Math.sin(rad(B))/Math.sin(rad(A))),R=fmt(a/(2*Math.sin(rad(A))));
+    return {value:`b = ${b}, R = ${R}`,steps:[`a/sinA = b/sinB = 2R`,`b = ${a}·sin${B}°/sin${A}° = ${b}`,`R = ${a}/(2·sin${A}°) = ${R}`]};}
+  }
+
+  if (mode==='circle_params') {
+    const r=parts[0];if(ok(r)&&r>0){const Ci=fmt(2*Math.PI*r),S=fmt(Math.PI*r*r);return {value:`C=${Ci}, S=${S}`,steps:[`R = ${r}`,`C = 2πR = ${Ci}`,`S = πR² = ${S}`]};}
+  }
+
+  if (mode==='arc') {
+    if(parts.length>=2){const [r,a]=parts;const l=fmt(Math.PI*r*a/180),s=fmt(Math.PI*r*r*a/360);
+    return {value:`l = ${l}, S = ${s}`,steps:[`R=${r}, α=${a}°`,`l = πRα/180 = ${l}`,`S = πR²α/360 = ${s}`]};}
+  }
+
+  if (mode==='inscribed_angle') {
+    if(parts.length>=1){const a=parts[0];return {value:`Вписаний = ${fmt(a/2)}°`,steps:[`Центральний = ${a}°`,`Вписаний = ${a}°/2 = ${fmt(a/2)}°`]};}
+  }
+
+  if (mode==='tangent') {
+    if(parts.length>=2&&parts.length<4){const [d,R]=parts;if(d>R){const t=fmt(Math.sqrt(d*d-R*R));return {value:`t = ${t}`,steps:[`d = ${d}, R = ${R}`,`t = √(d²−R²) = √${fmt(d*d-R*R)} = ${t}`]};}
+    return {value:'Точка всередині кола',steps:['d ≤ R']};}
+  }
+
+  if (mode==='parallelogram') {
+    if(parts.length>=2){const [a,h]=parts;const s=fmt(a*h);return {value:`S = ${s}`,steps:[`S = a·h = ${a}·${h} = ${s}`]};}
+  }
+  if (mode==='trapezoid') {
+    if(parts.length>=3){const [a,b,h]=parts;const s=fmt((a+b)/2*h);return {value:`S = ${s}`,steps:[`S = (${a}+${b})/2 · ${h} = ${s}`]};}
+  }
+  if (mode==='rhombus') {
+    if(parts.length>=2){const [d1,d2]=parts;const s=fmt(d1*d2/2);return {value:`S = ${s}`,steps:[`S = d₁·d₂/2 = ${d1}·${d2}/2 = ${s}`]};}
+  }
+  if (mode==='rectangle') {
+    if(parts.length>=2){const [a,b]=parts;const s=fmt(a*b),d=fmt(Math.sqrt(a*a+b*b)),per=fmt(2*(a+b));
+    return {value:`S=${s}, P=${per}, d=${d}`,steps:[`S = ${a}·${b} = ${s}`,`P = 2(${a}+${b}) = ${per}`,`d = √(${a}²+${b}²) = ${d}`]};}
+  }
+
+  if (mode==='regular_polygon') {
+    if(parts.length>=2){const [n,R]=parts;const angle=fmt(180*(n-2)/n),side=fmt(2*R*Math.sin(Math.PI/n)),S=fmt(n*R*R*Math.sin(2*Math.PI/n)/2);
+    return {value:`α=${angle}°, a=${side}, S=${S}`,steps:[`n=${n}, R=${R}`,`Кут = 180°·(${n}−2)/${n} = ${angle}°`,`Сторона = 2R·sin(π/${n}) = ${side}`,`S = ½nR²sin(2π/${n}) = ${S}`]};}
+  }
+
+  if (mode==='similarity_area') {
+    if(parts.length>=2){const [k,S1]=parts;const S2=fmt(k*k*S1);return {value:`S₂ = ${S2}`,steps:[`k = ${k}, S₁ = ${S1}`,`S₂ = k²·S₁ = ${k}²·${S1} = ${S2}`]};}
+  }
+
+  if (mode==='sphere') {
+    const R=parts[0];if(ok(R)){const V=fmt(4/3*Math.PI*R**3),S=fmt(4*Math.PI*R*R);return {value:`V=${V}, S=${S}`,steps:[`R=${R}`,`V = 4/3·πR³ = ${V}`,`S = 4πR² = ${S}`]};}
+  }
+  if (mode==='cylinder') {
+    if(parts.length>=2){const [r,h]=parts;const V=fmt(Math.PI*r*r*h),Sb=fmt(2*Math.PI*r*h),St=fmt(2*Math.PI*r*(r+h));
+    return {value:`V=${V}`,steps:[`r=${r}, h=${h}`,`V = πr²h = ${V}`,`S_бічн = 2πrh = ${Sb}`,`S_повн = 2πr(r+h) = ${St}`]};}
+  }
+  if (mode==='cone') {
+    if(parts.length>=2){const [r,h]=parts;const l=fmt(Math.sqrt(r*r+h*h)),V=fmt(Math.PI*r*r*h/3),Sb=fmt(Math.PI*r*l);
+    return {value:`V=${V}, l=${l}`,steps:[`r=${r}, h=${h}`,`l = √(r²+h²) = ${l}`,`V = ⅓πr²h = ${V}`,`S_бічн = πrl = ${Sb}`]};}
+  }
+  if (mode==='pyramid') {
+    if(parts.length>=2){const [Sb,h]=parts;const V=fmt(Sb*h/3);return {value:`V = ${V}`,steps:[`S_осн=${Sb}, h=${h}`,`V = ⅓·S·h = ${V}`]};}
+  }
+  if (mode==='parallelepiped') {
+    if(parts.length>=3){const [a,b,c]=parts;const V=fmt(a*b*c),S=fmt(2*(a*b+b*c+a*c)),d=fmt(Math.sqrt(a*a+b*b+c*c));
+    return {value:`V=${V}, d=${d}`,steps:[`${a}×${b}×${c}`,`V = ${V}`,`S = 2(ab+bc+ac) = ${S}`,`d = √(a²+b²+c²) = ${d}`]};}
+  }
+
+  return null;
+}
+
+// ── БЛОК 4: Тригонометрія ──
+function calcTrig(mode, parts, input) {
+  const fmt=_fmt, ok=_ok, rad=_rad, deg=_deg;
+
+  if (mode==='trig_value'||mode==='unit_circle') {
+    const a=parts[0];if(ok(a)){const ar=rad(a);
+    return {value:`sin=${fmt(Math.sin(ar))}, cos=${fmt(Math.cos(ar))}`,steps:[`α = ${a}°`,`sin ${a}° = ${fmt(Math.sin(ar))}`,`cos ${a}° = ${fmt(Math.cos(ar))}`,`tg ${a}° = ${Math.abs(Math.cos(ar))<1e-10?'не визн.':fmt(Math.tan(ar))}`]};}
+  }
+
+  if (mode==='deg_rad') {
+    const a=parts[0];if(ok(a)){const r=fmt(a*Math.PI/180);return {value:`${a}° = ${r} рад`,steps:[`${a}° × π/180 = ${r} рад`,`≈ ${fmt(a/180)}π`]};}
+  }
+
+  if (mode==='basic_identity') {
+    const v=parts[0];if(ok(v)&&Math.abs(v)<=1){const other=fmt(Math.sqrt(1-v*v));return {value:`±${other}`,steps:[`sin²+cos²=1`,`Дано одне = ${v}`,`Інше = ±√(1−${v}²) = ±${other}`,`Знак залежить від чверті`]};}
+  }
+
+  if (mode==='double_angle') {
+    const a=parts[0];if(ok(a)){const ar=rad(a);return {value:`sin2α=${fmt(Math.sin(2*ar))}, cos2α=${fmt(Math.cos(2*ar))}`,steps:[`α = ${a}°`,`sin 2·${a}° = 2sinαcosα = ${fmt(Math.sin(2*ar))}`,`cos 2·${a}° = cos²α−sin²α = ${fmt(Math.cos(2*ar))}`]};}
+  }
+
+  if (mode==='arcsin_calc') {
+    const v=parts[0];if(ok(v)&&Math.abs(v)<=1){const r=Math.asin(v);return {value:`arcsin(${v}) = ${fmt(deg(r))}° = ${fmt(r)} рад`,steps:[`arcsin(${v}) = ${fmt(deg(r))}°`]};}
+  }
+  if (mode==='arctan_calc') {
+    const v=parts[0];if(ok(v)){const r=Math.atan(v);return {value:`arctan(${v}) = ${fmt(deg(r))}° = ${fmt(r)} рад`,steps:[`arctan(${v}) = ${fmt(deg(r))}°`]};}
+  }
+
+  if (mode==='composition') {
+    const v=parts[0];if(ok(v)&&Math.abs(v)<=1){const r=fmt(Math.sqrt(1-v*v));return {value:`sin(arccos ${v}) = ${r}`,steps:[`sin(arccos x) = √(1−x²)`,`= √(1−${v}²) = ${r}`]};}
+  }
+
+  if (mode==='angle_from_sides') {
+    if(parts.length>=3){const [a,b,c]=parts;const cosC=(a*a+b*b-c*c)/(2*a*b);if(Math.abs(cosC)<=1){const C=fmt(deg(Math.acos(cosC)));return {value:`C = ${C}°`,steps:[`a=${a}, b=${b}, c=${c}`,`cosC = (a²+b²−c²)/(2ab) = ${fmt(cosC)}`,`C = ${C}°`]};}}
+  }
+
+  return null;
+}
+
+// ── БЛОК 5: Аналітична геометрія ──
+function calcAnalytic(mode, parts, input, topicId) {
+  const fmt=_fmt, ok=_ok, rad=_rad, deg=_deg;
+
+  if (mode==='distance'||mode==='dist3d') {
+    if(parts.length>=4){const [x1,y1,x2,y2]=parts;const z1=parts[4]||0,z2=parts[5]||0;
+    const d=fmt(Math.sqrt((x2-x1)**2+(y2-y1)**2+(z2-z1)**2));
+    return {value:`d = ${d}`,steps:[`A(${x1},${y1}${z1?','+z1:''}), B(${x2},${y2}${z2?','+z2:''})`,`d = √(${fmt((x2-x1)**2)}+${fmt((y2-y1)**2)}${z1||z2?'+'+fmt((z2-z1)**2):''}) = ${d}`]};}
+  }
+
+  if (mode==='midpoint') {
+    if(parts.length>=4){const [x1,y1,x2,y2]=parts;return {value:`M(${fmt((x1+x2)/2)}; ${fmt((y1+y2)/2)})`,steps:[`M = ((${x1}+${x2})/2, (${y1}+${y2})/2)`]};}
+  }
+
+  if (mode==='line_eq'||mode==='line2d') {
+    if(parts.length>=4){const [x1,y1,x2,y2]=parts;if(x1===x2)return {value:`x = ${x1}`,steps:['Вертикальна пряма']};
+    const k=fmt((y2-y1)/(x2-x1)),b=fmt(y1-k*x1);return {value:`y = ${k}x ${b>=0?'+ '+b:'− '+Math.abs(b)}`,steps:[`k = (${y2}−${y1})/(${x2}−${x1}) = ${k}`,`b = ${y1} − ${k}·${x1} = ${b}`]};}
+  }
+
+  if (mode==='angle_lines') {
+    if(parts.length>=2){const [k1,k2]=parts;if(k1*k2===-1)return {value:'90° (перпендикулярні)',steps:[`k₁·k₂ = ${k1}·${k2} = −1`]};
+    const tga=Math.abs((k1-k2)/(1+k1*k2)),a=fmt(deg(Math.atan(tga)));return {value:`φ = ${a}°`,steps:[`tg φ = |${k1}−${k2}|/|1+${k1}·${k2}|`,`φ = ${a}°`]};}
+  }
+
+  if (mode==='vec_ops') {
+    if(parts.length>=4){const [ax,ay,bx,by]=parts;return {value:`a+b=(${fmt(ax+bx)},${fmt(ay+by)}), |a|=${fmt(Math.sqrt(ax*ax+ay*ay))}`,steps:[`a=(${ax},${ay}), b=(${bx},${by})`,`a+b = (${fmt(ax+bx)}, ${fmt(ay+by)})`,`a−b = (${fmt(ax-bx)}, ${fmt(ay-by)})`,`|a| = ${fmt(Math.sqrt(ax*ax+ay*ay))}`,`|b| = ${fmt(Math.sqrt(bx*bx+by*by))}`]};}
+  }
+
+  if (mode==='dot_product'||mode==='vec_angle') {
+    if(parts.length>=4){const [ax,ay,bx,by]=parts;const az=parts[4]||0,bz=parts[5]||0;
+    const dot=ax*bx+ay*by+az*bz,ma=Math.sqrt(ax*ax+ay*ay+az*az),mb=Math.sqrt(bx*bx+by*by+bz*bz);
+    const cosA=dot/(ma*mb),angle=fmt(deg(Math.acos(Math.max(-1,Math.min(1,cosA)))));
+    return {value:`a·b=${fmt(dot)}, φ=${angle}°`,steps:[`a·b = ${ax}·${bx}+${ay}·${by}${az||bz?`+${az}·${bz}`:''} = ${fmt(dot)}`,`|a|=${fmt(ma)}, |b|=${fmt(mb)}`,`cos φ = ${fmt(cosA)}`,`φ = ${angle}°`,dot===0?'Вектори перпендикулярні':'']};}
+  }
+
+  if (mode==='cross_product') {
+    if(parts.length>=6){const [ax,ay,az,bx,by,bz]=parts;
+    const cx=ay*bz-az*by,cy=az*bx-ax*bz,cz=ax*by-ay*bx,m=fmt(Math.sqrt(cx*cx+cy*cy+cz*cz));
+    return {value:`(${fmt(cx)},${fmt(cy)},${fmt(cz)}), |a×b|=${m}`,steps:[`a=(${ax},${ay},${az}), b=(${bx},${by},${bz})`,`a×b = (${fmt(cx)}, ${fmt(cy)}, ${fmt(cz)})`,`|a×b| = ${m}`,`S△ = ${fmt(m/2)}`]};}
+  }
+
+  if (mode==='projection') {
+    if(parts.length>=4){const [ax,ay,bx,by]=parts;const dot=ax*bx+ay*by,mb=Math.sqrt(bx*bx+by*by);
+    return {value:`пр = ${fmt(dot/mb)}`,steps:[`a·b = ${fmt(dot)}`,`|b| = ${fmt(mb)}`,`пр_b(a) = a·b/|b| = ${fmt(dot/mb)}`]};}
+  }
+
+  if (mode==='dist_point_line') {
+    if(parts.length>=5){const [A,B,Cv,x0,y0]=parts;const d=fmt(Math.abs(A*x0+B*y0+Cv)/Math.sqrt(A*A+B*B));
+    return {value:`d = ${d}`,steps:[`${A}x+${B}y+${Cv}=0, M(${x0},${y0})`,`d = |${A}·${x0}+${B}·${y0}+${Cv}|/√(${A}²+${B}²) = ${d}`]};}
+  }
+
+  if (mode==='dist_point_plane') {
+    if(parts.length>=7){const [A,B,Cv,D,x0,y0,z0]=parts;const d=fmt(Math.abs(A*x0+B*y0+Cv*z0+D)/Math.sqrt(A*A+B*B+Cv*Cv));
+    return {value:`d = ${d}`,steps:[`${A}x+${B}y+${Cv}z+${D}=0, M(${x0},${y0},${z0})`,`d = ${d}`]};}
+  }
+
+  if (mode==='ellipse') {
+    if(parts.length>=2){const [a,b]=parts;const c=fmt(Math.sqrt(Math.abs(a*a-b*b))),e=fmt(c/Math.max(a,b)),S=fmt(Math.PI*a*b);
+    return {value:`c=${c}, e=${e}, S=${S}`,steps:[`a=${a}, b=${b}`,`c = √(a²−b²) = ${c}`,`e = c/a = ${e}`,`S = πab = ${S}`]};}
+  }
+  if (mode==='hyperbola') {
+    if(parts.length>=2){const [a,b]=parts;const c=fmt(Math.sqrt(a*a+b*b)),e=fmt(c/a);
+    return {value:`c=${c}, e=${e}`,steps:[`a=${a}, b=${b}`,`c = √(a²+b²) = ${c}`,`e = c/a = ${e}`,`Асимптоти: y = ±${fmt(b/a)}x`]};}
+  }
+  if (mode==='parabola'&&topicId==='5-3-conics') {
+    const pr=parts[0];if(ok(pr)){return {value:`Фокус (${fmt(pr/2)}, 0)`,steps:[`y²=2px, p=${pr}`,`Фокус: (p/2, 0) = (${fmt(pr/2)}, 0)`,`Директриса: x = −${fmt(pr/2)}`]};}
+  }
+
+  if (mode==='polar_cart') {
+    if(parts.length>=2){const [r,phi]=parts;const x=fmt(r*Math.cos(phi)),y=fmt(r*Math.sin(phi));
+    return {value:`(${x}, ${y})`,steps:[`(r,φ) = (${r}, ${phi} рад)`,`x = r·cos φ = ${x}`,`y = r·sin φ = ${y}`]};}
+  }
+
+  if (mode==='spherical') {
+    if(parts.length>=3){const [R,th,ph]=parts;const x=fmt(R*Math.sin(th)*Math.cos(ph)),y=fmt(R*Math.sin(th)*Math.sin(ph)),z=fmt(R*Math.cos(th));
+    return {value:`(${x}, ${y}, ${z})`,steps:[`(R,θ,φ) = (${R}, ${th}, ${ph})`,`x=${x}, y=${y}, z=${z}`]};}
+  }
+
+  if (mode==='sphere_eq'||mode==='circle_eq') {
+    if(parts.length>=3){const [a,b,c]=parts;const R=parts[3]||c;
+    if(parts.length===4)return {value:`(x−${a})²+(y−${b})²+(z−${c})²=${R}²`,steps:[`Центр(${a},${b},${c}), R=${R}`]};
+    return {value:`(x−${a})²+(y−${b})²=${c}²`,steps:[`Центр(${a},${b}), R=${c}`]};}
+  }
+
+  if (mode==='tetrahedron_vol') {
+    if(parts.length>=9){const [ax,ay,az,bx,by,bz,cx,cy,cz]=parts;
+    const det=ax*(by*cz-bz*cy)-ay*(bx*cz-bz*cx)+az*(bx*cy-by*cx);const V=fmt(Math.abs(det)/6);
+    return {value:`V = ${V}`,steps:[`AB=(${ax},${ay},${az})`,`AC=(${bx},${by},${bz})`,`AD=(${cx},${cy},${cz})`,`V = |det|/6 = ${V}`]};}
+  }
+
+  return null;
+}
+
+// ── БЛОК 6: Комбінаторика та аналіз ──
+function calcAnalysis(mode, parts, input) {
+  const fmt=_fmt, ok=_ok, fact=_fact, C=_C, A=_A;
+
+  if (mode==='factorial'||mode==='permutation') {
+    const num=Math.round(parts[0]);
+    if(ok(num)&&num>=0&&num<=170){
+      const r=fact(num);
+      return {value:`${num}! = ${r}`,steps:[num<=10?`${num}! = ${Array.from({length:num},(_,i)=>i+1).join(' × ')}`:`${num}! (великий факторіал)`,`= ${r}`]};
+    }
+  }
+
+  if (mode==='arrangement') {
+    if(parts.length>=2){const [n,k]=parts;const r=A(n,k);return {value:`A(${n},${k}) = ${r}`,steps:[`A(${n},${k}) = ${n}!/(${n}−${k})!`,`= ${r}`]};}
+  }
+  if (mode==='combination') {
+    if(parts.length>=2){const [n,k]=parts;const r=C(n,k);return {value:`C(${n},${k}) = ${r}`,steps:[`C(${n},${k}) = ${n}!/(${k}!·${n-k}!)`,`= ${r}`]};}
+  }
+  if (mode==='binomial') {
+    if(parts.length>=1){const n=parts[0];const coeffs=Array.from({length:n+1},(_,k)=>C(n,k));
+    return {value:`(a+b)^${n}`,steps:[`Коефіцієнти: ${coeffs.join(', ')}`,`${coeffs.map((c,k)=>`${c>1?c:''}a^${n-k}b^${k}`).join(' + ')}`]};}
+  }
+
+  if (mode==='classic_prob') {
+    if(parts.length>=2){const [m,n]=parts;const pr=fmt(m/n);return {value:`P = ${pr}`,steps:[`m=${m} (сприятл.), n=${n} (усіх)`,`P = m/n = ${pr}`]};}
+  }
+  if (mode==='binomial_dist') {
+    if(parts.length>=3){const [n,pr,k]=parts;const q=1-pr;const P=fmt(C(n,k)*Math.pow(pr,k)*Math.pow(q,n-k));
+    return {value:`P(X=${k}) = ${P}`,steps:[`n=${n}, p=${pr}, k=${k}`,`P = C(${n},${k})·${pr}^${k}·${fmt(q)}^${n-k}`,`= ${C(n,k)}·${fmt(Math.pow(pr,k))}·${fmt(Math.pow(q,n-k))}`,`= ${P}`,`E = np = ${fmt(n*pr)}`,`D = npq = ${fmt(n*pr*q)}`]};}
+  }
+  if (mode==='events_ops') {
+    if(parts.length>=2){const [pa,pb]=parts;const pab=parts[2]||0;
+    return {value:`P(A∪B) = ${fmt(pa+pb-pab)}`,steps:[`P(A)=${pa}, P(B)=${pb}, P(AB)=${pab}`,`P(A∪B) = ${pa}+${pb}−${pab} = ${fmt(pa+pb-pab)}`,`P(Ā) = ${fmt(1-pa)}`]};}
+  }
+  if (mode==='expectation') {
+    if(parts.length>=2&&parts.length%2===0){
+      let E=0,E2=0;const pairs=[];
+      for(let i=0;i<parts.length;i+=2){const x=parts[i],pr=parts[i+1];E+=x*pr;E2+=x*x*pr;pairs.push(`x=${x},p=${pr}`);}
+      const D=fmt(E2-E*E);return {value:`E=${fmt(E)}, D=${D}, σ=${fmt(Math.sqrt(Math.max(0,E2-E*E)))}`,steps:[...pairs,`E = Σxp = ${fmt(E)}`,`D = E(X²)−E²(X) = ${D}`]};}
+  }
+
+  if (mode==='derivative') {
+    const rules={'x':'1','x^2':'2x','x^3':'3x²','x^4':'4x³','x^5':'5x⁴','sinx':'cos x','cosx':'−sin x','tgx':'1/cos²x','ctgx':'−1/sin²x','e^x':'eˣ','ln(x)':'1/x','lnx':'1/x','a^x':'aˣ·ln a','1/x':'−1/x²','sqrt(x)':'1/(2√x)','sqrtx':'1/(2√x)'};
+    const key=input.toLowerCase().replace(/\s/g,'');const found=rules[key];
+    if(found)return {value:`f′ = ${found}`,steps:[`f(x) = ${input}`,`f′(x) = ${found}`]};
+    const pm=input.match(/^x\^(\d+)$/i);if(pm){const n=parseInt(pm[1]);return {value:`f′ = ${n}x^${n-1}`,steps:[`f(x) = x^${n}`,`f′(x) = ${n}x^${n-1}`]};}
+  }
+
+  if (mode==='tangent') {
+    if(parts.length>=4){const [a,b,c,x0]=parts;const y0=a*x0*x0+b*x0+c,k=2*a*x0+b;
+    return {value:`y = ${fmt(k)}x ${fmt(y0-k*x0)>=0?'+ ':'− '}${fmt(Math.abs(y0-k*x0))}`,steps:[`f(x)=  ${a}x²+${b}x+${c}`,`f(${x0}) = ${fmt(y0)}`,`f′(x) = ${2*a}x+${b} → f′(${x0}) = ${fmt(k)}`,`y = ${fmt(k)}(x−${x0})+${fmt(y0)}`]};}
+  }
+
+  if (mode==='definite') {
+    if(parts.length>=2){const [a,b]=parts;const steps=[`∫ від ${a} до ${b}`];
+    if(parts.length>=3){const n=parts[2];const val=fmt((Math.pow(b,n+1)-Math.pow(a,n+1))/(n+1));
+    steps.push(`∫x^${n}dx = x^${n+1}/${n+1}`,`= ${fmt(Math.pow(b,n+1)/(n+1))} − ${fmt(Math.pow(a,n+1)/(n+1))}`,`= ${val}`);
+    return {value:val,steps};}}
+  }
+
+  if (mode==='geo_series') {
+    if(parts.length>=2){const [b1,q]=parts;const n=parts[2]||0;
+    const steps=[`b₁=${b1}, q=${q}`];
+    if(n>0){const Sn=fmt(b1*(Math.pow(q,n)-1)/(q-1));steps.push(`S${n} = ${b1}·(${q}^${n}−1)/(${q}−1) = ${Sn}`);}
+    if(Math.abs(q)<1){const Sinf=fmt(b1/(1-q));steps.push(`S∞ = ${b1}/(1−${q}) = ${Sinf}`);return {value:n>0?`S${n}=${fmt(b1*(Math.pow(q,n)-1)/(q-1))}, S∞=${Sinf}`:`S∞ = ${Sinf}`,steps};}
+    return {value:n>0?`S${n} = ${fmt(b1*(Math.pow(q,n)-1)/(q-1))}`:'|q|≥1, S∞ не існує',steps};}
+  }
+
+  return null;
+}
+
+// ── ДИСПЕТЧЕР ──
+function mathEngine(mode, input, topicId) {
+  const parts = input.split(/[,;\s]+/).filter(Boolean).map(s => _p(s));
+  if (parts.length === 0 || parts.every(x => isNaN(x))) {
+    return {value:'⚠ Невалідний ввід',steps:['Введіть числа. Допустимі роздільники: кома, крапка з комою, пробіл','Приклад: 3, 4, 5  або  3; 4; 5']};
+  }
+
+  // Визначаємо пріоритетний блок по topicId
+  const blockOrder = [calcArithmetic, calcAlgebra, calcGeometry, calcTrig, calcAnalytic, calcAnalysis];
+  const prefix = topicId ? topicId.charAt(0) : '';
+  const blockMap = {'1':0, '2':1, '3':2, '4':3, '5':4, '6':5};
+  const primaryIdx = blockMap[prefix];
+
+  // Спочатку пробуємо блок теми (з topicId), потім решту
+  if (primaryIdx !== undefined) {
+    const r = blockOrder[primaryIdx](mode, parts, input, topicId);
+    if (r) return r;
+  }
+  // Перебираємо всі блоки (для fallback та спільних modes)
+  for (let i = 0; i < blockOrder.length; i++) {
+    if (i === primaryIdx) continue;
+    const r = blockOrder[i](mode, parts, input, topicId);
+    if (r) return r;
+  }
+
+  // Безпечний eval
+  try {
+    const safe = input.replace(/[^0-9+\-*/().,\s^√π]/g,'').replace(/\^/g,'**').replace(/√/g,'Math.sqrt').replace(/π/g,'Math.PI');
+    if (safe && !/[a-zA-Z]/.test(safe.replace(/Math\.(sqrt|PI)/g,''))) {
+      const result = _fmt(eval(safe));
+      return {value:`${result}`,steps:[`${input} = ${result}`]};
+    }
+  } catch(e){}
+
+  // Fallback по topicId
+  if(topicId&&parts.length>=2){
+    if(topicId.includes('divisibility'))return mathEngine('gcd_lcm',input,null);
+    if(topicId.includes('equations')&&parts.length===3)return mathEngine('quadratic',input,null);
+    if(topicId.includes('percent'))return mathEngine('percent_of',input,null);
+    if(topicId.includes('triangles')&&parts.length===2)return mathEngine('pythagoras',input,null);
+    if(topicId.includes('circle')&&parts.length===1)return mathEngine('circle_params',input,null);
+    if(topicId.includes('progressions'))return mathEngine('ap_sum',input,null);
+    if(topicId.includes('logarithms')&&parts.length===2)return mathEngine('log_calc',input,null);
+    if(topicId.includes('combinatorics')&&parts.length===2)return mathEngine('combination',input,null);
+  }
+
+  return {value:'Введіть коректні дані',steps:[
+    'Формат: числа через кому. Наприклад: 3, 4, 5'
+  ]};
+}
+
+// ══ ВІЗУАЛІЗАЦІЯ ═════════════════════════════════════════
+const VIZ_TOPICS = {
+  '2-1-expressions': {type:'linear', label:'y = ax + b', params:['a','b'], defaults:[2,-3]},
+  '2-2-equations':   {type:'quadratic', label:'y = ax² + bx + c', params:['a','b','c'], defaults:[1,-2,-3]},
+  '2-3-inequalities':{type:'quadratic', label:'y = ax² + bx + c', params:['a','b','c'], defaults:[1,0,-4]},
+  '2-4-functions':   {type:'quadratic', label:'y = ax² + bx + c', params:['a','b','c'], defaults:[1,-4,3]},
+  '2-5-progressions':{type:'sequence', label:'Арифметична прогресія', params:['a₁','d','n'], defaults:[2,3,10]},
+  '1-5-percent':     {type:'linear', label:'y = kx (пряма пропорційність)', params:['k','b'], defaults:[0.15,0]},
+  '4-1-trig-basics': {type:'unit_circle', label:'Одиничне коло', params:['α°'], defaults:[45]},
+  '4-2-trig-formulas':{type:'unit_circle', label:'Одиничне коло', params:['α°'], defaults:[60]},
+  '4-3-trig-equations':{type:'unit_circle', label:'Одиничне коло', params:['α°'], defaults:[30]},
+  '4-4-inverse-trig': {type:'unit_circle', label:'Одиничне коло', params:['α°'], defaults:[120]},
+  '3-2-triangles':    {type:'triangle', label:'Трикутник', params:['a','b','c'], defaults:[5,7,8]},
+  '3-4-circle':       {type:'circle_geom', label:'Коло', params:['R','α°'], defaults:[5,72]},
+  '3-3-quadrilaterals':{type:'quadrilateral', label:'Чотирикутник', params:['a','b','h'], defaults:[6,4,3.5]},
+  '3-5-areas':        {type:'regular_poly', label:'Правильний n-кутник', params:['n','R'], defaults:[6,5]},
+  '3-6-stereometry':  {type:'solid_3d', label:'Тіла', params:['a','b','c'], defaults:[4,3,5]},
+  '5-2-coordinates':  {type:'vectors', label:'Координати', params:['x₁','y₁','x₂','y₂'], defaults:[1,3,4,1]},
+  '5-1-vectors':      {type:'vectors', label:'Вектори', params:['x₁','y₁','x₂','y₂'], defaults:[3,2,-1,4]},
+  '5-3-conics':       {type:'conic', label:'Конічний переріз', params:['a','b'], defaults:[5,3]},
+  '5-4-space-coords': {type:'vectors', label:'Координати', params:['x₁','y₁','x₂','y₂'], defaults:[2,5,-3,1]},
+};
+
+let vizState = {scale:40, cx:0, cy:0, dragging:false, lastX:0, lastY:0, params:[], topicCfg:null};
+
+function initViz(topicId) {
+  const cfg = VIZ_TOPICS[topicId];
+  const btn = document.getElementById('viz-tab-btn');
+  if (!cfg) { btn.classList.remove('supported'); return; }
+  btn.classList.add('supported');
+
+  const isCircle = cfg.type === 'unit_circle';
+  vizState = {scale: isCircle ? 160 : 40, cx:0, cy:0, dragging:false, lastX:0, lastY:0, params:[...cfg.defaults], topicCfg:cfg};
+
+  const panel = document.getElementById('tp-viz');
+  const paramControls = isCircle ? `
+    <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);font-family:ui-monospace,monospace;flex:1;min-width:180px">
+      α =
+      <input type="range" min="0" max="360" step="1" value="${cfg.defaults[0]}" oninput="vizParam(0,this.value);this.nextElementSibling.value=this.value" style="flex:1;accent-color:var(--accent)">
+      <input type="number" min="0" max="360" step="1" value="${cfg.defaults[0]}" onchange="vizParam(0,this.value);this.previousElementSibling.value=this.value" style="width:50px;padding:4px 6px;font-size:12px;font-family:ui-monospace,monospace;background:var(--bg);border:.5px solid var(--border);border-radius:5px;color:var(--text);text-align:center">°
+    </label>
+  ` : cfg.params.map((p,i) => `
+    <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text2);font-family:ui-monospace,monospace">
+      ${p} =
+      <input type="number" step="0.5" value="${cfg.defaults[i]}" onchange="vizParam(${i},this.value)" style="width:56px;padding:4px 6px;font-size:12px;font-family:ui-monospace,monospace;background:var(--bg);border:.5px solid var(--border);border-radius:5px;color:var(--text);text-align:center">
+    </label>
+  `).join('');
+
+  panel.innerHTML = `
+    <div class="viz-wrap">
+      <canvas class="viz-canvas" id="viz-canvas" width="700" height="460"></canvas>
+      <div class="viz-controls">
+        ${paramControls}
+        <span style="flex:${isCircle?0:1}"></span>
+        ${isCircle ? '' : '<button class="viz-btn" onclick="vizZoom(1.3)">＋</button><button class="viz-btn" onclick="vizZoom(0.7)">−</button>'}
+        <button class="viz-btn" onclick="vizReset()">⟲</button>
+      </div>
+      <div class="viz-info" id="viz-info"></div>
+    </div>
+  `;
+
+  const canvas = document.getElementById('viz-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 460 * dpr;
+  canvas.style.height = '460px';
+  canvas.getContext('2d').scale(dpr, dpr);
+
+  if (isCircle) {
+    // Drag on circle: compute angle from pointer position
+    canvas.addEventListener('pointerdown', e => { vizState.dragging=true; canvas.setPointerCapture(e.pointerId); vizCircleDrag(e); });
+    canvas.addEventListener('pointermove', e => { if(vizState.dragging) vizCircleDrag(e); });
+    canvas.addEventListener('pointerup', () => { vizState.dragging=false; });
+  } else {
+    canvas.addEventListener('wheel', e => { e.preventDefault(); vizZoom(e.deltaY < 0 ? 1.15 : 0.87); }, {passive:false});
+    canvas.addEventListener('pointerdown', e => { vizState.dragging=true; vizState.lastX=e.clientX; vizState.lastY=e.clientY; canvas.setPointerCapture(e.pointerId); });
+    canvas.addEventListener('pointermove', e => { if(!vizState.dragging)return; vizState.cx-=(e.clientX-vizState.lastX)/vizState.scale; vizState.cy+=(e.clientY-vizState.lastY)/vizState.scale; vizState.lastX=e.clientX; vizState.lastY=e.clientY; vizDraw(); });
+    canvas.addEventListener('pointerup', () => { vizState.dragging=false; });
+  }
+
+  vizDraw();
+}
+
+function vizCircleDrag(e) {
+  const canvas = document.getElementById('viz-canvas');
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width, H = 460;
+  const mx = e.clientX - rect.left - W/2;
+  const my = -(e.clientY - rect.top - H/2);
+  let angle = Math.atan2(my, mx) * 180 / Math.PI;
+  if (angle < 0) angle += 360;
+  angle = Math.round(angle);
+  vizState.params[0] = angle;
+  // Sync slider + number input
+  const inputs = document.querySelectorAll('#tp-viz input');
+  if (inputs[0]) inputs[0].value = angle;
+  if (inputs[1]) inputs[1].value = angle;
+  vizDraw();
+}
+
+function vizParam(idx, val) {
+  vizState.params[idx] = parseFloat(val) || 0;
+  vizDraw();
+}
+
+function vizZoom(factor) {
+  vizState.scale = Math.max(5, Math.min(200, vizState.scale * factor));
+  vizDraw();
+}
+
+function vizReset() {
+  vizState.scale = 40; vizState.cx = 0; vizState.cy = 0;
+  vizState.params = [...vizState.topicCfg.defaults];
+  // Reset inputs
+  document.querySelectorAll('#tp-viz input[type=number]').forEach((inp, i) => { inp.value = vizState.topicCfg.defaults[i]; });
+  vizDraw();
+}
+
+function vizDraw() {
+  const canvas = document.getElementById('viz-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.getBoundingClientRect().width;
+  const H = 460;
+  const S = vizState.scale;
+  const ox = W/2 - vizState.cx * S;
+  const oy = H/2 + vizState.cy * S;
+
+  // Clear
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  const gridStep = S >= 80 ? 0.5 : S >= 30 ? 1 : S >= 12 ? 2 : 5;
+  ctx.strokeStyle = 'rgba(74,84,144,0.15)';
+  ctx.lineWidth = 0.5;
+  const xMin = -ox / S, xMax = (W - ox) / S;
+  const yMin = -(H - oy) / S, yMax = oy / S;
+  for (let x = Math.floor(xMin/gridStep)*gridStep; x <= xMax; x += gridStep) {
+    const px = ox + x * S;
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, H); ctx.stroke();
+  }
+  for (let y = Math.floor(yMin/gridStep)*gridStep; y <= yMax; y += gridStep) {
+    const py = oy - y * S;
+    ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(W, py); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = 'rgba(74,84,144,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(W, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 0); ctx.lineTo(ox, H); ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = 'rgba(74,84,144,0.6)';
+  ctx.font = '11px ui-monospace,monospace';
+  ctx.textAlign = 'center';
+  const labelStep = gridStep * (S >= 30 ? 1 : 1);
+  for (let x = Math.ceil(xMin/labelStep)*labelStep; x <= xMax; x += labelStep) {
+    if (Math.abs(x) < 0.01) continue;
+    const px = ox + x * S;
+    if (px > 20 && px < W - 20) {
+      ctx.fillText(Number.isInteger(x) ? x : x.toFixed(1), px, oy + 16);
+    }
+  }
+  ctx.textAlign = 'right';
+  for (let y = Math.ceil(yMin/labelStep)*labelStep; y <= yMax; y += labelStep) {
+    if (Math.abs(y) < 0.01) continue;
+    const py = oy - y * S;
+    if (py > 14 && py < H - 10) {
+      ctx.fillText(Number.isInteger(y) ? y : y.toFixed(1), ox - 6, py + 4);
+    }
+  }
+
+  // Origin
+  ctx.textAlign = 'center';
+  ctx.fillText('0', ox - 10, oy + 16);
+
+  // Draw function
+  const cfg = vizState.topicCfg;
+  const p = vizState.params;
+  let infoHtml = '';
+
+  if (cfg.type === 'quadratic') {
+    const [a, b, c] = p;
+    const f = x => a*x*x + b*x + c;
+    vizPlotFn(ctx, f, xMin, xMax, ox, oy, S, H, '#7c6ff7', 2.5);
+
+    // Vertex
+    if (a !== 0) {
+      const vx = -b/(2*a), vy = f(vx);
+      vizDot(ctx, ox + vx*S, oy - vy*S, 7, '#f0c040', `(${_fmt(vx)}; ${_fmt(vy)})`);
+
+      // Zeros
+      const D = b*b - 4*a*c;
+      if (D > 0) {
+        const x1 = (-b - Math.sqrt(D))/(2*a), x2 = (-b + Math.sqrt(D))/(2*a);
+        vizDot(ctx, ox + x1*S, oy, 5, '#34d4a0', `x₁=${_fmt(x1)}`);
+        vizDot(ctx, ox + x2*S, oy, 5, '#34d4a0', `x₂=${_fmt(x2)}`);
+        infoHtml = `<b>Вершина:</b> (${_fmt(vx)}; ${_fmt(vy)}) &nbsp; <b>D:</b> ${_fmt(D)} &nbsp; <b>Нулі:</b> x₁=${_fmt(x1)}, x₂=${_fmt(x2)}`;
+      } else if (D === 0) {
+        vizDot(ctx, ox + vx*S, oy, 5, '#34d4a0', `x₀=${_fmt(vx)}`);
+        infoHtml = `<b>Вершина:</b> (${_fmt(vx)}; ${_fmt(vy)}) &nbsp; <b>D:</b> 0 &nbsp; <b>Один нуль:</b> x₀=${_fmt(vx)}`;
+      } else {
+        infoHtml = `<b>Вершина:</b> (${_fmt(vx)}; ${_fmt(vy)}) &nbsp; <b>D:</b> ${_fmt(D)} &nbsp; Нулів немає`;
+      }
+      // Axis of symmetry
+      ctx.setLineDash([6,4]);
+      ctx.strokeStyle = 'rgba(240,192,64,0.35)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(ox+vx*S, 0); ctx.lineTo(ox+vx*S, H); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  } else if (cfg.type === 'linear') {
+    const [k, bv] = p;
+    const f = x => k*x + bv;
+    vizPlotFn(ctx, f, xMin, xMax, ox, oy, S, H, '#7c6ff7', 2.5);
+
+    // y-intercept
+    vizDot(ctx, ox, oy - bv*S, 5, '#f0c040', `(0; ${_fmt(bv)})`);
+    // x-intercept
+    if (k !== 0) {
+      const xi = -bv/k;
+      vizDot(ctx, ox + xi*S, oy, 5, '#34d4a0', `(${_fmt(xi)}; 0)`);
+      infoHtml = `<b>k:</b> ${_fmt(k)} &nbsp; <b>b:</b> ${_fmt(bv)} &nbsp; <b>Нуль:</b> x=${_fmt(xi)}`;
+    } else {
+      infoHtml = `<b>Горизонтальна пряма:</b> y = ${_fmt(bv)}`;
+    }
+  } else if (cfg.type === 'sequence') {
+    const [a1, d, n] = p;
+    const cnt = Math.max(1, Math.min(50, Math.round(n)));
+    ctx.fillStyle = '#7c6ff7';
+    for (let i = 1; i <= cnt; i++) {
+      const val = a1 + (i-1)*d;
+      const px = ox + i*S, py = oy - val*S;
+      ctx.beginPath(); ctx.arc(px, py, 4, 0, Math.PI*2); ctx.fill();
+    }
+    // Connect with line
+    ctx.strokeStyle = 'rgba(124,111,247,0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i = 1; i <= cnt; i++) {
+      const val = a1 + (i-1)*d;
+      const px = ox + i*S, py = oy - val*S;
+      i===1 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+    const an = a1 + (cnt-1)*d;
+    const Sn = cnt*(a1+an)/2;
+    infoHtml = `<b>a₁:</b> ${_fmt(a1)} &nbsp; <b>d:</b> ${_fmt(d)} &nbsp; <b>a${cnt}:</b> ${_fmt(an)} &nbsp; <b>S${cnt}:</b> ${_fmt(Sn)}`;
+  } else if (cfg.type === 'unit_circle') {
+    // Unit circle — dedicated layout, ignores grid/axes above
+    ctx.clearRect(0, 0, W, H);
+    const R = Math.min(W, H) * 0.34;
+    const cx = W / 2, cy = H / 2;
+    const aDeg = ((p[0] % 360) + 360) % 360;
+    const aRad = aDeg * Math.PI / 180;
+    const cosA = Math.cos(aRad), sinA = Math.sin(aRad);
+    const px = cx + R * cosA, py = cy - R * sinA;
+
+    // Background circle
+    ctx.strokeStyle = 'rgba(74,84,144,0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+
+    // Axes through center
+    ctx.strokeStyle = 'rgba(74,84,144,0.4)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx - R - 30, cy); ctx.lineTo(cx + R + 30, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, cy - R - 30); ctx.lineTo(cx, cy + R + 30); ctx.stroke();
+
+    // Axis labels
+    ctx.fillStyle = 'rgba(74,84,144,0.6)';
+    ctx.font = '12px ui-monospace,monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('1', cx + R, cy + 18);
+    ctx.fillText('−1', cx - R, cy + 18);
+    ctx.textAlign = 'right';
+    ctx.fillText('1', cx - 8, cy - R + 4);
+    ctx.fillText('−1', cx - 8, cy + R + 4);
+
+    // Quadrant markers (30°, 45°, 60°, 90° etc)
+    const markers = [0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330];
+    markers.forEach(deg => {
+      const mr = deg * Math.PI / 180;
+      const mx = cx + R * Math.cos(mr), my = cy - R * Math.sin(mr);
+      ctx.fillStyle = 'rgba(74,84,144,0.3)';
+      ctx.beginPath(); ctx.arc(mx, my, 2, 0, Math.PI*2); ctx.fill();
+    });
+
+    // Angle arc
+    ctx.strokeStyle = 'rgba(124,111,247,0.5)';
+    ctx.lineWidth = 1.5;
+    const arcR = R * 0.2;
+    ctx.beginPath();
+    if (aDeg <= 360) {
+      ctx.arc(cx, cy, arcR, 0, -aRad, true);
+    }
+    ctx.stroke();
+    // Angle label
+    const labelAngle = aRad / 2;
+    ctx.fillStyle = 'rgba(124,111,247,0.8)';
+    ctx.font = '12px ui-monospace,monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${aDeg}°`, cx + (arcR + 16) * Math.cos(labelAngle), cy - (arcR + 16) * Math.sin(labelAngle) + 4);
+
+    // Radius line
+    ctx.strokeStyle = 'rgba(124,111,247,0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+
+    // cos segment (projection on X)
+    ctx.strokeStyle = '#34d4a0';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, cy); ctx.stroke();
+    // cos label
+    ctx.fillStyle = '#34d4a0';
+    ctx.font = '12px ui-monospace,monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`cos = ${_fmt(cosA)}`, (cx + px) / 2, cy + (sinA >= 0 ? 28 : -14));
+
+    // sin segment (projection on Y)
+    ctx.strokeStyle = '#ff6b8a';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(px, cy); ctx.lineTo(px, py); ctx.stroke();
+    // sin label
+    ctx.fillStyle = '#ff6b8a';
+    ctx.textAlign = 'left';
+    ctx.fillText(`sin = ${_fmt(sinA)}`, px + 10, (cy + py) / 2 + 4);
+
+    // tan line (from point to x-axis extension)
+    if (Math.abs(cosA) > 0.01) {
+      const tanVal = sinA / cosA;
+      const tanY = cy - R * tanVal;
+      // tan segment on x=1 line (or x=-1 for obtuse)
+      const tanX = cosA >= 0 ? cx + R : cx - R;
+      ctx.strokeStyle = 'rgba(240,192,64,0.5)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(tanX, tanY); ctx.stroke();
+      ctx.setLineDash([]);
+      // tan tick mark
+      ctx.fillStyle = '#f0c040';
+      ctx.beginPath(); ctx.arc(tanX, tanY, 4, 0, Math.PI*2); ctx.fill();
+      ctx.font = '11px ui-monospace,monospace';
+      ctx.textAlign = cosA >= 0 ? 'left' : 'right';
+      ctx.fillText(`tg = ${_fmt(tanVal)}`, tanX + (cosA >= 0 ? 8 : -8), tanY - 6);
+    }
+
+    // Point on circle
+    ctx.fillStyle = '#7c6ff7';
+    ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Point label
+    ctx.fillStyle = '#7c6ff7';
+    ctx.font = '11px ui-monospace,monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText(`(${_fmt(cosA)}; ${_fmt(sinA)})`, px + 12, py - 10);
+
+    // Projection dashed lines
+    ctx.setLineDash([3,3]);
+    ctx.strokeStyle = 'rgba(124,111,247,0.2)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(cx, py); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Info
+    const tanStr = Math.abs(cosA) < 0.01 ? 'не визн.' : _fmt(sinA/cosA);
+    const ctgStr = Math.abs(sinA) < 0.01 ? 'не визн.' : _fmt(cosA/sinA);
+    const radStr = _fmt(aRad);
+    infoHtml = `<b>α:</b> ${aDeg}° = ${radStr} рад &nbsp; <b>sin:</b> ${_fmt(sinA)} &nbsp; <b>cos:</b> ${_fmt(cosA)} &nbsp; <b>tg:</b> ${tanStr} &nbsp; <b>ctg:</b> ${ctgStr}`;
+  } else if (cfg.type === 'triangle') {
+    ctx.clearRect(0, 0, W, H);
+    const [a, b, c] = p.map(v => Math.max(0.1, v));
+    // Check triangle inequality
+    if (a + b <= c || a + c <= b || b + c <= a) {
+      ctx.fillStyle = 'rgba(255,144,80,0.8)'; ctx.font = '16px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('⚠ Трикутник не існує (нерівність трикутника)', W/2, H/2);
+      infoHtml = 'Сума двох сторін має бути більша за третю';
+    } else {
+      // Compute vertices: A at origin, B along x-axis, C computed
+      const cosA_val = (b*b + c*c - a*a) / (2*b*c);
+      const sinA_val = Math.sqrt(1 - cosA_val*cosA_val);
+      const scale = Math.min(W * 0.65, H * 0.55) / Math.max(a, b, c);
+      const Ax = 0, Ay = 0, Bx = c * scale, By = 0;
+      const Cx = b * cosA_val * scale, Cy = -b * sinA_val * scale;
+      // Center in canvas
+      const minX = Math.min(Ax, Bx, Cx), maxX = Math.max(Ax, Bx, Cx);
+      const minY = Math.min(Ay, By, Cy), maxY = Math.max(Ay, By, Cy);
+      const offX = (W - (maxX - minX)) / 2 - minX;
+      const offY = (H - (maxY - minY)) / 2 - minY;
+      const pts = [[Ax+offX, Ay+offY], [Bx+offX, By+offY], [Cx+offX, Cy+offY]];
+
+      // Fill
+      ctx.fillStyle = 'rgba(124,111,247,0.08)';
+      ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]); ctx.lineTo(pts[1][0],pts[1][1]); ctx.lineTo(pts[2][0],pts[2][1]); ctx.closePath(); ctx.fill();
+      // Edges
+      ctx.strokeStyle = '#7c6ff7'; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]); ctx.lineTo(pts[1][0],pts[1][1]); ctx.lineTo(pts[2][0],pts[2][1]); ctx.closePath(); ctx.stroke();
+
+      // Side labels
+      const sides = [a, b, c];
+      const edgePairs = [[1,2],[0,2],[0,1]]; // a=BC, b=AC, c=AB
+      const labels = ['a','b','c'];
+      ctx.font = '13px ui-monospace,monospace'; ctx.textAlign = 'center';
+      edgePairs.forEach(([i,j], si) => {
+        const mx = (pts[i][0]+pts[j][0])/2, my = (pts[i][1]+pts[j][1])/2;
+        const nx = -(pts[j][1]-pts[i][1]), ny = pts[j][0]-pts[i][0];
+        const nl = Math.sqrt(nx*nx+ny*ny)||1;
+        ctx.fillStyle = '#7c6ff7';
+        ctx.fillText(`${labels[si]}=${_fmt(sides[si])}`, mx + nx/nl*18, my + ny/nl*18);
+      });
+
+      // Vertices with angle labels
+      const angleA = Math.acos(cosA_val) * 180 / Math.PI;
+      const cosB = (a*a + c*c - b*b) / (2*a*c);
+      const angleB = Math.acos(Math.max(-1,Math.min(1,cosB))) * 180 / Math.PI;
+      const angleC = 180 - angleA - angleB;
+      const vertLabels = [`A (${_fmt(angleA)}°)`, `B (${_fmt(angleB)}°)`, `C (${_fmt(angleC)}°)`];
+      const vertOffsets = [[-14, 16], [14, 16], [0, -12]];
+      ctx.fillStyle = '#f0c040'; ctx.font = '12px ui-monospace,monospace';
+      pts.forEach(([x,y], i) => {
+        ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill();
+        ctx.textAlign = i===0?'right':i===1?'left':'center';
+        ctx.fillText(vertLabels[i], x + vertOffsets[i][0], y + vertOffsets[i][1]);
+      });
+
+      // Angle arcs
+      const drawAngleArc = (p0, p1, p2, r) => {
+        const a1 = Math.atan2(p1[1]-p0[1], p1[0]-p0[0]);
+        const a2 = Math.atan2(p2[1]-p0[1], p2[0]-p0[0]);
+        ctx.strokeStyle = 'rgba(240,192,64,0.4)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(p0[0], p0[1], r, a1, a2, a2 < a1); ctx.stroke();
+      };
+      drawAngleArc(pts[0], pts[1], pts[2], 25);
+      drawAngleArc(pts[1], pts[2], pts[0], 25);
+      drawAngleArc(pts[2], pts[0], pts[1], 25);
+
+      // Height from C to AB
+      const t = ((pts[2][0]-pts[0][0])*(pts[1][0]-pts[0][0])+(pts[2][1]-pts[0][1])*(pts[1][1]-pts[0][1]))/((pts[1][0]-pts[0][0])**2+(pts[1][1]-pts[0][1])**2);
+      const hx = pts[0][0]+t*(pts[1][0]-pts[0][0]), hy = pts[0][1]+t*(pts[1][1]-pts[0][1]);
+      ctx.setLineDash([4,3]); ctx.strokeStyle = 'rgba(52,212,160,0.4)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pts[2][0],pts[2][1]); ctx.lineTo(hx,hy); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#34d4a0'; ctx.beginPath(); ctx.arc(hx,hy,3,0,Math.PI*2); ctx.fill();
+
+      const pr = (a+b+c)/2, area = Math.sqrt(pr*(pr-a)*(pr-b)*(pr-c));
+      const h_c = 2*area/c;
+      infoHtml = `<b>S:</b> ${_fmt(area)} &nbsp; <b>P:</b> ${_fmt(a+b+c)} &nbsp; <b>h꜀:</b> ${_fmt(h_c)} &nbsp; <b>A:</b> ${_fmt(angleA)}° &nbsp; <b>B:</b> ${_fmt(angleB)}° &nbsp; <b>C:</b> ${_fmt(angleC)}°`;
+    }
+  } else if (cfg.type === 'circle_geom') {
+    ctx.clearRect(0, 0, W, H);
+    const [R, aDeg] = [Math.max(0.1, p[0]), ((p[1] % 360) + 360) % 360];
+    const scale = Math.min(W, H) * 0.32 / R;
+    const cx = W/2, cy = H/2, r = R * scale;
+    const aRad = aDeg * Math.PI / 180;
+
+    // Circle
+    ctx.strokeStyle = '#7c6ff7'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+
+    // Center
+    ctx.fillStyle = '#f0c040';
+    ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(240,192,64,0.8)'; ctx.font = '11px ui-monospace,monospace'; ctx.textAlign = 'left';
+    ctx.fillText('O', cx + 8, cy - 8);
+
+    // Radius to angle
+    const px = cx + r * Math.cos(aRad), py = cy - r * Math.sin(aRad);
+    ctx.strokeStyle = 'rgba(124,111,247,0.6)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+    ctx.fillStyle = '#7c6ff7'; ctx.font = '12px ui-monospace,monospace'; ctx.textAlign = 'center';
+    ctx.fillText(`R=${_fmt(R)}`, (cx+px)/2 - 12, (cy+py)/2 - 8);
+
+    // Arc sector (colored)
+    ctx.fillStyle = 'rgba(124,111,247,0.08)';
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx, cy, r, 0, -aRad, true); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#34d4a0'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, -aRad, true); ctx.stroke();
+
+    // Chord
+    const cx2 = cx + r, cy2 = cy;
+    ctx.strokeStyle = 'rgba(255,107,138,0.7)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx2, cy2); ctx.lineTo(px, py); ctx.stroke();
+
+    // Angle arc
+    ctx.strokeStyle = 'rgba(240,192,64,0.5)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, 30, 0, -aRad, true); ctx.stroke();
+    ctx.fillStyle = '#f0c040'; ctx.font = '11px ui-monospace,monospace'; ctx.textAlign = 'center';
+    ctx.fillText(`${_fmt(aDeg)}°`, cx + 42*Math.cos(aRad/2), cy - 42*Math.sin(aRad/2));
+
+    // Point labels
+    ctx.fillStyle = '#34d4a0';
+    ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx2, cy2, 5, 0, Math.PI*2); ctx.fill();
+
+    const arcLen = _fmt(Math.PI * R * aDeg / 180);
+    const sectorArea = _fmt(Math.PI * R * R * aDeg / 360);
+    const chordLen = _fmt(2 * R * Math.sin(aRad / 2));
+    const C_val = _fmt(2 * Math.PI * R);
+    const S_val = _fmt(Math.PI * R * R);
+    infoHtml = `<b>C:</b> ${C_val} &nbsp; <b>S:</b> ${S_val} &nbsp; <b>Дуга:</b> ${arcLen} &nbsp; <b>S сектора:</b> ${sectorArea} &nbsp; <b>Хорда:</b> ${chordLen}`;
+  } else if (cfg.type === 'regular_poly') {
+    ctx.clearRect(0, 0, W, H);
+    const n = Math.max(3, Math.min(20, Math.round(p[0]))), R = Math.max(0.1, p[1]);
+    const scale = Math.min(W, H) * 0.34 / R;
+    const cx = W/2, cy = H/2, r = R * scale;
+
+    // Draw polygon
+    ctx.fillStyle = 'rgba(124,111,247,0.08)';
+    ctx.strokeStyle = '#7c6ff7'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    const verts = [];
+    for (let i = 0; i < n; i++) {
+      const angle = Math.PI/2 + 2*Math.PI*i/n;
+      const vx = cx + r*Math.cos(angle), vy = cy - r*Math.sin(angle);
+      verts.push([vx,vy]);
+      i===0 ? ctx.moveTo(vx,vy) : ctx.lineTo(vx,vy);
+    }
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+
+    // Circumscribed circle
+    ctx.strokeStyle = 'rgba(74,84,144,0.25)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+
+    // Inscribed circle
+    const rIn = r * Math.cos(Math.PI/n);
+    ctx.setLineDash([4,3]);
+    ctx.strokeStyle = 'rgba(52,212,160,0.3)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, rIn, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Center + radius
+    ctx.fillStyle = '#f0c040';
+    ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(240,192,64,0.4)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(verts[0][0],verts[0][1]); ctx.stroke();
+
+    // Vertices
+    ctx.fillStyle = '#7c6ff7';
+    verts.forEach(([vx,vy]) => { ctx.beginPath(); ctx.arc(vx,vy,4,0,Math.PI*2); ctx.fill(); });
+
+    // Labels
+    ctx.fillStyle = 'rgba(124,111,247,0.8)'; ctx.font = '12px ui-monospace,monospace'; ctx.textAlign = 'center';
+    ctx.fillText(`R=${_fmt(R)}`, (cx+verts[0][0])/2+10, (cy+verts[0][1])/2-8);
+    ctx.fillStyle = 'rgba(52,212,160,0.8)';
+    ctx.fillText(`r=${_fmt(R*Math.cos(Math.PI/n))}`, cx, cy+rIn+16);
+
+    const side = _fmt(2*R*Math.sin(Math.PI/n));
+    const angle = _fmt(180*(n-2)/n);
+    const area = _fmt(n*R*R*Math.sin(2*Math.PI/n)/2);
+    infoHtml = `<b>n:</b> ${n} &nbsp; <b>Сторона:</b> ${side} &nbsp; <b>Кут:</b> ${angle}° &nbsp; <b>S:</b> ${area} &nbsp; <b>r:</b> ${_fmt(R*Math.cos(Math.PI/n))}`;
+  } else if (cfg.type === 'quadrilateral') {
+    ctx.clearRect(0, 0, W, H);
+    const [a, b, h] = p.map(v => Math.max(0.1, v));
+    const scale = Math.min(W*0.7, H*0.5) / Math.max(a, b, h*2);
+    const cx = W/2, cy = H/2;
+    // Trapezoid: bottom=a, top=b, height=h
+    const aS = a*scale, bS = b*scale, hS = h*scale;
+    const pts = [
+      [cx-aS/2, cy+hS/2], [cx+aS/2, cy+hS/2],
+      [cx+bS/2, cy-hS/2], [cx-bS/2, cy-hS/2]
+    ];
+
+    ctx.fillStyle = 'rgba(124,111,247,0.08)';
+    ctx.beginPath(); pts.forEach(([x,y],i) => i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#7c6ff7'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); pts.forEach(([x,y],i) => i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)); ctx.closePath(); ctx.stroke();
+
+    // Height
+    ctx.setLineDash([4,3]); ctx.strokeStyle = 'rgba(52,212,160,0.5)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(cx-bS/2, cy-hS/2); ctx.lineTo(cx-bS/2, cy+hS/2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#34d4a0'; ctx.font = '12px ui-monospace,monospace'; ctx.textAlign = 'right';
+    ctx.fillText(`h=${_fmt(h)}`, cx-bS/2-8, cy);
+
+    // Side labels
+    ctx.fillStyle = '#7c6ff7'; ctx.font = '12px ui-monospace,monospace'; ctx.textAlign = 'center';
+    ctx.fillText(`a=${_fmt(a)}`, cx, cy+hS/2+18);
+    ctx.fillText(`b=${_fmt(b)}`, cx, cy-hS/2-10);
+
+    // Vertices
+    ctx.fillStyle = '#f0c040';
+    pts.forEach(([x,y]) => { ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2); ctx.fill(); });
+
+    const area = (a+b)/2*h;
+    const leg = Math.sqrt(((a-b)/2)**2 + h*h);
+    infoHtml = `<b>S:</b> ${_fmt(area)} &nbsp; <b>P:</b> ${_fmt(a+b+2*leg)} &nbsp; <b>Бічна:</b> ${_fmt(leg)} &nbsp; <b>Середня лінія:</b> ${_fmt((a+b)/2)}`;
+  } else if (cfg.type === 'solid_3d') {
+    ctx.clearRect(0, 0, W, H);
+    const [a, b, c] = p.map(v => Math.max(0.1, v));
+    // Isometric parallelepiped
+    const scale = Math.min(W*0.4, H*0.35) / Math.max(a, b, c);
+    const cx = W/2, cy = H/2 + 20;
+    const ix = 0.87*scale, iy = 0.5*scale; // iso x projection
+    const jx = -0.87*scale, jy = 0.5*scale; // iso y projection
+
+    const face = (p0, da, db, na, nb, color, strokeColor) => {
+      const pts = [p0, [p0[0]+da[0]*na, p0[1]+da[1]*na], [p0[0]+da[0]*na+db[0]*nb, p0[1]+da[1]*na+db[1]*nb], [p0[0]+db[0]*nb, p0[1]+db[1]*nb]];
+      ctx.fillStyle = color; ctx.strokeStyle = strokeColor; ctx.lineWidth = 1.5;
+      ctx.beginPath(); pts.forEach(([x,y],i)=>i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)); ctx.closePath(); ctx.fill(); ctx.stroke();
+    };
+
+    const base = [cx - (a*ix+b*jx)/2, cy + (a*iy+b*jy)/2];
+    // Bottom face
+    face(base, [ix,iy], [jx,jy], a, b, 'rgba(124,111,247,0.05)', 'rgba(124,111,247,0.3)');
+    // Front face
+    face(base, [ix,iy], [0,-scale], a, c, 'rgba(124,111,247,0.1)', '#7c6ff7');
+    // Right face
+    face([base[0]+a*ix, base[1]+a*iy], [jx,jy], [0,-scale], b, c, 'rgba(124,111,247,0.07)', 'rgba(124,111,247,0.5)');
+    // Top face
+    face([base[0], base[1]-c*scale], [ix,iy], [jx,jy], a, b, 'rgba(124,111,247,0.12)', '#7c6ff7');
+
+    // Labels
+    ctx.fillStyle = '#7c6ff7'; ctx.font = '13px ui-monospace,monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`a=${_fmt(a)}`, base[0]+a*ix/2, base[1]+a*iy/2+18);
+    ctx.fillText(`b=${_fmt(b)}`, base[0]+a*ix+b*jx/2+16, base[1]+a*iy+b*jy/2+6);
+    ctx.fillStyle = '#34d4a0';
+    ctx.fillText(`c=${_fmt(c)}`, base[0]-14, base[1]-c*scale/2);
+
+    // Diagonal
+    const diagEnd = [base[0]+a*ix+b*jx, base[1]+a*iy+b*jy-c*scale];
+    ctx.setLineDash([4,3]); ctx.strokeStyle = 'rgba(240,192,64,0.4)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(base[0],base[1]); ctx.lineTo(diagEnd[0],diagEnd[1]); ctx.stroke();
+    ctx.setLineDash([]);
+
+    const V = a*b*c, S = 2*(a*b+b*c+a*c), d = Math.sqrt(a*a+b*b+c*c);
+    infoHtml = `<b>V:</b> ${_fmt(V)} &nbsp; <b>S:</b> ${_fmt(S)} &nbsp; <b>d:</b> ${_fmt(d)}`;
+  } else if (cfg.type === 'vectors') {
+    // Uses shared grid/axes already drawn above
+    const [x1,y1,x2,y2] = p;
+
+    // Vector a (from origin)
+    vizArrow(ctx, ox, oy, ox+x1*S, oy-y1*S, '#7c6ff7', 2.5);
+    vizDot(ctx, ox+x1*S, oy-y1*S, 5, '#7c6ff7', `a(${_fmt(x1)};${_fmt(y1)})`);
+
+    // Vector b (from origin)
+    vizArrow(ctx, ox, oy, ox+x2*S, oy-y2*S, '#34d4a0', 2.5);
+    vizDot(ctx, ox+x2*S, oy-y2*S, 5, '#34d4a0', `b(${_fmt(x2)};${_fmt(y2)})`);
+
+    // a+b (from origin, dashed)
+    const sx=x1+x2, sy=y1+y2;
+    ctx.setLineDash([5,4]);
+    vizArrow(ctx, ox, oy, ox+sx*S, oy-sy*S, '#f0c040', 1.5);
+    ctx.setLineDash([]);
+    vizDot(ctx, ox+sx*S, oy-sy*S, 4, '#f0c040', `a+b(${_fmt(sx)};${_fmt(sy)})`);
+
+    // Parallelogram (a→a+b, b→a+b)
+    ctx.setLineDash([3,3]);
+    ctx.strokeStyle = 'rgba(240,192,64,0.2)'; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(ox+x1*S,oy-y1*S); ctx.lineTo(ox+sx*S,oy-sy*S); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox+x2*S,oy-y2*S); ctx.lineTo(ox+sx*S,oy-sy*S); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Line through both points (as parametric)
+    if (Math.abs(x2-x1) > 0.01 || Math.abs(y2-y1) > 0.01) {
+      ctx.strokeStyle = 'rgba(255,107,138,0.2)'; ctx.lineWidth = 1;
+      const dx=x2-x1, dy=y2-y1;
+      const t1=(xMin-x1)/dx||(-100), t2=(xMax-x1)/dx||100;
+      ctx.beginPath();
+      ctx.moveTo(ox+(x1+Math.min(t1,t2)*dx)*S, oy-(y1+Math.min(t1,t2)*dy)*S);
+      ctx.lineTo(ox+(x1+Math.max(t1,t2)*dx)*S, oy-(y1+Math.max(t1,t2)*dy)*S);
+      ctx.stroke();
+    }
+
+    const dot=x1*x2+y1*y2;
+    const magA=Math.sqrt(x1*x1+y1*y1), magB=Math.sqrt(x2*x2+y2*y2);
+    const cosAng=magA&&magB?dot/(magA*magB):0;
+    const angDeg = _fmt(Math.acos(Math.max(-1,Math.min(1,cosAng)))*180/Math.PI);
+    infoHtml = `<b>|a|:</b> ${_fmt(magA)} &nbsp; <b>|b|:</b> ${_fmt(magB)} &nbsp; <b>a·b:</b> ${_fmt(dot)} &nbsp; <b>φ:</b> ${angDeg}° &nbsp; <b>a+b:</b> (${_fmt(sx)};${_fmt(sy)})`;
+  } else if (cfg.type === 'conic') {
+    // Uses shared grid/axes
+    const [a, b] = [Math.max(0.1, p[0]), Math.max(0.1, p[1])];
+
+    // Ellipse
+    ctx.strokeStyle = '#7c6ff7'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let t = 0; t <= Math.PI*2+0.01; t += 0.02) {
+      const x = a * Math.cos(t), y = b * Math.sin(t);
+      const px = ox + x*S, py = oy - y*S;
+      t===0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+
+    // Semi-axes
+    ctx.setLineDash([4,3]);
+    ctx.strokeStyle = 'rgba(124,111,247,0.3)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(ox-a*S, oy); ctx.lineTo(ox+a*S, oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox, oy-b*S); ctx.lineTo(ox, oy+b*S); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // a, b labels
+    ctx.fillStyle = '#7c6ff7'; ctx.font = '12px ui-monospace,monospace'; ctx.textAlign = 'center';
+    ctx.fillText(`a=${_fmt(a)}`, ox+a*S/2, oy+18);
+    ctx.fillStyle = '#ff6b8a';
+    ctx.fillText(`b=${_fmt(b)}`, ox+14, oy-b*S/2);
+
+    // Foci
+    const c2 = a*a - b*b;
+    if (c2 > 0) {
+      // Ellipse foci on x-axis
+      const c = Math.sqrt(c2);
+      vizDot(ctx, ox+c*S, oy, 5, '#f0c040', `F₁(${_fmt(c)};0)`);
+      vizDot(ctx, ox-c*S, oy, 5, '#f0c040', `F₂(${_fmt(-c)};0)`);
+      const e = _fmt(c/a);
+      const area = _fmt(Math.PI*a*b);
+      infoHtml = `<b>Еліпс</b> &nbsp; <b>c:</b> ${_fmt(c)} &nbsp; <b>e:</b> ${e} &nbsp; <b>S:</b> ${area}`;
+    } else if (c2 < 0) {
+      // b > a: foci on y-axis
+      const c = Math.sqrt(-c2);
+      vizDot(ctx, ox, oy-c*S, 5, '#f0c040', `F₁(0;${_fmt(c)})`);
+      vizDot(ctx, ox, oy+c*S, 5, '#f0c040', `F₂(0;${_fmt(-c)})`);
+      const e = _fmt(c/b);
+      const area = _fmt(Math.PI*a*b);
+      infoHtml = `<b>Еліпс</b> (b>a) &nbsp; <b>c:</b> ${_fmt(c)} &nbsp; <b>e:</b> ${e} &nbsp; <b>S:</b> ${area}`;
+    } else {
+      infoHtml = `<b>Коло</b> R=${_fmt(a)} &nbsp; <b>S:</b> ${_fmt(Math.PI*a*a)} &nbsp; <b>C:</b> ${_fmt(2*Math.PI*a)}`;
+    }
+
+    // Also draw hyperbola faintly (x²/a² − y²/b² = 1)
+    const cH = Math.sqrt(a*a + b*b);
+    ctx.strokeStyle = 'rgba(52,212,160,0.35)'; ctx.lineWidth = 1.5;
+    // Right branch
+    ctx.beginPath();
+    for (let t = -2; t <= 2; t += 0.02) {
+      const x = a / Math.cos(t), y = b * Math.tan(t);
+      if (Math.abs(x) > 20 || Math.abs(y) > 20) continue;
+      const px = ox + x*S, py = oy - y*S;
+      if (px < 0 || px > W || py < -50 || py > H+50) continue;
+      t===-2 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+    // Left branch
+    ctx.beginPath();
+    for (let t = -2; t <= 2; t += 0.02) {
+      const x = -a / Math.cos(t), y = -b * Math.tan(t);
+      if (Math.abs(x) > 20 || Math.abs(y) > 20) continue;
+      const px = ox + x*S, py = oy - y*S;
+      if (px < 0 || px > W || py < -50 || py > H+50) continue;
+      t===-2 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+
+    // Asymptotes
+    ctx.setLineDash([6,4]); ctx.strokeStyle = 'rgba(52,212,160,0.15)'; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(ox+xMin*S, oy-xMin*b/a*S); ctx.lineTo(ox+xMax*S, oy-xMax*b/a*S); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox+xMin*S, oy+xMin*b/a*S); ctx.lineTo(ox+xMax*S, oy+xMax*b/a*S); ctx.stroke();
+    ctx.setLineDash([]);
+
+    infoHtml += ` &nbsp;|&nbsp; <span style="color:#34d4a0"><b>Гіпербола</b> c=${_fmt(cH)}, e=${_fmt(cH/a)}</span>`;
+  }
+
+  // Function label
+  ctx.fillStyle = 'rgba(124,111,247,0.8)';
+  ctx.font = '13px ui-monospace,monospace';
+  ctx.textAlign = 'left';
+  if (cfg.type === 'quadratic') {
+    ctx.fillText(`y = ${p[0]}x² ${p[1]>=0?'+ ':'− '}${Math.abs(p[1])}x ${p[2]>=0?'+ ':'− '}${Math.abs(p[2])}`, 12, 22);
+  } else if (cfg.type === 'linear') {
+    ctx.fillText(`y = ${p[0]}x ${p[1]>=0?'+ ':'− '}${Math.abs(p[1])}`, 12, 22);
+  } else if (cfg.type === 'sequence') {
+    ctx.fillText(`aₙ = ${p[0]} + (n−1)·${p[1]}`, 12, 22);
+  }
+
+  document.getElementById('viz-info').innerHTML = infoHtml;
+}
+
+function vizPlotFn(ctx, f, xMin, xMax, ox, oy, S, H, color, lw) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lw;
+  ctx.beginPath();
+  const step = (xMax - xMin) / 500;
+  let started = false;
+  for (let x = xMin; x <= xMax; x += step) {
+    const y = f(x);
+    const px = ox + x * S, py = oy - y * S;
+    if (py < -200 || py > H + 200) { started = false; continue; }
+    started ? ctx.lineTo(px, py) : (ctx.moveTo(px, py), started = true);
+  }
+  ctx.stroke();
+}
+
+function vizDot(ctx, px, py, r, color, label) {
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  if (label) {
+    ctx.fillStyle = color;
+    ctx.font = '11px ui-monospace,monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText(label, px + r + 4, py - r - 2);
+  }
+}
+
+function vizArrow(ctx, x1, y1, x2, y2, color, lw) {
+  const dx = x2-x1, dy = y2-y1, len = Math.sqrt(dx*dx+dy*dy);
+  if (len < 1) return;
+  ctx.strokeStyle = color; ctx.lineWidth = lw;
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  // Arrowhead
+  const headLen = Math.min(12, len*0.3);
+  const angle = Math.atan2(dy, dx);
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - headLen*Math.cos(angle-0.35), y2 - headLen*Math.sin(angle-0.35));
+  ctx.lineTo(x2 - headLen*Math.cos(angle+0.35), y2 - headLen*Math.sin(angle+0.35));
+  ctx.closePath(); ctx.fill();
+}
+
+// ══ ФОРМУЛИ (зведена панель) ════════════════════════════════
+function initFormulas() {
+  const cont = document.getElementById('formulas-all');
+  if (cont.innerHTML) return;
+  cont.innerHTML = BLOCKS.map(b => `
+    <div style="margin-bottom:28px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:.5px solid var(--border)">
+        <span style="font-size:18px">${b.icon}</span>
+        <span class="display" style="font-size:15px;font-weight:600;color:var(--text)">${b.name}</span>
+        <span style="font-family:ui-monospace,monospace;font-size:10px;color:var(--text3)">${b.topics.length} тем</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px">
+        ${b.topics.map(t => `
+          <div class="topic-card" onclick="openTopic('${t.id}','${b.name}');switchTopicTabById('formula')" style="padding:10px 14px">
+            <span class="topic-card-id mono">${t.id}</span>
+            <span style="font-size:13px;color:var(--text);flex:1">${t.name}</span>
+            <span style="font-size:11px;color:var(--accent);opacity:.6">6 формул →</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function switchTopicTabById(name) {
+  setTimeout(() => {
+    const tabs = document.querySelectorAll('.topic-tab');
+    const panels = document.querySelectorAll('.topic-panel');
+    const idx = {logic:0,formula:1,calculator:2,reference:3,viz:4,examples:5}[name] || 0;
+    tabs.forEach((t,i) => t.classList.toggle('active', i===idx));
+    panels.forEach((p,i) => p.classList.toggle('active', i===idx));
+    _currentTab = name;
+    if (currentTopicData) updateHash('topic/' + currentTopicData.id + '/' + name);
+  }, 300);
+}
+
+// ══ ТАБЛИЦІ ════════════════════════════════════════════════
+function initTables() {
+  const cont = document.getElementById('tables-all');
+  if (cont.innerHTML) return;
+  const tables = [
+    {name:'Тригонометрична таблиця', icon:'〜', rows:[
+      ['0°','0','1','0','—'],
+      ['30°','½','√3/2','√3/3','√3'],
+      ['45°','√2/2','√2/2','1','1'],
+      ['60°','√3/2','½','√3','√3/3'],
+      ['90°','1','0','—','0'],
+      ['120°','√3/2','−½','−√3','−√3/3'],
+      ['135°','√2/2','−√2/2','−1','−1'],
+      ['150°','½','−√3/2','−√3/3','−√3'],
+      ['180°','0','−1','0','—'],
+    ], headers:['Кут','sin','cos','tg','ctg']},
+    {name:'Степені двійки', icon:'2ⁿ', rows:[
+      ['2⁰','1'],['2¹','2'],['2²','4'],['2³','8'],['2⁴','16'],
+      ['2⁵','32'],['2⁶','64'],['2⁷','128'],['2⁸','256'],['2⁹','512'],
+      ['2¹⁰','1024'],['2¹⁵','32768'],['2²⁰','1048576'],
+    ], headers:['Степінь','Значення']},
+    {name:'Площі та об\'єми фігур', icon:'📐', rows:[
+      ['Квадрат','S = a²','—'],
+      ['Прямокутник','S = ab','—'],
+      ['Трикутник','S = ½bh','—'],
+      ['Коло','S = πR²','—'],
+      ['Куля','S = 4πR²','V = 4/3·πR³'],
+      ['Циліндр','S = 2πr(r+h)','V = πr²h'],
+      ['Конус','S = πr(r+l)','V = ⅓πr²h'],
+      ['Піраміда','—','V = ⅓S·h'],
+    ], headers:['Фігура','Площа','Об\'єм']},
+    {name:'Похідні базових функцій', icon:'d/dx', rows:[
+      ['C','0','Стала'],
+      ['xⁿ','nxⁿ⁻¹','Степінь'],
+      ['eˣ','eˣ','Експонента'],
+      ['ln x','1/x','Логарифм'],
+      ['sin x','cos x','Синус'],
+      ['cos x','−sin x','Косинус'],
+      ['tg x','1/cos²x','Тангенс'],
+      ['aˣ','aˣ·ln a','Показникова'],
+    ], headers:['f(x)','f\'(x)','Коментар']},
+    {name:'Таблиця інтегралів', icon:'∫', rows:[
+      ['xⁿ','xⁿ⁺¹/(n+1)+C','n≠−1'],
+      ['1/x','ln|x|+C','x≠0'],
+      ['eˣ','eˣ+C',''],
+      ['aˣ','aˣ/ln a+C','a>0, a≠1'],
+      ['sin x','−cos x+C',''],
+      ['cos x','sin x+C',''],
+      ['1/cos²x','tg x+C',''],
+      ['1/sin²x','−ctg x+C',''],
+      ['1/√(1−x²)','arcsin x+C','|x|<1'],
+      ['1/(1+x²)','arctg x+C',''],
+    ], headers:['f(x)','∫f(x)dx','Умова']},
+    {name:'Формули скороченого множення', icon:'²', rows:[
+      ['(a+b)²','a²+2ab+b²','Квадрат суми'],
+      ['(a−b)²','a²−2ab+b²','Квадрат різниці'],
+      ['a²−b²','(a+b)(a−b)','Різниця квадратів'],
+      ['(a+b)³','a³+3a²b+3ab²+b³','Куб суми'],
+      ['(a−b)³','a³−3a²b+3ab²−b³','Куб різниці'],
+      ['a³+b³','(a+b)(a²−ab+b²)','Сума кубів'],
+      ['a³−b³','(a−b)(a²+ab+b²)','Різниця кубів'],
+    ], headers:['Вираз','Розклад','Назва']},
+    {name:'Ознаки подільності', icon:'÷', rows:[
+      ['2','Остання цифра парна','374 ✓'],
+      ['3','Сума цифр ÷ 3','381→12 ✓'],
+      ['4','Останні 2 цифри ÷ 4','1736→36 ✓'],
+      ['5','Остання цифра 0 або 5','145 ✓'],
+      ['6','÷ 2 і ÷ 3 одночасно','222 ✓'],
+      ['8','Останні 3 цифри ÷ 8','3512→512 ✓'],
+      ['9','Сума цифр ÷ 9','729→18 ✓'],
+      ['10','Остання цифра 0','340 ✓'],
+      ['11','|Σ парних − Σ непарних| ÷ 11','1694→0 ✓'],
+      ['25','Останні 2 цифри: 00,25,50,75','475 ✓'],
+    ], headers:['На','Ознака','Приклад']},
+    {name:'Прості числа до 100', icon:'🔢', rows:[
+      ['1–10','2, 3, 5, 7','4'],
+      ['11–20','11, 13, 17, 19','4'],
+      ['21–30','23, 29','2'],
+      ['31–40','31, 37','2'],
+      ['41–50','41, 43, 47','3'],
+      ['51–60','53, 59','2'],
+      ['61–70','61, 67','2'],
+      ['71–80','71, 73, 79','3'],
+      ['81–90','83, 89','2'],
+      ['91–100','97','1'],
+    ], headers:['Діапазон','Числа','К-ть']},
+    {name:'Грецький алфавіт (математичний)', icon:'αβ', rows:[
+      ['α','альфа','Кут, коефіцієнт'],
+      ['β','бета','Кут, коефіцієнт'],
+      ['γ','гамма','Кут, функція Ейлера'],
+      ['δ, Δ','дельта','Приріст, дискримінант'],
+      ['ε','епсілон','Мала величина'],
+      ['θ','тета','Кут (полярний, сферичний)'],
+      ['λ','лямбда','Власне значення'],
+      ['μ','мю','Мат. сподівання'],
+      ['π','пі','≈3,14159; площа кола'],
+      ['σ','сігма','Стандартне відхилення'],
+      ['φ','фі','Кут, золотий перетин'],
+      ['ω','омега','Кутова швидкість'],
+      ['∑','велика сігма','Сума ряду'],
+      ['∫','інтеграл','Первісна / площа'],
+    ], headers:['Символ','Назва','Де використовується']},
+  ];
+
+  cont.innerHTML = tables.map(t => `
+    <div style="margin-bottom:28px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:20px">${t.icon}</span>
+        <span class="display" style="font-size:15px;font-weight:600">${t.name}</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="ref-table">
+          <thead><tr>${t.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+          <tbody>${t.rows.map(r=>`<tr>${r.map((c,i)=>`<td>${i===0?`<span class="ref-sym">${c}</span>`:`<span class="${i===1?'ref-val':'ref-desc'}">${c}</span>`}</td>`).join('')}</tr>`).join('')}</tbody>
+        </table>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══ КАЛЬКУЛЯТОРИ (огляд) ════════════════════════════════════
+function initCalcs() {
+  const cont = document.getElementById('calcs-all');
+  if (cont.innerHTML) return;
+  let count = 0;
+  cont.innerHTML = BLOCKS.map(b => `
+    <div style="margin-bottom:24px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:.5px solid var(--border)">
+        <span style="font-size:16px">${b.icon}</span>
+        <span class="display" style="font-size:14px;font-weight:600">${b.name}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:7px">
+        ${b.topics.map(t => {
+          const td = TOPIC_CACHE[t.id] || null;
+          const mc = td ? td.calculator.modes.length : 4;
+          count += mc;
+          return `
+            <div class="topic-card" onclick="openTopic('${t.id}','${b.name}');switchTopicTabById('calculator')" style="padding:11px 14px">
+              <span style="font-size:14px">${t.icon}</span>
+              <div style="flex:1">
+                <div style="font-size:12px;color:var(--text);font-weight:500">${t.name}</div>
+                <div style="font-size:10px;color:var(--text3);font-family:ui-monospace,monospace;margin-top:2px">${mc} режимів</div>
+              </div>
+              <span style="color:var(--accent);font-size:12px;opacity:.5">⚙</span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('calcs-count').textContent = count + '+';
+}
+
+// ══ ТРЕНАЖЕР ════════════════════════════════════════════════
+function initTrainer() {
+  const btns = document.getElementById('trainer-block-btns');
+  if (!btns.innerHTML) {
+    btns.innerHTML = BLOCKS.map(b => `
+      <button onclick="startTrainer(${b.id})" style="background:var(--bg2);border:.5px solid var(--border);border-radius:10px;padding:12px 18px;color:var(--text);cursor:pointer;font-family:inherit;transition:.15s;font-size:13px">
+        ${b.icon} ${b.name}
+      </button>
+    `).join('');
+  }
+  renderTrainerHistory();
+}
+
+function renderTrainerHistory() {
+  const cont = document.getElementById('trainer-history');
+  if (!cont) return;
+  const p = getProgress();
+  const hist = (p.quiz && p.quiz.marathonHistory) || [];
+  const bs = (p.quiz && p.quiz.blockStats) || {};
+
+  if (hist.length === 0 && Object.keys(bs).length === 0) {
+    cont.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+
+  // Block stats summary
+  const blockIds = Object.keys(bs).map(Number).sort();
+  if (blockIds.length > 0) {
+    html += `<div style="padding:16px;background:var(--bg2);border:.5px solid var(--border);border-radius:12px;margin-bottom:14px">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:ui-monospace,monospace;margin-bottom:10px">Статистика по блоках</div>`;
+    for (const id of blockIds) {
+      const s = bs[id];
+      const total = s.ok + s.fail;
+      if (total === 0) continue;
+      const pct = Math.round(s.ok / total * 100);
+      const bInfo = BLOCKS.find(b => b.id === id);
+      const name = bInfo ? `${bInfo.icon} ${bInfo.name}` : `Блок ${id}`;
+      const barColor = pct >= 80 ? '#34d4a0' : pct >= 60 ? '#f0c040' : '#ff5050';
+      html += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <div style="min-width:110px;font-size:11px;color:var(--text2)">${name}</div>
+        <div style="flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${barColor};border-radius:3px"></div></div>
+        <div style="min-width:70px;text-align:right;font-size:11px;font-family:ui-monospace,monospace;color:${barColor}">${s.ok}/${total} ${pct}%</div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Marathon history chart
+  if (hist.length > 0) {
+    html += `<div style="padding:16px;background:var(--bg2);border:.5px solid var(--border);border-radius:12px">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:ui-monospace,monospace;margin-bottom:10px">Історія марафонів (${hist.length})</div>
+      <canvas id="history-chart" width="490" height="160" style="width:100%;height:160px"></canvas>
+      <div id="history-list" style="margin-top:10px;max-height:120px;overflow-y:auto"></div>
+    </div>`;
+  }
+
+  cont.innerHTML = html;
+
+  if (hist.length > 0) {
+    renderHistoryChart(hist);
+    renderHistoryList(hist);
+  }
+}
+
+function renderHistoryChart(hist) {
+  const canvas = document.getElementById('history-chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.getBoundingClientRect().width;
+  const H = 160;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+
+  const last = hist.slice(-20); // Show last 20
+  const padL = 32, padR = 10, padT = 14, padB = 24;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+
+  // Y-axis grid (0%, 25%, 50%, 75%, 100%)
+  ctx.font = '10px ui-monospace,monospace';
+  ctx.textAlign = 'right';
+  for (let p = 0; p <= 100; p += 25) {
+    const y = padT + plotH * (1 - p / 100);
+    ctx.strokeStyle = 'rgba(74,84,144,0.12)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(74,84,144,0.4)';
+    ctx.fillText(`${p}%`, padL - 4, y + 3);
+  }
+
+  if (last.length < 2) {
+    // Single point
+    const p = last[0].pct;
+    const x = padL + plotW / 2, y = padT + plotH * (1 - p / 100);
+    const color = p >= 80 ? '#34d4a0' : p >= 60 ? '#f0c040' : '#ff5050';
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = color;
+    ctx.font = '11px ui-monospace,monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${p}%`, x, y - 10);
+    return;
+  }
+
+  const step = plotW / (last.length - 1);
+
+  // Area fill
+  ctx.beginPath();
+  ctx.moveTo(padL, padT + plotH);
+  last.forEach((h, i) => {
+    const x = padL + i * step, y = padT + plotH * (1 - h.pct / 100);
+    ctx.lineTo(x, y);
+  });
+  ctx.lineTo(padL + (last.length - 1) * step, padT + plotH);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(124,111,247,0.06)';
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  last.forEach((h, i) => {
+    const x = padL + i * step, y = padT + plotH * (1 - h.pct / 100);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#7c6ff7';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Points + labels
+  last.forEach((h, i) => {
+    const x = padL + i * step, y = padT + plotH * (1 - h.pct / 100);
+    const color = h.pct >= 80 ? '#34d4a0' : h.pct >= 60 ? '#f0c040' : '#ff5050';
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+
+    // Date label (every 3rd or last)
+    if (i % Math.ceil(last.length / 6) === 0 || i === last.length - 1) {
+      const d = new Date(h.date);
+      ctx.fillStyle = 'rgba(74,84,144,0.5)';
+      ctx.font = '9px ui-monospace,monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(`${d.getDate()}.${d.getMonth() + 1}`, x, H - 4);
+    }
+  });
+}
+
+function renderHistoryList(hist) {
+  const cont = document.getElementById('history-list');
+  if (!cont) return;
+  const diffEmoji = ['','🟢','🟡','🔴'];
+  cont.innerHTML = hist.slice().reverse().slice(0, 10).map(h => {
+    const d = new Date(h.date);
+    const dateStr = `${d.getDate()}.${String(d.getMonth()+1).padStart(2,'0')} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const m = Math.floor(h.time/60), s = h.time%60;
+    const color = h.pct >= 80 ? '#34d4a0' : h.pct >= 60 ? '#f0c040' : '#ff5050';
+    return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:11px;font-family:ui-monospace,monospace;border-bottom:.5px solid var(--border)">
+      <span style="color:var(--text3);min-width:72px">${dateStr}</span>
+      <span style="color:${color};font-weight:600;min-width:36px">${h.pct}%</span>
+      <span style="color:var(--text2)">${h.score}/${h.total}</span>
+      <span style="color:var(--text3)">${m}:${s<10?'0':''}${s}</span>
+      <span>${diffEmoji[h.difficulty]||''}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── генератор питань з рандомними параметрами ──
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function pick(...arr){return arr[rnd(0,arr.length-1)];}
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=rnd(0,i);[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+function generateQuestion(blockId) {
+  const D = quizState.difficulty || 2; // 1=easy, 2=medium, 3=hard
+  // Difficulty-scaled random
+  const dr = (easy, mid, hard) => { const ranges = [[easy[0],easy[1]], [mid[0],mid[1]], [hard[0],hard[1]]]; return rnd(ranges[D-1][0], ranges[D-1][1]); };
+  const generators = {
+    // ═══ БЛОК 1: Арифметика ═══
+    1: [
+      ()=>{const a=dr([6,20],[12,99],[50,999]),b=dr([4,12],[6,48],[20,200]);const g=(x,y)=>y===0?x:g(y,x%y);const r=g(a,b);return {q:`НСД(${a}, ${b}) = ?`,a:`${r}`,opts:[`${r}`,`${r+2}`,`${a*b}`,`${Math.min(a,b)}`]};},
+      ()=>{const n=dr([10,50],[2,200],[100,999]);const divBy=D===1?pick(2,5,10):D===2?pick(2,3,4,5,6,8,9,11):pick(7,11,13,17);const yes=n%divBy===0;return {q:`Чи ділиться ${n} на ${divBy}?`,a:yes?'Так':'Ні',opts:['Так','Ні']};},
+      ()=>{const a=dr([2,5],[2,9],[2,12]),n=dr([2,3],[2,5],[3,7]);const r=Math.pow(a,n);return {q:`${a}^${n} = ?`,a:`${r}`,opts:[`${r}`,`${r+a}`,`${a*n}`,`${r-1}`]};},
+      ()=>{const n=dr([4,25],[8,99],[50,200]);let a=1,b=n;for(let i=Math.floor(Math.sqrt(n));i>=2;i--){if(n%(i*i)===0){a=i;b=n/(i*i);break;}}
+        const ans=b===1?`${a}`:(a===1?`√${n}`:`${a}√${b}`);return {q:`Спростіть √${n}`,a:ans,opts:shuffle([ans,`${Math.floor(Math.sqrt(n))}`,`√${n}`,`${rnd(2,6)}√${rnd(2,9)}`]).slice(0,4)};},
+      ()=>{const P=dr([50,200],[100,1000],[500,5000]),pc=D===1?pick(10,25,50):D===2?pick(10,15,20,25,30,50):pick(7,12,17,33,45);const r=_fmt(P*pc/100);return {q:`${pc}% від ${P} = ?`,a:`${r}`,opts:[`${r}`,`${_fmt(+r+10)}`,`${P-r}`,`${Math.round(P/pc)}`]};},
+      ()=>{const a=dr([2,6],[2,12],[6,20]),b=dr([2,6],[2,12],[6,20]);return {q:`${a} × ${b} = ?`,a:`${a*b}`,opts:[`${a*b}`,`${a*b+a}`,`${a*b-b}`,`${a*b+1}`]};},
+    ],
+    // ═══ БЛОК 2: Алгебра ═══
+    2: [
+      ()=>{const x1=dr([-3,3],[-5,5],[-9,9]),x2=dr([-3,3],[-5,5],[-9,9]);const b=-(x1+x2),c=x1*x2;const Dv=b*b-4*c;return {q:`x²${b>=0?'+':''}${b}x${c>=0?'+':''}${c}=0. D = ?`,a:`${Dv}`,opts:[`${Dv}`,`${-Dv}`,`${b*b}`,`${4*c}`]};},
+      ()=>{const x1=dr([1,4],[1,8],[1,15]),x2=dr([1,4],[1,8],[1,15]);return {q:`За т. Вієта: x₁+x₂=${x1+x2}, x₁·x₂=${x1*x2}. Корені?`,a:`${x1} і ${x2}`,opts:[`${x1} і ${x2}`,`${x1+1} і ${x2-1}`,`${x1*x2} і ${x1+x2}`,`${x1-1} і ${x2+1}`]};},
+      ()=>{const a=dr([2,3],[2,6],[3,9]),b=dr([1,4],[1,9],[2,12]);return {q:`(${a}x + ${b})² = ?`,a:`${a*a}x² + ${2*a*b}x + ${b*b}`,opts:[`${a*a}x² + ${2*a*b}x + ${b*b}`,`${a*a}x² + ${b*b}`,`${a*a}x² + ${a*b}x + ${b*b}`,`${a}x² + ${2*a*b}x + ${b}`]};},
+      ()=>{const a1=dr([1,5],[2,9],[5,20]),d=dr([1,3],[1,5],[2,8]),n=dr([4,6],[5,10],[8,15]);const an=a1+(n-1)*d;const Sn=n*(a1+an)/2;return {q:`АП: a₁=${a1}, d=${d}. S${n} = ?`,a:`${Sn}`,opts:[`${Sn}`,`${n*a1}`,`${an*n}`,`${Sn+d}`]};},
+      ()=>{const b1=dr([1,2],[1,4],[2,6]),q2=dr([2,2],[2,4],[2,5]),n=dr([3,4],[3,5],[4,7]);const bn=b1*Math.pow(q2,n-1);return {q:`ГП: b₁=${b1}, q=${q2}. b${n} = ?`,a:`${bn}`,opts:[`${bn}`,`${b1*q2*n}`,`${bn+q2}`,`${b1*n*q2}`]};},
+      ()=>{const base=pick(2,3,5,10);const exp=dr([2,3],[2,6],[3,9]);const val=Math.pow(base,exp);return {q:`log${base}(${val}) = ?`,a:`${exp}`,opts:[`${exp}`,`${exp+1}`,`${exp-1}`,`${base}`]};},
+      ()=>{const a=dr([2,3],[2,5],[3,9]),b=dr([1,4],[1,8],[2,20]);return {q:`Розв'яжіть: ${a}x − ${b} = 0`,a:`x = ${(b/a)%1===0?b/a:(b/a).toFixed(2)}`,opts:[`x = ${(b/a)%1===0?b/a:(b/a).toFixed(2)}`,`x = ${a-b}`,`x = ${a*b}`,`x = ${b-a}`]};},
+    ],
+    // ═══ БЛОК 3: Геометрія ═══
+    3: [
+      ()=>{const triples=D===1?[[3,4,5],[6,8,10]]:D===2?[[3,4,5],[5,12,13],[8,15,17]]:[[5,12,13],[7,24,25],[8,15,17],[20,21,29]];const t=pick(...triples);return {q:`Піфагор: катети ${t[0]} і ${t[1]}. Гіпотенуза?`,a:`${t[2]}`,opts:[`${t[2]}`,`${t[0]+t[1]}`,`${t[2]+1}`,`${t[0]*t[1]}`]};},
+      ()=>{const b=dr([3,8],[4,15],[10,30]),h=dr([2,6],[3,12],[5,20]);const s=b*h/2;return {q:`Площа △: основа ${b}, висота ${h}. S = ?`,a:`${s}`,opts:[`${s}`,`${b*h}`,`${s+b}`,`${(b+h)/2}`]};},
+      ()=>{const a=dr([3,6],[3,10],[5,20]),b=dr([3,6],[3,10],[5,20]),h=dr([2,5],[2,8],[3,15]);const s=(a+b)*h/2;return {q:`Трапеція: a=${a}, b=${b}, h=${h}. S = ?`,a:`${s}`,opts:[`${s}`,`${a*b*h}`,`${(a+b)*h}`,`${s-h}`]};},
+      ()=>{const r=dr([2,5],[2,10],[5,20]);const C=Math.round(2*Math.PI*r*100)/100;return {q:`Довжина кола R=${r}. C = ?`,a:`${C}`,opts:[`${C}`,`${Math.round(Math.PI*r*r*100)/100}`,`${2*r}`,`${Math.round(Math.PI*r*100)/100}`]};},
+      ()=>{const n=D===1?pick(3,4,6):D===2?pick(3,4,5,6,8,10):pick(5,7,8,9,10,12);const ang=(n-2)*180/n;return {q:`Кут правильного ${n}-кутника = ?`,a:`${ang}°`,opts:[`${ang}°`,`${180/n}°`,`${360/n}°`,`${(n-1)*180/n}°`]};},
+      ()=>{const a1=dr([30,60],[20,80],[10,85]),a2=dr([30,60],[20,80],[10,85]);const sum=a1+a2;if(sum>=180){return {q:`Кути △: 60° і 70°. Третій = ?`,a:'50°',opts:['50°','110°','130°','60°']};}const a3=180-sum;return {q:`Кути △: ${a1}° і ${a2}°. Третій = ?`,a:`${a3}°`,opts:[`${a3}°`,`${180-a1}°`,`${sum}°`,`${90-a1}°`]};},
+      ()=>{const r=dr([2,5],[2,8],[5,15]);const S=Math.round(Math.PI*r*r*100)/100;return {q:`Площа круга R=${r}. S = ?`,a:`${S}`,opts:[`${S}`,`${Math.round(2*Math.PI*r*100)/100}`,`${r*r}`,`${Math.round(Math.PI*r*100)/100}`]};},
+    ],
+    // ═══ БЛОК 4: Тригонометрія ═══
+    4: [
+      ()=>{const easy=[{d:0,s:'0',c:'1',t:'0'},{d:30,s:'1/2',c:'√3/2',t:'√3/3'},{d:45,s:'√2/2',c:'√2/2',t:'1'},{d:60,s:'√3/2',c:'1/2',t:'√3'},{d:90,s:'1',c:'0',t:'—'}];
+        const hard=[...easy,{d:120,s:'√3/2',c:'-1/2',t:'-√3'},{d:135,s:'√2/2',c:'-√2/2',t:'-1'},{d:150,s:'1/2',c:'-√3/2',t:'-√3/3'},{d:180,s:'0',c:'-1',t:'0'}];
+        const angles=D===1?easy.slice(1,4):D===2?easy:hard;
+        const a=pick(...angles);const fn=D===3?pick('sin','cos','tg'):pick('sin','cos');
+        const val=fn==='sin'?a.s:fn==='cos'?a.c:a.t;
+        const wrongs=angles.filter(x=>x!==a).map(x=>fn==='sin'?x.s:fn==='cos'?x.c:x.t).filter(x=>x!==val);
+        return {q:`${fn} ${a.d}° = ?`,a:val,opts:shuffle([val,...shuffle(wrongs).slice(0,3)])};},
+      ()=>{const d=D===1?pick(30,45,60,90):D===2?pick(30,45,60,90,120,135,150,180):pick(30,45,60,90,120,135,150,180,210,270,330);const r={30:'π/6',45:'π/4',60:'π/3',90:'π/2',120:'2π/3',135:'3π/4',150:'5π/6',180:'π',210:'7π/6',270:'3π/2',330:'11π/6'};
+        return {q:`${d}° у радіанах = ?`,a:r[d],opts:shuffle([r[d],...shuffle(Object.values(r).filter(x=>x!==r[d])).slice(0,3)])};},
+      ()=>{const q2=pick(1,2,3,4);const signs={1:['+','+','+'],2:['+','−','−'],3:['−','−','+'],4:['−','+','−']};const s=signs[q2];
+        return {q:`У ${q2}-й чверті sin ${s[0]}, cos ${s[1]}, tg ${s[2]}. Яка функція додатня?`,a:q2===1?'Всі':q2===2?'sin':q2===3?'tg':'cos',opts:['sin','cos','tg','Всі']};},
+      ()=>{return {q:'sin²α + cos²α = ?',a:'1',opts:['1','0','sin 2α','2']};},
+      ()=>{const formulas=D===1?[['sin 2α','2sinα·cosα']]:D===2?[['sin 2α','2sinα·cosα'],['cos 2α','cos²α−sin²α']]:
+        [['sin 2α','2sinα·cosα'],['cos 2α','cos²α−sin²α'],['tg 2α','2tgα/(1−tg²α)'],['sin(α+β)','sinαcosβ+cosαsinβ']];
+        const [fn,ans]=pick(...formulas);return {q:`${fn} = ?`,a:ans,opts:shuffle([ans,'2sinα·cosα','sin²α+cos²α','cos²α−sin²α','sinα+cosα'].filter(x=>x!==ans).slice(0,3).concat([ans]))};},
+      ()=>{return {q:'cos(−α) = ?',a:'cos α',opts:['cos α','−cos α','sin α','−sin α']};},
+    ],
+    // ═══ БЛОК 5: Аналітична геометрія ═══
+    5: [
+      ()=>{const x1=dr([0,3],[0,5],[0,10]),y1=dr([0,3],[0,5],[0,10]),x2=dr([0,3],[0,5],[0,10]),y2=dr([0,3],[0,5],[0,10]);const d=Math.sqrt((x2-x1)**2+(y2-y1)**2);const di=Number.isInteger(d)?d:d.toFixed(2);
+        return {q:`Відстань A(${x1},${y1}) B(${x2},${y2}) = ?`,a:`${di}`,opts:[`${di}`,`${Math.abs(x2-x1)+Math.abs(y2-y1)}`,`${((x2-x1)**2+(y2-y1)**2)}`,`${(d+1).toFixed(2)}`]};},
+      ()=>{const ax=dr([-2,2],[-3,3],[-5,5]),ay=dr([-2,2],[-3,3],[-5,5]),bx=dr([-2,2],[-3,3],[-5,5]),by=dr([-2,2],[-3,3],[-5,5]);const dot=ax*bx+ay*by;
+        return {q:`Скалярний добуток (${ax},${ay})·(${bx},${by}) = ?`,a:`${dot}`,opts:[`${dot}`,`${ax*bx-ay*by}`,`${dot+2}`,`${ax*by+ay*bx}`]};},
+      ()=>{const perp=pick(true,false);const k1=rnd(1,4);const k2=perp?(-1/k1):k1;const k2s=Number.isInteger(k2)?k2:k2.toFixed(2);
+        return {q:`k₁=${k1}, k₂=${k2s}. Прямі…?`,a:perp?'Перпендикулярні':'Паралельні',opts:['Перпендикулярні','Паралельні','Ні те, ні інше']};},
+      ()=>{const a=dr([2,4],[2,6],[3,9]),b=dr([2,4],[2,6],[3,9]);const c=Math.round(Math.sqrt(Math.abs(a*a-b*b))*100)/100;const ca=Number.isInteger(c)?c:c;
+        if(a>b){return {q:`Еліпс x²/${a*a}+y²/${b*b}=1. c = ?`,a:`${ca}`,opts:[`${ca}`,`${a+b}`,`${a-b}`,`${Math.round(Math.sqrt(a*a+b*b)*100)/100}`]};}
+        return {q:`Еліпс x²/${b*b}+y²/${a*a}=1. c = ?`,a:`${ca}`,opts:[`${ca}`,`${a+b}`,`${a-b}`,`${a*b}`]};},
+    ],
+    // ═══ БЛОК 6: Комбінаторика та аналіз ═══
+    6: [
+      ()=>{const n=dr([3,5],[5,10],[8,12]);const r=Array.from({length:n},(_,i)=>i+1).reduce((a,b)=>a*b,1);return {q:`${n}! = ?`,a:`${r}`,opts:[`${r}`,`${r+n}`,`${n*n}`,`${r/n}`]};},
+      ()=>{const n=dr([4,6],[5,10],[8,15]),k=dr([2,2],[2,Math.min(4,n)],[2,Math.min(5,n)]);const cn=(nn,kk)=>{let r=1;for(let i=0;i<kk;i++)r=r*(nn-i)/(i+1);return Math.round(r);};const r=cn(n,k);
+        return {q:`C(${n},${k}) = ?`,a:`${r}`,opts:[`${r}`,`${r+k}`,`${n*k}`,`${r-1}`]};},
+      ()=>{const easy=['x²','x³','sin x','cos x'];const hard=['x²','x³','x⁴','sin x','cos x','eˣ','ln x','tg x','1/x'];
+        const pool=D===1?easy:D===2?easy.concat(['eˣ','ln x']):hard;
+        const fn=pick(...pool);const der={'x²':'2x','x³':'3x²','x⁴':'4x³','sin x':'cos x','cos x':'−sin x','eˣ':'eˣ','ln x':'1/x','tg x':'1/cos²x','1/x':'−1/x²'};
+        const wrongs=Object.values(der).filter(x=>x!==der[fn]);
+        return {q:`(${fn})′ = ?`,a:der[fn],opts:shuffle([der[fn],...shuffle(wrongs).slice(0,3)])};},
+      ()=>{const n=dr([2,3],[3,6],[4,8]);const Sn=`x^${n+1}/${n+1}+C`;
+        return {q:`∫x^${n} dx = ?`,a:Sn,opts:[Sn,`${n}x^${n-1}+C`,`x^${n+1}+C`,`x^${n}/${n}+C`]};},
+      ()=>{const m=dr([1,3],[1,5],[1,8]),n=dr([4,6],[6,12],[10,20]);const p=Math.round(m/n*1000)/1000;
+        return {q:`P = ${m}/${n} ≈ ?`,a:`${p}`,opts:[`${p}`,`${Math.round((1-p)*1000)/1000}`,`${Math.round(m*n/100*1000)/1000}`,`${Math.round(p*10)/10+0.1}`]};},
+      ()=>{const qs=D===1?[{q:'Гармонічний ряд ∑1/n збігається?',a:'Ні, розходиться',opts:['Ні, розходиться','Так, S=1','Так, S=2','Так, S=e']}]:
+        [{q:'Гармонічний ряд ∑1/n збігається?',a:'Ні, розходиться',opts:['Ні, розходиться','Так, S=1','Так, S=2','Так, S=e']},
+         {q:'Геометричний ряд ∑qⁿ збігається при?',a:'|q| < 1',opts:['|q| < 1','q > 0','q < 1','q ≠ 0']},
+         {q:'∑1/n² = ?',a:'π²/6',opts:['π²/6','1','e','π/4']}];
+        return pick(...qs);},
+    ],
+  };
+
+  if (blockId === 0) {
+    // Adaptive: weight blocks by error rate
+    const bs = getProgress().quiz.blockStats;
+    const blockIds = Object.keys(generators).map(Number);
+    const weights = blockIds.map(id => {
+      const s = bs[id];
+      if (!s || (s.ok + s.fail) < 3) return 1; // not enough data — equal weight
+      const errRate = s.fail / (s.ok + s.fail);
+      return 0.5 + errRate * 2; // range: 0.5 (0% errors) – 2.5 (100% errors)
+    });
+    const totalW = weights.reduce((a,b)=>a+b, 0);
+    let r2 = Math.random() * totalW, chosenBlock = blockIds[0];
+    for (let i = 0; i < blockIds.length; i++) {
+      r2 -= weights[i];
+      if (r2 <= 0) { chosenBlock = blockIds[i]; break; }
+    }
+    const pool = generators[chosenBlock];
+    const gen = pool[rnd(0, pool.length-1)];
+    const q = gen();
+    q.opts = [...new Set(q.opts)].slice(0,4);
+    while(q.opts.length<4) q.opts.push('—');
+    if(!q.opts.includes(q.a)){q.opts[rnd(1,3)]=q.a;}
+    q.opts = shuffle(q.opts);
+    q.block = chosenBlock;
+    return q;
+  }
+
+  const pool = generators[blockId] || generators[1];
+  const gen = pool[rnd(0, pool.length-1)];
+  const q = gen();
+  q.opts = [...new Set(q.opts)].slice(0,4);
+  while(q.opts.length<4) q.opts.push('—');
+  if(!q.opts.includes(q.a)){q.opts[rnd(1,3)]=q.a;}
+  q.opts = shuffle(q.opts);
+  q.block = blockId;
+  return q;
+}
+
+let quizState = {block:null, q:null, answered:false, score:0, total:0, streak:0, bestStreak:0, difficulty:2};
+
+let selectedDifficulty = 2;
+function setDifficulty(d, btn) {
+  selectedDifficulty = d;
+  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function startTrainer(blockId) {
+  document.getElementById('trainer-start').style.display = 'none';
+  document.getElementById('trainer-session').style.display = 'block';
+  quizState = {block:blockId, q:null, answered:false, score:0, total:0, streak:0, bestStreak:0, difficulty:selectedDifficulty};
+  updateTrainerStats();
+  nextQuestion();
+}
+
+function resetTrainer() {
+  document.getElementById('trainer-start').style.display = 'block';
+  document.getElementById('trainer-session').style.display = 'none';
+  document.getElementById('marathon-progress').style.display = 'none';
+  document.getElementById('marathon-result').style.display = 'none';
+  document.getElementById('marathon-timer-wrap').style.display = 'none';
+  document.getElementById('trainer-quiz').style.display = 'block';
+  if (marathonState.timer) clearInterval(marathonState.timer);
+  quizState = {block:null, q:null, answered:false, score:0, total:0, streak:0, bestStreak:0, difficulty:2};
+  marathonState = {active:false, total:30, timeLeft:45*60, timer:null, blockResults:{}, answered:0};
+  renderTrainerHistory();
+}
+// ── НМТ-марафон ──
+let marathonState = {active:false, total:30, timeLeft:45*60, timer:null, blockResults:{}, answered:0};
+
+function startMarathon() {
+  document.getElementById('trainer-start').style.display = 'none';
+  document.getElementById('trainer-session').style.display = 'block';
+  document.getElementById('marathon-progress').style.display = 'block';
+  document.getElementById('marathon-timer-wrap').style.display = 'block';
+  document.getElementById('trainer-quiz').style.display = 'block';
+  document.getElementById('marathon-result').style.display = 'none';
+
+  quizState = {block:0, q:null, answered:false, score:0, total:0, streak:0, bestStreak:0, difficulty:selectedDifficulty};
+  marathonState = {active:true, total:30, timeLeft:45*60, timer:null, blockResults:{}, answered:0};
+
+  updateMarathonTimer();
+  marathonState.timer = setInterval(() => {
+    marathonState.timeLeft--;
+    updateMarathonTimer();
+    if (marathonState.timeLeft <= 0) {
+      clearInterval(marathonState.timer);
+      finishMarathon();
+    }
+  }, 1000);
+
+  updateTrainerStats();
+  updateMarathonProgress();
+  nextQuestion();
+}
+
+function updateMarathonTimer() {
+  const m = Math.floor(marathonState.timeLeft / 60);
+  const s = marathonState.timeLeft % 60;
+  const el = document.getElementById('marathon-timer');
+  if (el) {
+    el.textContent = `${m}:${s<10?'0':''}${s}`;
+    el.style.color = marathonState.timeLeft < 120 ? '#ff5050' : marathonState.timeLeft < 300 ? '#f0c040' : 'var(--text)';
+  }
+}
+
+function updateMarathonProgress() {
+  const done = marathonState.answered;
+  const total = marathonState.total;
+  document.getElementById('mp-label').textContent = `${done} / ${total}`;
+  document.getElementById('mp-pct').textContent = `${Math.round(done/total*100)}%`;
+  document.getElementById('mp-fill').style.width = `${done/total*100}%`;
+}
+
+function finishMarathon() {
+  if (marathonState.timer) clearInterval(marathonState.timer);
+  marathonState.active = false;
+
+  const score = quizState.score;
+  const total = marathonState.answered;
+  const pct = total > 0 ? Math.round(score/total*100) : 0;
+  const timeSpent = 45*60 - marathonState.timeLeft;
+  const minutes = Math.floor(timeSpent/60);
+  const seconds = timeSpent%60;
+
+  let grade, gradeColor, gradeEmoji;
+  if (pct >= 95) { grade='Відмінно'; gradeColor='#34d4a0'; gradeEmoji='🏆'; }
+  else if (pct >= 80) { grade='Добре'; gradeColor='#7c6ff7'; gradeEmoji='🎯'; }
+  else if (pct >= 60) { grade='Задовільно'; gradeColor='#f0c040'; gradeEmoji='📝'; }
+  else { grade='Потребує роботи'; gradeColor='#ff5050'; gradeEmoji='📚'; }
+
+  let blockRows = '';
+  for (const [bk, res] of Object.entries(marathonState.blockResults).sort((a,b)=>a[0]-b[0])) {
+    const bInfo = BLOCKS.find(b2=>b2.id===parseInt(bk));
+    const bName = bInfo ? `${bInfo.icon} ${bInfo.name}` : `Блок ${bk}`;
+    const bTotal = res.ok + res.fail;
+    const bPct = Math.round(res.ok/bTotal*100);
+    const barColor = bPct >= 80 ? '#34d4a0' : bPct >= 60 ? '#f0c040' : '#ff5050';
+    blockRows += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="min-width:120px;font-size:12px;color:var(--text2)">${bName}</div><div style="flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden"><div style="height:100%;width:${bPct}%;background:${barColor};border-radius:3px"></div></div><div style="min-width:60px;text-align:right;font-size:12px;font-family:ui-monospace,monospace;color:${barColor}">${res.ok}/${bTotal} (${bPct}%)</div></div>`;
+  }
+
+  document.getElementById('trainer-quiz').style.display = 'none';
+  document.getElementById('marathon-progress').style.display = 'none';
+  document.getElementById('marathon-result').style.display = 'block';
+  document.getElementById('marathon-result').innerHTML = `
+    <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:14px;padding:30px;text-align:center">
+      <div style="font-size:56px;margin-bottom:8px">${gradeEmoji}</div>
+      <div style="font-size:24px;font-weight:700;color:${gradeColor};margin-bottom:4px">${grade}</div>
+      <div style="font-size:42px;font-weight:700;color:var(--text);margin-bottom:4px">${score} / ${total}</div>
+      <div style="font-size:16px;color:var(--text2);margin-bottom:20px">${pct}% правильних · ${minutes}:${seconds<10?'0':''}${seconds} · Серія: ${quizState.bestStreak} 🔥</div>
+      <div style="text-align:left;padding:16px 0;border-top:.5px solid var(--border);margin-top:8px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:ui-monospace,monospace;margin-bottom:12px">Результати по блоках</div>
+        ${blockRows}
+      </div>
+      <button onclick="resetTrainer()" style="margin-top:16px;background:rgba(124,111,247,.12);border:.5px solid var(--accent);border-radius:10px;padding:12px 28px;color:var(--accent);cursor:pointer;font-family:inherit;font-size:14px;font-weight:500">🔄 Спробувати знову</button>
+    </div>
+  `;
+
+  const p = getProgress();
+  if (!p.quiz.marathonHistory) p.quiz.marathonHistory = [];
+  p.quiz.marathonHistory.push({date:Date.now(), score, total, pct, difficulty:quizState.difficulty, time:timeSpent});
+  if (p.quiz.marathonHistory.length > 50) p.quiz.marathonHistory = p.quiz.marathonHistory.slice(-50);
+  saveProgress(p);
+}
+
+function updateTrainerStats() {
+  const diffLabel = ['','🟢 Легкий','🟡 Середній','🔴 Складний'][quizState.difficulty||2];
+  document.getElementById('ts-score').textContent = `${quizState.score} / ${quizState.total}`;
+  document.getElementById('ts-streak').textContent = `${quizState.streak} 🔥`;
+  document.getElementById('ts-pct').textContent = quizState.total > 0 ? `${Math.round(quizState.score/quizState.total*100)}% ${diffLabel}` : diffLabel;
+}
+
+function nextQuestion() {
+  const q = generateQuestion(quizState.block);
+  quizState.q = q;
+  quizState.answered = false;
+  const blockName = quizState.block === 0
+    ? (BLOCKS.find(b=>b.id===quizState.q.block)||{name:'Усі блоки'}).name
+    : (BLOCKS.find(b=>b.id===quizState.block)||{}).name||'';
+  document.getElementById('trainer-quiz').innerHTML = `
+    <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:14px;padding:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-size:10px;font-family:ui-monospace,monospace;color:var(--text3);letter-spacing:1px;text-transform:uppercase">Запитання #${quizState.total+1}</div>
+        <div style="font-size:10px;color:var(--text3)">${blockName}</div>
+      </div>
+      <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:20px;line-height:1.7">${q.q}</div>
+      <div style="display:flex;flex-direction:column;gap:8px" id="quiz-opts">
+        ${q.opts.map((o,i) => `
+          <button data-idx="${i}" onclick="checkAnswer(${i})" style="text-align:left;padding:12px 16px;background:var(--bg3);border:.5px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:inherit;font-size:13px;transition:.15s;line-height:1.5">
+            ${o}
+          </button>
+        `).join('')}
+      </div>
+      <div id="quiz-feedback" style="margin-top:16px;display:none"></div>
+      <button id="quiz-next" onclick="nextQuestion()" style="display:none;margin-top:14px;background:rgba(124,111,247,.12);border:.5px solid var(--accent);border-radius:8px;padding:10px 24px;color:var(--accent);font-family:inherit;font-size:13px;cursor:pointer">Наступне →</button>
+    </div>
+  `;
+}
+
+function checkAnswer(idx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  quizState.total++;
+  const chosen = quizState.q.opts[idx];
+  const correct = chosen === quizState.q.a;
+  if (correct) { quizState.score++; quizState.streak++; if(quizState.streak>quizState.bestStreak)quizState.bestStreak=quizState.streak; }
+  else { quizState.streak = 0; }
+  saveQuizResult(correct);
+  updateTrainerStats();
+  const btns = document.querySelectorAll('#quiz-opts button');
+  btns.forEach(b => {
+    b.style.cursor = 'default';
+    if (b.textContent.trim() === quizState.q.a) { b.style.borderColor = '#34d4a0'; b.style.color = '#34d4a0'; b.style.background = 'rgba(52,212,160,.08)'; }
+  });
+  if (!correct) { btns[idx].style.borderColor = '#ff5050'; btns[idx].style.color = '#ff5050'; btns[idx].style.background = 'rgba(255,80,80,.08)'; }
+  document.getElementById('quiz-feedback').style.display = 'block';
+  document.getElementById('quiz-feedback').innerHTML = correct
+    ? `<div style="color:#34d4a0;font-size:13px">✓ Правильно!${quizState.streak>=3?' Серія '+quizState.streak+'! 🔥':''}</div>`
+    : `<div style="color:#ff7070;font-size:13px">✗ Правильна відповідь: <b style="color:var(--text)">${quizState.q.a}</b></div>`;
+
+  // Marathon tracking
+  if (marathonState.active) {
+    const bk = quizState.q.block;
+    if (!marathonState.blockResults[bk]) marathonState.blockResults[bk] = {ok:0, fail:0};
+    correct ? marathonState.blockResults[bk].ok++ : marathonState.blockResults[bk].fail++;
+    marathonState.answered++;
+    updateMarathonProgress();
+    if (marathonState.answered >= marathonState.total) {
+      setTimeout(() => finishMarathon(), 1200);
+      return;
+    }
+  }
+  document.getElementById('quiz-next').style.display = 'inline-block';
+}
+
+// ══ УЛЮБЛЕНІ ФОРМУЛИ ═════════════════════════════════════════
+async function initFavs() {
+  const p = getProgress();
+  const keys = Object.keys(p.favs);
+  const cont = document.getElementById('favs-list');
+  const empty = document.getElementById('favs-empty');
+  document.getElementById('favs-count').textContent = keys.length;
+
+  if (!keys.length) {
+    cont.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // Group by block
+  const blockMap = {};
+  BLOCKS.forEach(b => b.topics.forEach(t => { blockMap[t.id] = {blockId:b.id, blockName:b.name, blockIcon:b.icon, blockColor:b.color, topicName:t.name}; }));
+
+  // Load needed topics
+  const neededIds = [...new Set(keys.map(k => k.split('__')[0]))];
+  await Promise.all(neededIds.map(id => loadTopic(id)));
+
+  const groups = {};
+  keys.forEach(key => {
+    const [topicId, idxStr] = key.split('__');
+    const idx = parseInt(idxStr);
+    const info = blockMap[topicId];
+    if (!info) return;
+    const data = TOPIC_CACHE[topicId];
+    if (!data || !data.formula || !data.formula.expressions[idx]) return;
+    const expr = data.formula.expressions[idx];
+    if (!groups[info.blockId]) groups[info.blockId] = {name:info.blockName, icon:info.blockIcon, color:info.blockColor, items:[]};
+    groups[info.blockId].items.push({topicId, idx, topicName:info.topicName, expr:expr.expr, name:expr.name, blockName:info.blockName});
+  });
+
+  const html = Object.keys(groups).sort((a,b) => a-b).map(bid => {
+    const g = groups[bid];
+    return `
+      <div style="margin-bottom:24px">
+        <div style="font-size:11px;font-family:ui-monospace,monospace;letter-spacing:1px;color:${g.color};text-transform:uppercase;margin-bottom:10px">${g.icon} ${g.name}</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${g.items.map(it => `
+            <div onclick="openTopic('${it.topicId}','${it.blockName}');switchTopicTabById('formula')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg2);border:.5px solid var(--border);border-radius:10px;cursor:pointer;transition:.15s" onmouseover="this.style.borderColor='rgba(124,111,247,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+              <button onclick="event.stopPropagation();toggleFav('${it.topicId}',${it.idx},this);setTimeout(initFavs,50)" style="background:none;border:none;cursor:pointer;font-size:18px;padding:2px 4px;color:var(--gold);flex-shrink:0">★</button>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:13px;color:var(--text);margin-bottom:4px">${renderMath(it.expr)}</div>
+                <div style="font-size:11px;color:var(--text3)">${it.name} · ${it.topicName}</div>
+              </div>
+              <span style="color:var(--text3);font-size:14px;flex-shrink:0">›</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  cont.innerHTML = html;
+}
+
+// ══ ГЛОСАРІЙ ════════════════════════════════════════════════
+let glossaryTerms = [];
+
+async function buildGlossary() {
+  if (glossaryTerms.length) return glossaryTerms;
+  await loadAllTopics();
+
+  const blockMap = {};
+  BLOCKS.forEach(b => b.topics.forEach(t => { blockMap[t.id] = {blockId:b.id, blockName:b.name, blockColor:b.color, topicName:t.name}; }));
+
+  const seen = new Set();
+  const add = (term, def, topicId, type) => {
+    const key = term.toLowerCase().replace(/\s+/g,' ').trim();
+    if (seen.has(key) || !term || term.length < 2) return;
+    seen.add(key);
+    const info = blockMap[topicId] || {blockId:0,blockName:'',blockColor:'#888',topicName:''};
+    glossaryTerms.push({term, def, type, blockId:info.blockId, blockName:info.blockName, blockColor:info.blockColor, topicName:info.topicName});
+  };
+
+  for (const [topicId, td] of Object.entries(TOPIC_CACHE)) {
+    // 1. popup.what — означення теми
+    const popup = td.reference?.popup || {};
+    if (popup.what) add(td.title, popup.what, topicId, 'означення');
+
+    // 2. constants — символи, константи, ознаки
+    const consts = td.reference?.constants || [];
+    consts.forEach(c => {
+      if (c.desc && c.symbol) add(c.symbol, `${c.value ? c.value+' — ':''}${c.desc}`, topicId, 'символ');
+    });
+
+    // 3. formula expressions — назви формул
+    const exprs = td.formula?.expressions || [];
+    exprs.forEach(e => {
+      if (e.name && e.expr) add(e.name, `${e.expr}`, topicId, 'формула');
+    });
+  }
+
+  // Sort: означення first, then symbols, then formulas, alphabetically within each
+  glossaryTerms.sort((a,b) => {
+    const ord = {означення:0,символ:1,формула:2};
+    if (ord[a.type] !== ord[b.type]) return ord[a.type] - ord[b.type];
+    return a.term.localeCompare(b.term, 'uk');
+  });
+
+  return glossaryTerms;
+}
+
+async function initGlossary() {
+  const cont = document.getElementById('glossary-list');
+  if (cont.innerHTML) return;
+
+  cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)">'+L('loading_glossary')+'</div>';
+  const terms = await buildGlossary();
+  document.getElementById('glossary-count').textContent = terms.length;
+
+  // Populate filter select
+  const sel = document.getElementById('glossary-filter');
+  BLOCKS.forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b.id;
+    opt.textContent = `${b.icon} ${b.name}`;
+    sel.appendChild(opt);
+  });
+
+  renderGlossary(terms);
+}
+
+function renderGlossary(terms) {
+  const cont = document.getElementById('glossary-list');
+  if (!terms.length) {
+    cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">Нічого не знайдено</div>';
+    return;
+  }
+  const typeIcon = {означення:'📖',символ:'🔣',формула:'📐'};
+  cont.innerHTML = terms.map(t => `
+    <div class="glossary-item" style="padding:12px 0;border-bottom:.5px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap">
+        <span style="font-size:11px">${typeIcon[t.type]||'·'}</span>
+        <span style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;color:var(--accent)">${esc(t.term)}</span>
+        <span style="font-size:9px;padding:2px 6px;border-radius:4px;background:${t.blockColor}22;color:${t.blockColor};font-family:ui-monospace,monospace;letter-spacing:.3px">${t.blockName}</span>
+      </div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.7;padding-left:22px">${t.type==='формула'?renderMath(t.def):esc(t.def)}</div>
+    </div>
+  `).join('');
+}
+
+async function filterGlossary() {
+  const q = (document.getElementById('glossary-search').value || '').toLowerCase().trim();
+  const block = document.getElementById('glossary-filter').value;
+  let filtered = await buildGlossary();
+  if (block !== 'all') filtered = filtered.filter(t => t.blockId === parseInt(block));
+  if (q) filtered = filtered.filter(t => t.term.toLowerCase().includes(q) || t.def.toLowerCase().includes(q));
+  renderGlossary(filtered);
+}
+
+// ══ ГЛОБАЛЬНИЙ ПОШУК ════════════════════════════════════
+function focusSearch() {
+  setTimeout(() => { const el = document.getElementById('global-search'); if(el) el.focus(); }, 100);
+}
+
+async function buildSearchIndex() {
+  await loadAllTopics();
+  const idx = [];
+  const blockMap = {};
+  BLOCKS.forEach(b => b.topics.forEach(t => { blockMap[t.id] = {blockName:b.name, blockIcon:b.icon, topicName:t.name, topicIcon:t.icon}; }));
+
+  for (const [topicId, td] of Object.entries(TOPIC_CACHE)) {
+    const info = blockMap[topicId] || {};
+    // topics
+    idx.push({type:'topic', id:topicId, title:td.title, icon:info.topicIcon||'📗', sub:info.blockName||'', text:td.title + ' ' + (td.reference?.popup?.what||'')});
+    // formulas
+    (td.formula?.expressions||[]).forEach(f => {
+      idx.push({type:'formula', id:topicId, title:f.name, icon:'📐', sub:td.title, text:f.name+' '+f.expr+' '+(f.desc||'')});
+    });
+    // constants
+    (td.reference?.constants||[]).forEach(c => {
+      if(c.symbol) idx.push({type:'term', id:topicId, title:c.symbol, icon:'🔣', sub:td.title, text:c.symbol+' '+c.value+' '+(c.desc||'')});
+    });
+    // theory
+    (td.logic?.sections||[]).forEach(s => {
+      if(s.heading) idx.push({type:'theory', id:topicId, title:s.heading, icon:'📖', sub:td.title, text:s.heading+' '+(s.text||'')+' '+(s.items||[]).join(' ')});
+    });
+  }
+  return idx;
+}
+
+let searchIndex = null;
+let searchTimer = null;
+
+function globalSearch(query) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => doSearch(query), 150);
+}
+
+function openSearchResult(topicId, type) {
+  openTopic(topicId, '');
+  if (type === 'formula') setTimeout(() => switchTopicTabById('formula'), 100);
+}
+
+async function doSearch(query) {
+  const cont = document.getElementById('search-results');
+  const q = (query||'').toLowerCase().trim();
+  if (q.length < 2) {
+    cont.innerHTML = '<div style="text-align:center;padding:40px 0;color:var(--text3)">'+L('search_min')+'</div>';
+    return;
+  }
+  if (!searchIndex) {
+    cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)">'+L('search_indexing')+'</div>';
+    searchIndex = await buildSearchIndex();
+  }
+
+  const words = q.split(/\s+/);
+  const results = searchIndex.filter(item => words.every(w => item.text.toLowerCase().includes(w))).slice(0, 40);
+
+  if (!results.length) {
+    cont.innerHTML = `<div style="text-align:center;padding:40px 0;color:var(--text3)">${L('search_nothing')} «${query}»</div>`;
+    return;
+  }
+
+  const hl = (text) => {
+    let t = text;
+    words.forEach(w => { if(w.length>=2) t = t.replace(new RegExp(`(${w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'), '<b style="color:var(--accent)">$1</b>'); });
+    return t;
+  };
+
+  const typeLabel = {topic:'Тема',formula:'Формула',term:'Термін',theory:'Теорія'};
+  cont.innerHTML = `
+    <div style="font-size:11px;color:var(--text3);margin-bottom:12px">${results.length} результат${results.length>4?'ів':results.length>1?'и':''}</div>
+    ${results.map(r => `
+      <div onclick="openSearchResult('${r.id}','${r.type}')" style="display:flex;gap:10px;align-items:center;padding:12px 14px;margin-bottom:6px;background:var(--bg2);border:.5px solid var(--border);border-radius:10px;cursor:pointer;transition:.15s" onmouseover="this.style.borderColor='rgba(124,111,247,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:16px;flex-shrink:0">${r.icon}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${hl(r.title)}</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:2px">${typeLabel[r.type]} · ${hl(r.sub)}</div>
+        </div>
+      </div>
+    `).join('')}
+  `;
+}
+
+// ══ ІНІЦІАЛІЗАЦІЯ ════════════════════════════════════════════
+initHome();
+applyLang();
+updateProgressUI();
+if (location.hash.length > 1) { setTimeout(navigateToHash, 600); }
+
+// PWA Service Worker + Offline
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').then(reg => {
+    // Prefetch all topics in background after SW is ready
+    if (navigator.serviceWorker.controller) {
+      const ids = BLOCKS.flatMap(b => b.topics.map(t => t.id));
+      navigator.serviceWorker.controller.postMessage({type:'PREFETCH_TOPICS', ids});
+    }
+    reg.addEventListener('updatefound', () => {
+      const nw = reg.installing;
+      nw.addEventListener('statechange', () => {
+        if (nw.state === 'activated') {
+          const ids = BLOCKS.flatMap(b => b.topics.map(t => t.id));
+          nw.postMessage && navigator.serviceWorker.controller?.postMessage({type:'PREFETCH_TOPICS', ids});
+        }
+      });
+    });
+  }).catch(() => {});
+}
+
+// Offline indicator
+function updateOnlineStatus() {
+  const badge = document.getElementById('offline-badge');
+  if (badge) badge.style.display = navigator.onLine ? 'none' : 'inline-block';
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+updateOnlineStatus();
+
+// Keyboard shortcut: press '/' to open search
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    showPanel('search');
+    focusSearch();
+  }
+});
+</script>
+</body>
+</html>
